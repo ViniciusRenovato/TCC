@@ -7,55 +7,54 @@
     tools:context=".SecondFragment">
 
     <Button
-        android:id="@+id/button_second"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/BT_ADD_FUNCIONARIO"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
         android:text="@string/previous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104"
-        tools:ignore="DuplicateSpeakableTextCheck"
-        tools:text="Agenda" />
+        app:layout_constraintVertical_bias="0.275"
+        tools:text="Adicionar" />
 
     <Button
-        android:id="@+id/button_second2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/BT_EDIT_FUNCIONARIO"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
         android:text="@string/previous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104"
-        tools:text="Serviços" />
+        app:layout_constraintVertical_bias="0.386"
+        tools:text="Editar" />
 
     <Button
-        android:id="@+id/button_second3"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/BT_DEL_FUNCIONARIO"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
         android:text="@string/previous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422"
-        tools:text="Funcionarios" />
+        app:layout_constraintVertical_bias="0.499"
+        tools:text="Remover" />
 
-    <Button
-        android:id="@+id/button_second4"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:text="@string/previous"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422"
-        tools:text="Função" />
+        app:layout_constraintVertical_bias="0.074"
+        tools:text="Funcionários" />
 </androidx.constraintlayout.widget.ConstraintLayout>
