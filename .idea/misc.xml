@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android/TCC/app/src/main/res/drawable/avatar_funcionario.xml" value="0.28489583333333335" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/Menu_Salao.xml" value="0.26875" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamentos_cliente.xml" value="0.25" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/atendimentos_marcados.xml" value="0.26875" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/calendario_cliente.xml" value="0.33" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/detalhes_agendamento.xml" value="0.26875" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/pedido_realizado.xml" value="0.26875" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

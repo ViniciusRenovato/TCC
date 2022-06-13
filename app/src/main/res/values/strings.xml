@@ -9,4 +9,10 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="atendimentos_marcados">Atendimentos Marcados</string>
+    <string name="voltar">Voltar</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="remarcar">Remarcar</string>
+    <string name="agendar">Agendar</string>
+    <string name="desmarcar">Desmarcar</string>
 </resources>
