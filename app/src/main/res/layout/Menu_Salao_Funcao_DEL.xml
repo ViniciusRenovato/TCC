@@ -34,7 +34,7 @@
 
     <Button
         android:id="@+id/BT_ADD_FUNCAO15"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="48dp"
         android:text="@string/previous"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,5 +44,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.945"
         tools:text="Confirmar" />
+
+    <Button
+        android:id="@+id/BT_ADD_FUNCAO17"
+        android:layout_width="125dp"
+        android:layout_height="48dp"
+        android:text="@string/previous"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.691"
+        tools:text="Remover" />
+
+    <ListView
+        android:layout_width="319dp"
+        android:layout_height="355dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.228" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

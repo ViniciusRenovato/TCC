@@ -62,7 +62,7 @@
 
     <Button
         android:id="@+id/BT_ADD_FUNCAO5"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="48dp"
         android:text="@string/previous"
         app:layout_constraintBottom_toBottomOf="parent"
