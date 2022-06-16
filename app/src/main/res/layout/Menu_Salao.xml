@@ -10,52 +10,51 @@
         android:id="@+id/button_second"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:text="@string/previous"
+        android:text="Agenda"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.104"
-        tools:ignore="DuplicateSpeakableTextCheck"
-        tools:text="Agenda" />
+        tools:ignore="DuplicateSpeakableTextCheck,HardcodedText"/>
 
     <Button
         android:id="@+id/button_second2"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:text="@string/previous"
+        android:text="Serviços"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.104"
-        tools:text="Serviços" />
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/button_second3"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:text="@string/previous"
+        android:text="Funcionarios"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.422"
-        tools:text="Funcionarios" />
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/button_second4"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:text="@string/previous"
+        android:text="Função"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.422"
-        tools:text="Função" />
+        tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

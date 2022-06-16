@@ -3,26 +3,28 @@ package com.example.tcc.entidades;
 import java.io.Serializable;
 import java.util.Date;
 import com.example.tcc.entidades.Pessoa;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Cliente implements Serializable {
 
-    private int pontos_cliente;
-    private int id_cliente;
+    private Integer pontos_cliente;
+    private Integer id_cliente;
     private Pessoa pessoa;
 
-    public int getPontos_cliente() {
+    public Integer getPontos_cliente() {
         return pontos_cliente;
     }
 
-    public void setPontos_cliente(int pontos_cliente) {
+    public void setPontos_cliente(Integer pontos_cliente) {
         this.pontos_cliente = pontos_cliente;
     }
 
-    public int getId_cliente() {
+    public Integer getId_cliente() {
         return id_cliente;
     }
 
-    public void setId_cliente(int id_cliente) {
+    public void setId_cliente(Integer id_cliente) {
         this.id_cliente = id_cliente;
     }
 
@@ -44,7 +46,38 @@ public class Cliente implements Serializable {
                 ", ID do cliente='" + id_cliente + '\'' +
                 '}';
     }
-//    private static FirebaseDatabase firebaseDatabase;
-//    private static DatabaseReference databaseReference;
+
+    private static FirebaseDatabase firebaseDatabase;
+    private static DatabaseReference databaseReference;
+
+    public static void salvaCliente(Cliente c){
+        if(databaseReference==null){
+            databaseReference.child("Cliente").child(c.getId_cliente().toString()
+            ).setValue(c);
+            databaseReference.child("Cliente").child(c.getPontos_cliente().toString()
+            ).setValue(c);
+            databaseReference.child("Cliente").child(c.getPessoa().toString()
+            ).setValue(c);
+
+        }
+    }
+    public static void excluirCliente(Cliente c){
+        databaseReference.child("Cliente").child(c.getId_cliente()+"").removeValue();
+        databaseReference.child("Cliente").child(c.getPontos_cliente()+"").removeValue();
+        databaseReference.child("Cliente").child(c.getPessoa()+"").removeValue();
+
+    }
+    public static void editarCliente(Cliente c){
+    //    databaseReference.child("Cliente").child(c.getId_cliente().toString()
+    //    ).child("nome").setValue(c.getId_cliente());
+        databaseReference.child("Cliente").child(c.getId_cliente().toString()
+        ).child("Pontos").setValue(c.getPontos_cliente());
+        databaseReference.child("Cliente").child(c.getId_cliente().toString()
+        ).child("pessoa").setValue(c.getPessoa());
+
+
+    }
+
+
 
 }
