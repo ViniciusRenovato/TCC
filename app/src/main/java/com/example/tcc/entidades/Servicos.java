@@ -1,6 +1,8 @@
 package com.example.tcc.entidades;
 
 import java.io.Serializable;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import java.sql.Time;
 
 public class Servicos implements Serializable {
@@ -12,6 +14,9 @@ public class Servicos implements Serializable {
     private Funcionario funcionario;
     private Agendamento agendamento;
     private Produto produto;
+
+    private static FirebaseDatabase firebaseDatabase;
+    private static DatabaseReference databaseReference;
 
 
     public String getNome_servico() {
@@ -76,5 +81,53 @@ public class Servicos implements Serializable {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public static void salvaServicos(Servicos s){
+        if(databaseReference==null){
+            databaseReference.child("Servicos").child(s.getId_servico().toString()
+            ).setValue(s);
+            databaseReference.child("Servicos").child(s.getDuracao_servico().toString()
+            ).setValue(s);
+            databaseReference.child("Servicos").child(s.getValor_servico().toString()
+            ).setValue(s);
+            databaseReference.child("Servicos").child(s.getNome_servico().toString()
+            ).setValue(s);
+            databaseReference.child("Servicos").child(s.getProduto().toString()
+            ).setValue(s);
+            databaseReference.child("Servicos").child(s.getCliente().toString()
+            ).setValue(s);
+            databaseReference.child("Servicos").child(s.getAgendamento().toString()
+            ).setValue(s);
+            databaseReference.child("Servicos").child(s.getFuncionario().toString()
+            ).setValue(s);
+        }
+    }
+    public static void excluirServicos(Servicos s){
+        databaseReference.child("Servicos").child(s.getId_servico()+"").removeValue();
+        databaseReference.child("Servicos").child(s.getDuracao_servico()+"").removeValue();
+        databaseReference.child("Servicos").child(s.getValor_servico()+"").removeValue();
+        databaseReference.child("Servicos").child(s.getNome_servico()+"").removeValue();
+        databaseReference.child("Servicos").child(s.getProduto()+"").removeValue();
+        databaseReference.child("Servicos").child(s.getCliente()+"").removeValue();
+        databaseReference.child("Servicos").child(s.getAgendamento()+"").removeValue();
+        databaseReference.child("Servicos").child(s.getFuncionario()+"").removeValue();
+    }
+    public static void editarServicos(Servicos s){
+
+        databaseReference.child("Servicos").child(s.getId_servico().toString()
+        ).child("duracao").setValue(s.getDuracao_servico());
+        databaseReference.child("Servicos").child(s.getId_servico().toString()
+        ).child("valor").setValue(s.getValor_servico());
+        databaseReference.child("Servicos").child(s.getId_servico().toString()
+        ).child("nome").setValue(s.getNome_servico());
+        databaseReference.child("Servicos").child(s.getId_servico().toString()
+        ).child("Produto").setValue(s.getProduto());
+        databaseReference.child("Servicos").child(s.getId_servico().toString()
+        ).child("Cliente").setValue(s.getCliente());
+        databaseReference.child("Servicos").child(s.getId_servico().toString()
+        ).child("Agendamento").setValue(s.getAgendamento());
+        databaseReference.child("Servicos").child(s.getId_servico().toString()
+        ).child("Funcionario").setValue(s.getFuncionario());
     }
 }
