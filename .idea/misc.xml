@@ -5,10 +5,14 @@
       <map>
         <entry key="..\:/Android/TCC/app/src/main/res/drawable/avatar_funcionario.xml" value="0.28489583333333335" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/Menu_Salao.xml" value="0.26875" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamentos_cliente.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/atendimentos_marcados.xml" value="0.26875" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/calendario_cliente.xml" value="0.33" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/content_main.xml" value="0.2" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/detalhes_agendamento.xml" value="0.26875" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/fragment_first.xml" value="0.2" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/fragment_second.xml" value="0.2" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/pedido_realizado.xml" value="0.26875" />
       </map>
     </option>

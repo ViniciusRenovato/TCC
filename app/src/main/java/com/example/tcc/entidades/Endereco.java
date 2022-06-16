@@ -49,4 +49,16 @@ public class Endereco implements Serializable {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+
+    @Override
+    public String toString() {
+        return "Endereço{" +
+                " Rua=" + rua + '\'' +
+                ", Cidade='" + cidade + '\'' +
+                ", Estado='" + estado + '\'' +
+                ", CEP='" + CEP + '\'' +
+                ", Pais='" + pais + '\'' +
+                '}';
+    }
 }

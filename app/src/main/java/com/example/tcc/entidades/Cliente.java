@@ -2,6 +2,7 @@ package com.example.tcc.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import com.example.tcc.entidades.Pessoa;
 
 public class Cliente implements Serializable {
 
@@ -32,4 +33,18 @@ public class Cliente implements Serializable {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
+
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                " Nome='" + pessoa.getNome_pessoa() + '\'' +
+                ", Telefone='" + pessoa.getTelefone_pessoa() + '\'' +
+                ", Pontos do cliente='" + pontos_cliente + '\'' +
+                ", ID do cliente='" + id_cliente + '\'' +
+                '}';
+    }
+//    private static FirebaseDatabase firebaseDatabase;
+//    private static DatabaseReference databaseReference;
+
 }
