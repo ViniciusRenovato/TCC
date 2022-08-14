@@ -15,4 +15,6 @@
     <string name="remarcar">Remarcar</string>
     <string name="agendar">Agendar</string>
     <string name="desmarcar">Desmarcar</string>
+    <string name="cliente">Cliente</string>
+    <string name="Confirmar">Confirmar</string>
 </resources>

@@ -15,6 +15,43 @@
       },
       "oauth_client": [
         {
+          "client_id": "930850920214-cq9gmnnf7unln22so02jn51sell34goj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tcc",
+            "certificate_hash": "a65dd87d3ee3be4fca684197c9f194645eb2eec2"
+          }
+        },
+        {
+          "client_id": "930850920214-dshdj87q2lm0f1bdd6s61du0jng6r8sf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUiJWF5O4oaGwHRJG6IOhJXrBuq_453Mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930850920214-dshdj87q2lm0f1bdd6s61du0jng6r8sf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930850920214:android:17bbe1ea2de9b68de46237",
+        "android_client_info": {
+          "package_name": "com.example.trabalhodeconclusodecurso"
+        }
+      },
+      "oauth_client": [
+        {
           "client_id": "930850920214-dshdj87q2lm0f1bdd6s61du0jng6r8sf.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -63,20 +63,20 @@ public class PessoaTest {
     @Test
     public void testeIntegracao(){
 
-        Pessoa pessoa = new Pessoa();
-        pessoa.setNome_pessoa("Andre");
-        pessoa.setTelefone_pessoa("99912165");
-        pessoa.setData_aniversario("21/10");
-        pessoa.setEmail_pessoa("matheus-a-c@hotmail.com");
-        pessoa.setEndereco(pessoa.getEndereco());
-      Pessoa.salvaPessoa(pessoa);
-      assertNotNull(pessoa);
-    }
+//        Pessoa pessoa = new Pessoa();
+//        pessoa.setNome_pessoa("Andre");
+//        pessoa.setTelefone_pessoa("99912165");
+//        pessoa.setData_aniversario("21/10");
+//        pessoa.setEmail_pessoa("matheus-a-c@hotmail.com");
+//        pessoa.setEndereco(pessoa.getEndereco());
+//      Pessoa.salvaPessoa(pessoa);
+//      assertNotNull(pessoa);
+//    }
 
-    @Test
-    public void Salvando_Exito() throws IOException {
-        Pessoa pessoa = new Pessoa();
-        pessoa.setId_pessoa(1);
+//    @Test
+//    public void Salvando_Exito() throws IOException {
+//        Pessoa pessoa = new Pessoa();
+//        pessoa.setId_pessoa(1);
 //        pessoa.setNome_pessoa("qualquer pessoa");
 //        pessoa.setNome("Bruno Formiga");
 //        pessoa.setCpf("07464993101");
