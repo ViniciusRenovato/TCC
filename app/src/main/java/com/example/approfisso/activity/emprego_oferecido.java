@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
+import com.example.approfisso.entidades.Pessoa;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,7 +55,7 @@ public class emprego_oferecido extends AppCompatActivity {
         //firebase
         databaseReference= DataFirebase.getDatabaseReference();
 
-        Empregos= new LinkedList<>();
+        Pessoas= new LinkedList<>();
         //chamada firebase
         listar();
 
@@ -85,7 +86,7 @@ public class emprego_oferecido extends AppCompatActivity {
 //        });
     }
 
-    List<empregos> Empregos;
+ /  List<empregos> Empregos;
     public void listar(){
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -106,13 +107,34 @@ public class emprego_oferecido extends AppCompatActivity {
         });
     }
 
+    List<Pessoa> Pessoas;
+    public void listar(){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                DataSnapshot dataSnapshot = snapshot.child("Pessoas");
+                Pessoas.clear();
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Pessoa Pessoas = postSnapshot.getValue(Pessoa.class);
+                    Pessoas.add(Pessoas);
 
-    EmpregoAdapter empregosAdapter;
-    private void preenche() {
-        empregosAdapter= new EmpregoAdapter(Empregos);
-        recyclerView.setAdapter(empregosAdapter);
+                }
+                preenche();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
     }
+
+
+//    EmpregoAdapter empregosAdapter;
+//    private void preenche() {
+//        empregosAdapter= new EmpregoAdapter(Empregos);
+//        recyclerView.setAdapter(empregosAdapter);
+
+//    }
 
 
 
