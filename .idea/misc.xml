@@ -3,27 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android/TCC/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2315" />
-        <entry key="..\:/Android/TCC/app/src/main/res/drawable/avatar_funcionario.xml" value="0.28489583333333335" />
-        <entry key="..\:/Android/TCC/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2315" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/Menu_Salao.xml" value="0.26875" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/Menu_Salao_Servicos_EDIT.xml" value="0.3582427536231884" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_cadastro_cliente.xml" value="0.23777173913043478" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_main.xml" value="0.5" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_tela_cliente.xml" value="0.36614583333333334" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamentos_cliente.xml" value="0.25" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/atendimentos_marcados.xml" value="0.26875" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/calendario_cliente.xml" value="0.33" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro.xml" value="0.33" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/content_main.xml" value="0.2" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/crud.xml" value="0.2" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/detalhes_agendamento.xml" value="0.26875" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/fragment_first.xml" value="0.2" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/fragment_second.xml" value="0.2" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/pedido_realizado.xml" value="0.26875" />
-        <entry key="..\:/Android/TCC/app/src/main/res/menu/menu_main.xml" value="0.36614583333333334" />
-        <entry key="..\:/Android/TCC/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2315" />
-        <entry key="..\:/Android/TCC/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2315" />
+        <entry key="..\:/Users/Matheus/Desktop/recicleview firebase/APProfisso/app/src/main/res/layout/busca_menu.xml" value="0.15" />
+        <entry key="..\:/Users/Matheus/Desktop/recicleview firebase/APProfisso/app/src/main/res/layout/emprego_oferecido.xml" value="0.15" />
+        <entry key="..\:/Users/Matheus/Desktop/recicleview firebase/APProfisso/app/src/main/res/layout/empresa_oferece.xml" value="0.11503623188405797" />
+        <entry key="..\:/Users/Matheus/Desktop/recicleview firebase/APProfisso/app/src/main/res/layout/linhas.xml" value="0.2" />
+        <entry key="..\:/Users/User/Desktop/Approfissao_2.0-main/Approfissao_2.0-main/APProfisso/app/src/main/res/layout/activity_main.xml" value="0.12681159420289856" />
+        <entry key="..\:/Users/User/Desktop/Approfissao_2.0-main/Approfissao_2.0-main/APProfisso/app/src/main/res/layout/emprego_oferecido.xml" value="0.12681159420289856" />
+        <entry key="..\:/Users/User/Desktop/Approfissao_2.0-main/Approfissao_2.0-main/APProfisso/app/src/main/res/layout/empresa_oferece.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/User/Desktop/Faculdade Mathheus Unigran/Approfissao_2.0-main/Approfissao_2.0-main/APProfisso/app/src/main/res/layout/cliente_cadastro.xml" value="0.1" />
+        <entry key="..\:/Users/laboratorio/Desktop/APProfissao-aff1947056a2ed4f0cb62a79a08f1c86ac59c754/APProfisso/app/src/main/res/layout/busca_menu.xml" value="0.22" />
+        <entry key="..\:/Users/laboratorio/Desktop/APProfissao-aff1947056a2ed4f0cb62a79a08f1c86ac59c754/APProfisso/app/src/main/res/layout/emprego_oferecido.xml" value="0.11548913043478261" />
+        <entry key="..\:/Users/laboratorio/Desktop/APProfissao-aff1947056a2ed4f0cb62a79a08f1c86ac59c754/APProfisso/app/src/main/res/layout/empresa_oferece.xml" value="0.11548913043478261" />
+        <entry key="..\:/Users/laboratorio/Desktop/APProfissao-aff1947056a2ed4f0cb62a79a08f1c86ac59c754/APProfisso/app/src/main/res/layout/linhas.xml" value="0.5" />
+        <entry key="..\:/Users/laboratorio/Desktop/Approfissao_2.0-main/Approfissao_2.0-main/APProfisso/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/laboratorio/Desktop/Approfissao_2.0-main/Approfissao_2.0-main/APProfisso/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/laboratorio/Desktop/Approfissao_2.0-main/Approfissao_2.0-main/APProfisso/app/src/main/res/layout/busca_menu.xml" value="0.2" />
+        <entry key="..\:/Users/laboratorio/Desktop/Approfissao_2.0-main/Approfissao_2.0-main/APProfisso/app/src/main/res/layout/emprego_oferecido.xml" value="0.1" />
+        <entry key="..\:/Users/laboratorio/Desktop/Approfissao_2.0-main/Approfissao_2.0-main/APProfisso/app/src/main/res/layout/empresa_oferece.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/laboratorio/Desktop/telas/APProfisso/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/laboratorio/Desktop/telas/APProfisso/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/laboratorio/Desktop/telas/APProfisso/app/src/main/res/layout/busca_menu.xml" value="0.2" />
+        <entry key="..\:/Users/laboratorio/Desktop/telas/APProfisso/app/src/main/res/layout/emprego_oferecido.xml" value="0.25" />
+        <entry key="..\:/Users/laboratorio/Desktop/telas/APProfisso/app/src/main/res/layout/empresa_oferece.xml" value="0.22" />
+        <entry key="..\:/Users/laboratorio/Desktop/telas/APProfisso/app/src/main/res/layout/empresamenu.xml" value="0.1" />
+        <entry key="..\:/Users/laboratorio/Desktop/telas/APProfisso/app/src/main/res/layout/teste.xml" value="0.1" />
+        <entry key="..\:/Users/laboratorio/Desktop/telas/APProfisso/app/src/main/res/layout/usuarioinformacao.xml" value="0.1" />
+        <entry key="..\:/Users/laboratorio/Desktop/telas/APProfisso/app/src/main/res/layout/usuariomenu.xml" value="0.1" />
       </map>
     </option>
   </component>
