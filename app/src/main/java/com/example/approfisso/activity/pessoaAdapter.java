@@ -3,21 +3,18 @@ package com.example.approfisso.activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
-
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.R;
-import com.example.approfisso.classes.empregos;
 import com.example.approfisso.entidades.Pessoa;
 
 import java.util.List;
 
 //public class EmpregoAdapter extends RecyclerView.Adapter<EmpregoAdapter.empregosHolder> {
-public class PessoasAdapter extends RecyclerView.Adapter<PessoasAdapter.PessoaHolder> {
+public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHolder> {
 
 
   //  List<empregos> dados;
@@ -36,7 +33,7 @@ public class PessoasAdapter extends RecyclerView.Adapter<PessoasAdapter.PessoaHo
 
     List<Pessoa> dados;
 
-    public PessoasAdapter(List<Pessoa> clientes) {
+    public pessoaAdapter(List<Pessoa> clientes) {
         this.dados=clientes;
     }
 
@@ -63,11 +60,11 @@ public class PessoasAdapter extends RecyclerView.Adapter<PessoasAdapter.PessoaHo
     @Override
     public void onBindViewHolder(@NonNull PessoaHolder clientesViewHolder, int i) {
         Pessoa clientes = dados.get(i);
-        clientesViewHolder.pessoaNome.setText(clientes.getNome_pessoa());
-        clientesViewHolder.pessoaSobrenome.setText(clientes.getSobrenome_pessoa());
-        clientesViewHolder.pessoaTelefone.setText(clientes.getTelefone_pessoa());
-        clientesViewHolder.pessoaAniversario.setText(clientes.getData_aniversario());
-        clientesViewHolder.pessoaEmail.setText(clientes.getEmail_pessoa());
+        clientesViewHolder.pessoaNome.setText(clientes.getNome());
+        clientesViewHolder.pessoaSobrenome.setText(clientes.getSobrenome());
+        clientesViewHolder.pessoaTelefone.setText(clientes.getTelefone());
+        clientesViewHolder.pessoaAniversario.setText(clientes.getAniversario());
+        clientesViewHolder.pessoaEmail.setText(clientes.getEmail());
     }
 
 

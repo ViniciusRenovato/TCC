@@ -9,12 +9,12 @@ import java.util.List;
 
 
 public class Pessoa implements Serializable {
-    private String nome_pessoa;
-    private String sobrenome_pessoa;
-    private String id_pessoa;
-    private String telefone_pessoa;
-    private String data_aniversario;
-    private String email_pessoa;
+    private String Nome;
+    private String Sobrenome;
+    private String ID;
+    private String Telefone;
+    private String Aniversario;
+    private String Email;
     private Endereco endereco;
 
     private static FirebaseDatabase firebaseDatabase;
@@ -26,41 +26,52 @@ public class Pessoa implements Serializable {
     }
 
 
-    public String getNome_pessoa() {
-        return nome_pessoa;
+    public String getID() {
+        return ID;
     }
 
-    public void setNome_pessoa(String nome_pessoa) {
-        this.nome_pessoa = nome_pessoa;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public String getSobrenome_pessoa() { return sobrenome_pessoa; }
-
-    public void setSobrenome_pessoa(String sobrenome_pessoa) {      this.sobrenome_pessoa = sobrenome_pessoa;
+    public String getTelefone() {
+        return Telefone;
     }
 
-    public String getTelefone_pessoa() {
-        return telefone_pessoa;
+    public void setTelefone(String telefone) {
+        Telefone = telefone;
     }
 
-    public void setTelefone_pessoa(String telefone_pessoa) {
-        this.telefone_pessoa = telefone_pessoa;
+    public String getAniversario() {
+        return Aniversario;
     }
 
-    public String getData_aniversario() {
-        return data_aniversario;
+    public void setAniversario(String aniversario) {
+        Aniversario = aniversario;
     }
 
-    public void setData_aniversario(String data_aniversario) {
-        this.data_aniversario = data_aniversario;
+    public String getEmail() {
+        return Email;
     }
 
-    public String getEmail_pessoa() {
-        return email_pessoa;
+    public void setEmail(String email) {
+        Email = email;
     }
 
-    public void setEmail_pessoa(String email_pessoa) {
-        this.email_pessoa = email_pessoa;
+    public String getSobrenome() {
+        return Sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        Sobrenome = sobrenome;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String nome) {
+        Nome = nome;
     }
 
     public Endereco getEndereco() {
@@ -72,24 +83,19 @@ public class Pessoa implements Serializable {
     }
 
 
-    public String getId_pessoa() { return id_pessoa;
-    }
 
-    public void setId_pessoa(String id_pessoa) {
-        this.id_pessoa = id_pessoa;
-    }
 
 
 
 
     @Override
     public String toString() {
-        return  ", ID='" + id_pessoa + '\'' +
-                ", Nome='" + nome_pessoa + '\'' +
-                ", Sobrenome='" + sobrenome_pessoa + '\'' +
-                ", Telefone='" + telefone_pessoa + '\'' +
-                ", Aniversario='" + data_aniversario + '\'' +
-                ", Email='" + email_pessoa + '\'' + '}';
+        return  ", ID='" + ID + '\'' +
+                ", Nome='" + Nome + '\'' +
+                ", Sobrenome='" + Sobrenome + '\'' +
+                ", Telefone='" + Telefone + '\'' +
+                ", Aniversario='" + Aniversario + '\'' +
+                ", Email='" + Email + '\'' + '}';
     }
 
 
@@ -109,14 +115,14 @@ public class Pessoa implements Serializable {
             inicio();
             String id=databaseReference.child("Pessoa").push().getKey();
             List<Pessoa> pessoa = new ArrayList();
-            p.setId_pessoa(id);
+            p.setID(id);
 
             databaseReference.child("Pessoa").child(id).child("id").setValue(id);
-            databaseReference.child("Pessoa").child(id).child("Nome").setValue(p.getNome_pessoa());
-            databaseReference.child("Pessoa").child(id).child("Sobrenime").setValue(p.getSobrenome_pessoa());
-            databaseReference.child("Pessoa").child(id).child("Telefone").setValue(p.getTelefone_pessoa());
-            databaseReference.child("Pessoa").child(id).child("Aniversario").setValue(p.getData_aniversario());
-            databaseReference.child("Pessoa").child(id).child("Email").setValue(p.getEmail_pessoa());
+            databaseReference.child("Pessoa").child(id).child("Nome").setValue(p.getNome());
+            databaseReference.child("Pessoa").child(id).child("Sobrenome").setValue(p.getSobrenome());
+            databaseReference.child("Pessoa").child(id).child("Telefone").setValue(p.getTelefone());
+            databaseReference.child("Pessoa").child(id).child("Aniversario").setValue(p.getAniversario());
+            databaseReference.child("Pessoa").child(id).child("Email").setValue(p.getEmail());
 
 
 
@@ -152,22 +158,28 @@ public class Pessoa implements Serializable {
 
 
     public static void excluirPessoa(Pessoa p){
-        databaseReference.child("Pessoa").child(p.getId_pessoa()+"").removeValue();
-        databaseReference.child("Pessoa").child(p.getNome_pessoa()+"").removeValue();
-        databaseReference.child("Pessoa").child(p.getTelefone_pessoa()+"").removeValue();
-        databaseReference.child("Pessoa").child(p.getData_aniversario()+"").removeValue();
-        databaseReference.child("Pessoa").child(p.getEmail_pessoa()+"").removeValue();
+        databaseReference.child("Pessoa").child(p.getID()+"").removeValue();
+        databaseReference.child("Pessoa").child(p.getNome()+"").removeValue();
+        databaseReference.child("Pessoa").child(p.getSobrenome()+"").removeValue();
+        databaseReference.child("Pessoa").child(p.getTelefone()+"").removeValue();
+        databaseReference.child("Pessoa").child(p.getAniversario()+"").removeValue();
+        databaseReference.child("Pessoa").child(p.getEmail()+"").removeValue();
+
+
+    
     }
     public static void editarPessoa(Pessoa p){
-        databaseReference.child("Pessoa").child(p.getId_pessoa().toString()
-        ).child("nome").setValue(p.getId_pessoa());
-        databaseReference.child("Pessoa").child(p.getId_pessoa().toString()
-        ).child("nome").setValue(p.getNome_pessoa());
-        databaseReference.child("Pessoa").child(p.getId_pessoa().toString()
-        ).child("telefone").setValue(p.getTelefone_pessoa());
-        databaseReference.child("Pessoa").child(p.getId_pessoa().toString()
-        ).child("email").setValue(p.getEmail_pessoa());
-        databaseReference.child("Pessoa").child(p.getId_pessoa().toString()
-        ).child("data").setValue(p.getData_aniversario());
+        databaseReference.child("Pessoa").child(p.getID().toString()
+        ).child("nome").setValue(p.getID());
+        databaseReference.child("Pessoa").child(p.getID().toString()
+        ).child("nome").setValue(p.getNome());
+        databaseReference.child("Pessoa").child(p.getID().toString()
+        ).child("telefone").setValue(p.getSobrenome());
+        databaseReference.child("Pessoa").child(p.getID().toString()
+        ).child("email").setValue(p.getTelefone());
+        databaseReference.child("Pessoa").child(p.getID().toString()
+        ).child("data").setValue(p.getEmail());
+        databaseReference.child("Pessoa").child(p.getID().toString()
+        ).child("data").setValue(p.getAniversario());
     }
 }

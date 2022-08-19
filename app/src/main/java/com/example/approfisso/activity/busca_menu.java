@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
 import com.example.approfisso.classes.empregos;
+import com.example.approfisso.entidades.Pessoa;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,23 +49,44 @@ public class busca_menu extends AppCompatActivity {
         //firebase
         databaseReference= DataFirebase.getDatabaseReference();
 
-        Empregos= new LinkedList<>();
+        Pessoas= new LinkedList<>();
         //chamada firebase
         listar();
 
 
     }
 
-    List<empregos> Empregos;
+//    List<empregos> Empregos;
+//    public void listar(){
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                DataSnapshot dataSnapshot = snapshot.child("Emprego");
+//                Empregos.clear();
+//                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+//                    empregos Emprego = postSnapshot.getValue(empregos.class);
+//                    Empregos.add(Emprego);
+//
+//                }
+//                preenche();
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
+
+    List<Pessoa> Pessoas;
     public void listar(){
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataSnapshot dataSnapshot = snapshot.child("Emprego");
-                Empregos.clear();
+                DataSnapshot dataSnapshot = snapshot.child("Pessoas");
+                Pessoas.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    empregos Emprego = postSnapshot.getValue(empregos.class);
-                    Empregos.add(Emprego);
+                    Pessoa pessoa = postSnapshot.getValue(Pessoa.class);
+                    Pessoas.add(pessoa);
 
                 }
                 preenche();
@@ -77,15 +99,20 @@ public class busca_menu extends AppCompatActivity {
     }
 
 
-    EmpregoAdapter empregosAdapter;
+//    EmpregoAdapter empregosAdapter;
+//    private void preenche() {
+//        empregosAdapter= new EmpregoAdapter(Empregos);
+//        recyclerView.setAdapter(empregosAdapter);
+//
+//    }
+
+
+    pessoaAdapter PessoaAdapter;
     private void preenche() {
-        empregosAdapter= new EmpregoAdapter(Empregos);
-        recyclerView.setAdapter(empregosAdapter);
+        PessoaAdapter= new pessoaAdapter(Pessoas);
+        recyclerView.setAdapter(PessoaAdapter);
 
     }
-
-
-
 
 
 

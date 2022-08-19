@@ -36,15 +36,15 @@ public class Cliente implements Serializable {
     }
 
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                " Nome='" + pessoa.getNome_pessoa() + '\'' +
-                ", Telefone='" + pessoa.getTelefone_pessoa() + '\'' +
-                ", Pontos do cliente='" + pontos_cliente + '\'' +
-                ", ID do cliente='" + id_cliente + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Cliente{" +
+//                " Nome='" + pessoa.getNome_pessoa() + '\'' +
+//                ", Telefone='" + pessoa.getTelefone_pessoa() + '\'' +
+//                ", Pontos do cliente='" + pontos_cliente + '\'' +
+//                ", ID do cliente='" + id_cliente + '\'' +
+//                '}';
+//    }
 
     private static FirebaseDatabase firebaseDatabase;
     private static DatabaseReference databaseReference;

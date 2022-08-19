@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="@string/atendimentos_marcados"
+        android:text="atendimentos_marcados"
         android:textColor="#121111"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:text="@string/agendar"
+        android:text="agendar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lista_atendimentos_cliente" />
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:text="@string/remarcar"
+        android:text="remarcar"
         app:layout_constraintStart_toEndOf="@+id/agendar_atendimentos_cliente"
         app:layout_constraintTop_toBottomOf="@+id/lista_atendimentos_cliente" />
 
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:text="@string/desmarcar"
+        android:text="desmarcar"
         app:layout_constraintStart_toEndOf="@+id/remarcar_atendimentos_cliente"
         app:layout_constraintTop_toBottomOf="@+id/lista_atendimentos_cliente" />
 
@@ -64,7 +64,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:text="@string/voltar"
+        android:text="voltar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/agendar_atendimentos_cliente" />
 
@@ -74,7 +74,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:text="@string/confirmar"
+        android:text="confirmar"
         app:layout_constraintStart_toEndOf="@+id/voltar_atendimentos_cliente"
         app:layout_constraintTop_toBottomOf="@+id/desmarcar_atendimentos_cliente" />
 </androidx.constraintlayout.widget.ConstraintLayout>

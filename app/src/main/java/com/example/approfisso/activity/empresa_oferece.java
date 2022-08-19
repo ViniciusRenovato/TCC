@@ -100,14 +100,14 @@ public class empresa_oferece extends AppCompatActivity {
 
     public void botao_Confirmar (View view){
         Pessoas = new Pessoa();
-        Pessoas.setNome_pessoa(nome.getText().toString());
-        Pessoas.setSobrenome_pessoa(sobrenome.getText().toString());
-        Pessoas.setTelefone_pessoa(telefone.getText().toString());
-        Pessoas.setData_aniversario(aniversario.getText().toString());
-        Pessoas.setEmail_pessoa(email.getText().toString());
+        Pessoas.setNome(nome.getText().toString());
+        Pessoas.setSobrenome(sobrenome.getText().toString());
+        Pessoas.setTelefone(telefone.getText().toString());
+        Pessoas.setAniversario(aniversario.getText().toString());
+        Pessoas.setEmail(email.getText().toString());
         Pessoa.salvaPessoa(Pessoas);
         finish();
- //       onBackPressed();
+        onBackPressed();
 
 
 

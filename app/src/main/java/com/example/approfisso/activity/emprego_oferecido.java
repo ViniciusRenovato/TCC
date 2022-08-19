@@ -86,37 +86,37 @@ public class emprego_oferecido extends AppCompatActivity {
 //        });
     }
 
- /  List<empregos> Empregos;
-    public void listar(){
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataSnapshot dataSnapshot = snapshot.child("Emprego");
-                Empregos.clear();
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    empregos Emprego = postSnapshot.getValue(empregos.class);
-                    Empregos.add(Emprego);
-
-                }
-                preenche();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
+//   List<empregos> Empregos;
+//    public void listar(){
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                DataSnapshot dataSnapshot = snapshot.child("Emprego");
+//                Empregos.clear();
+//                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+//                    empregos Emprego = postSnapshot.getValue(empregos.class);
+//                    Empregos.add(Emprego);
+//
+//                }
+//                preenche();
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
     List<Pessoa> Pessoas;
     public void listar(){
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataSnapshot dataSnapshot = snapshot.child("Pessoas");
+                DataSnapshot dataSnapshot = snapshot.child("Pessoa");
                 Pessoas.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Pessoa Pessoas = postSnapshot.getValue(Pessoa.class);
-                    Pessoas.add(Pessoas);
+                    Pessoa pessoa = postSnapshot.getValue(Pessoa.class);
+                    Pessoas.add(pessoa);
 
                 }
                 preenche();
@@ -129,12 +129,12 @@ public class emprego_oferecido extends AppCompatActivity {
     }
 
 
-//    EmpregoAdapter empregosAdapter;
-//    private void preenche() {
-//        empregosAdapter= new EmpregoAdapter(Empregos);
-//        recyclerView.setAdapter(empregosAdapter);
+    pessoaAdapter PessoaAdapter;
+    private void preenche() {
+        PessoaAdapter= new pessoaAdapter(Pessoas);
+        recyclerView.setAdapter(PessoaAdapter);
 
-//    }
+    }
 
 
 
