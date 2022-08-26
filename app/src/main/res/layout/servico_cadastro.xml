@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="cliente_cadastro">
 
+
+
     <Button
         android:id="@+id/botao_Confirmar"
         android:layout_width="wrap_content"
@@ -35,32 +37,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="133dp"
+        android:layout_marginTop="133dp"
         android:layout_marginEnd="132dp"
-        android:text="Insira os seus dados"
+        android:text="Insira os dados do serviço"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="132dp" />
-
-    <EditText
-        android:id="@+id/Email_cadastro"
-        style="@android:style/Widget.AutoCompleteTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="32dp"
-        android:background="@color/browser_actions_bg_grey"
-        android:ems="10"
-        android:hint="exemplo@gmail.com"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:textColorHint="#546E7A"
-        app:layout_constraintBottom_toTopOf="@+id/botao_Confirmar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView7"
@@ -68,12 +52,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="165dp"
         android:layout_marginEnd="165dp"
-        android:layout_marginBottom="16dp"
-        android:text="Sobrenome"
+        android:layout_marginBottom="20dp"
+        android:text="Duração"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/Duracao_Servico"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -84,9 +68,8 @@
         android:layout_marginEnd="97dp"
         android:layout_marginBottom="16dp"
         android:autofillHints=""
-        android:ems="10"
-        android:hint="(DDD) 0000-0000"
         android:background="@color/browser_actions_bg_grey"
+        android:ems="10"
         android:inputType="phone"
         android:minHeight="48dp"
         android:textColorHint="#757575"
@@ -101,14 +84,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="107dp"
         android:layout_marginEnd="95dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="31/12/2022"
+        android:layout_marginBottom="50dp"
         android:background="@color/browser_actions_bg_grey"
+        android:hint="31/12/2022"
         android:inputType="date"
+
+        android:ems="10"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintBottom_toTopOf="@+id/botao_Confirmar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -120,11 +104,10 @@
         android:layout_marginStart="140dp"
         android:layout_marginEnd="134dp"
         android:layout_marginBottom="12dp"
-        android:text="Data do aniversário"
+        android:text="Função"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/Funcao_Servico"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -134,9 +117,9 @@
         android:layout_marginStart="108dp"
         android:layout_marginEnd="94dp"
         android:layout_marginBottom="4dp"
-        android:ems="10"
-        android:hint="Seu nome"
         android:background="@color/browser_actions_bg_grey"
+        android:ems="10"
+        android:hint="Nome do serviço"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
@@ -151,9 +134,9 @@
         android:layout_marginStart="108dp"
         android:layout_marginEnd="94dp"
         android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="Seu sobrenome"
         android:background="@color/browser_actions_bg_grey"
+        android:ems="10"
+        android:hint="Duração do serviço"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/textView8"
@@ -167,26 +150,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="175dp"
         android:layout_marginEnd="175dp"
-        android:layout_marginBottom="12dp"
-        android:text="Telefone"
+        android:layout_marginBottom="20dp"
+        android:text="Preço"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/Preco_Servico"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="189dp"
-        android:layout_marginEnd="183dp"
-        android:layout_marginBottom="4dp"
-        android:text="Email"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Email_cadastro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

@@ -4,15 +4,61 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Funcionario implements Serializable {
 
-    private String nome_funcionario;
-    private String email_funcionario;
     private String id_funcionario;
+    private String nome_funcionario;
+    private String sobrenome_funcionario;
+    private String funcao_funcionario;
+    private String telefone_funcionario;
+    private String aniversario_funcionario;
+    private String email_funcionario;
     private Pessoa pessoa;
 
 
+    private static FirebaseDatabase firebaseDatabase;
+    private static DatabaseReference databaseReference;
+    private static void inicio(){
+        firebaseDatabase= FirebaseDatabase.getInstance();
+        //firebaseDatabase.setPersistenceEnabled(true);
+        databaseReference= firebaseDatabase.getReference();
+    }
+
+
+    public String getFuncao_funcionario() {
+        return funcao_funcionario;
+    }
+
+    public void setFuncao_funcionario(String funcao_funcionario) {
+        this.funcao_funcionario = funcao_funcionario;
+    }
+
+    public String getSobrenome_funcionario() {
+        return sobrenome_funcionario;
+    }
+
+    public void setSobrenome_funcionario(String sobrenome_funcionario) {
+        this.sobrenome_funcionario = sobrenome_funcionario;
+    }
+
+    public String getTelefone_funcionario() {
+        return telefone_funcionario;
+    }
+
+    public void setTelefone_funcionario(String telefone_funcionario) {
+        this.telefone_funcionario = telefone_funcionario;
+    }
+
+    public String getAniversario_funcionario() {
+        return aniversario_funcionario;
+    }
+
+    public void setAniversario_funcionario(String aniversario_funcionario) {
+        this.aniversario_funcionario = aniversario_funcionario;
+    }
 
     public String getNome_funcionario() {
         return nome_funcionario;
@@ -48,19 +94,52 @@ public class Funcionario implements Serializable {
 
 
 
-    private static FirebaseDatabase firebaseDatabase;
-    private static DatabaseReference databaseReference;
+
+
+
+
+    @Override
+    public String toString() {
+        return  ", ID='" + id_funcionario + '\'' +
+                ", Nome='" + nome_funcionario + '\'' +
+                ", Sobrenome='" + sobrenome_funcionario + '\'' +
+                ", funcao='" + funcao_funcionario + '\'' +
+                ", Telefone='" + telefone_funcionario + '\'' +
+                ", Aniversario='" + aniversario_funcionario + '\'' +
+                ", Email='" + email_funcionario + '\'' + '}';
+    }
+
+
+
+    public static DatabaseReference getDatabaseReference() {
+        if(databaseReference==null)
+            inicio();
+        return databaseReference;
+    }
+
+
+
+
+
+
+
+
 
     public static void salvaFuncionario(Funcionario funciona){
         if(databaseReference==null){
-            databaseReference.child("Funcionario").child(funciona.getId_funcionario().toString()
-            ).setValue(funciona);
-            databaseReference.child("Funcionario").child(funciona.getNome_funcionario().toString()
-            ).setValue(funciona);
-            databaseReference.child("Funcionario").child(funciona.getEmail_funcionario().toString()
-            ).setValue(funciona);
-            databaseReference.child("Funcionario").child(funciona.getPessoa().toString()
-            ).setValue(funciona);
+            inicio();
+            String id=databaseReference.child("Funcionario").push().getKey();
+            List<Funcionario> funcionario = new ArrayList();
+            funciona.setId_funcionario(id);
+
+            databaseReference.child("Funcionario").child(id).child("id_funcionario").setValue(id);
+            databaseReference.child("Funcionario").child(id).child("nome_funcionario").setValue(funciona.getNome_funcionario());
+            databaseReference.child("Funcionario").child(id).child("sobrenome_funcionario").setValue(funciona.getSobrenome_funcionario());
+            databaseReference.child("Funcionario").child(id).child("funcao_funcionario").setValue(funciona.getFuncao_funcionario());
+            databaseReference.child("Funcionario").child(id).child("telefone_funcionario").setValue(funciona.getTelefone_funcionario());
+            databaseReference.child("Funcionario").child(id).child("aniversario_funcionario").setValue(funciona.getAniversario_funcionario());
+            databaseReference.child("Funcionario").child(id).child("email_funcionario").setValue(funciona.getEmail_funcionario());
+
 
 
         }

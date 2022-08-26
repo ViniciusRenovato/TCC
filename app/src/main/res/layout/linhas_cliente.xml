@@ -7,49 +7,60 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/nomeItemLinha"
+        android:id="@+id/item_pessoa_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="39dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nomeItemLinha2"
+        android:id="@+id/txt_option_pessoa"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="&#8942;"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_pessoa_sobrenome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="4dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/nomeItemLinha" />
+        app:layout_constraintTop_toBottomOf="@+id/item_pessoa_nome" />
 
     <TextView
-        android:id="@+id/nomeItemLinha3"
+        android:id="@+id/item_pessoa_telefone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="22dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/nomeItemLinha2" />
+        app:layout_constraintTop_toBottomOf="@+id/item_pessoa_sobrenome" />
 
     <TextView
-        android:id="@+id/nomeItemLinha4"
+        android:id="@+id/item_pessoa_aniversario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="6dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/nomeItemLinha3" />
+        app:layout_constraintTop_toBottomOf="@+id/item_pessoa_telefone" />
 
     <TextView
-        android:id="@+id/nomeItemLinha5"
+        android:id="@+id/item_pessoa_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="44dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/nomeItemLinha4" />
+        app:layout_constraintTop_toBottomOf="@+id/item_pessoa_aniversario" />
 
     <TextView
         android:id="@+id/textView3"
@@ -57,7 +68,7 @@
         android:layout_height="wrap_content"
         android:text="--------------------------------------------------------------------------------------------------------"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomeItemLinha5"
+        app:layout_constraintTop_toBottomOf="@+id/item_pessoa_email"
         tools:layout_editor_absoluteX="-1dp" />
 
     <TextView
@@ -88,7 +99,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aniversario:"
+        android:text="Aniversário:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 

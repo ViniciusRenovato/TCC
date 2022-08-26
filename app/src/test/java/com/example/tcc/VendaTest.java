@@ -3,7 +3,8 @@ package com.example.tcc;
 import static org.junit.Assert.assertNotNull;
 
 
-import com.example.tcc.entidades.Venda;
+import com.example.approfisso.entidades.Venda;
+
 
 import org.junit.Before;
 import org.junit.Test;

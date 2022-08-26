@@ -2,7 +2,8 @@ package com.example.tcc;
 
 import static org.junit.Assert.assertNotNull;
 
-import com.example.tcc.entidades.Agendamento;
+import com.example.approfisso.entidades.Agendamento;
+
 
 import org.junit.Before;
 import org.junit.Test;

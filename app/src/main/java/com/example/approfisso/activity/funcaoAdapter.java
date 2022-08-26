@@ -17,19 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHolder> {
+public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.PessoaHolder> {
 
 
     private Context context;
     ArrayList<Pessoa> list = new ArrayList<>();
-    public pessoaAdapter(Context ctx){this.context = ctx;}
+    public funcaoAdapter(Context ctx){this.context = ctx;}
     public  void  setItems(ArrayList<Pessoa> Pes) {list.addAll(Pes);}
 
 
     List<Pessoa> dados;
 
-    public pessoaAdapter(List<Pessoa> clientes) {
-
+    public funcaoAdapter(List<Pessoa> clientes) {
         this.dados=clientes;
     }
 
@@ -52,24 +51,24 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
         clientesViewHolder.txt_option.setOnClickListener(v->
         {
 
-//            PopupMenu popupMenu=new PopupMenu(context,clientesViewHolder.txt_option);
-//            popupMenu.inflate(R.menu.option_menu);
-//            popupMenu.setOnMenuItemClickListener(item->
-//            {
-//                switch (item.getItemId())
-//                {
-//                    case R.id.menu_edit:
-//
-//
-//                        break;
-//                    case R.id.menu_remove:
-//
-//
-//                        break;
-//                }
-//                return false;
-//            });
-//            popupMenu.show();
+            PopupMenu popupMenu=new PopupMenu(context,clientesViewHolder.txt_option);
+            popupMenu.inflate(R.menu.option_menu);
+            popupMenu.setOnMenuItemClickListener(item->
+            {
+                switch (item.getItemId())
+                {
+                    case R.id.menu_edit:
+
+
+                        break;
+                    case R.id.menu_remove:
+
+
+                        break;
+                }
+                return false;
+            });
+            popupMenu.show();
         });
 
 
@@ -123,12 +122,12 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
 
         public PessoaHolder(@NonNull View itemView) {
             super(itemView);
-            pessoaNome=itemView.findViewById(R.id.item_pessoa_nome);
-            pessoaSobrenome=itemView.findViewById(R.id.item_pessoa_sobrenome);
-            pessoaTelefone=itemView.findViewById(R.id.item_pessoa_telefone);
-            pessoaAniversario=itemView.findViewById(R.id.item_pessoa_aniversario);
-            pessoaEmail=itemView.findViewById(R.id.item_pessoa_email);
-            txt_option=itemView.findViewById(R.id.txt_option_pessoa);
+            pessoaNome=itemView.findViewById(R.id.item_servico_nome);
+            pessoaSobrenome=itemView.findViewById(R.id.item_servico_duracao);
+            pessoaTelefone=itemView.findViewById(R.id.item_servico_preco);
+            pessoaAniversario=itemView.findViewById(R.id.item_servico_funcao);
+            pessoaEmail=itemView.findViewById(R.id.item_servico_funcao);
+            txt_option=itemView.findViewById(R.id.txt_option);
 
         }
     }

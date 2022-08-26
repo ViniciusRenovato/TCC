@@ -29,8 +29,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void botao_oferece(View view){
-        Intent it = new Intent(this, empresa_oferece.class);
+    public void botao_cadastro_cliente(View view){
+        Intent it = new Intent(this, cliente_cadastrado.class);
+        startActivity(it);
+    }
+
+    public void botao_cadastro_servico(View view){
+        Intent it = new Intent(this, servico_cadastrado.class);
+        startActivity(it);
+    }
+
+    public void botao_cadastro_funcionario(View view){
+        Intent it = new Intent(this, funcionario_cadastrado.class);
+        startActivity(it);
+    }
+
+    public void botao_cadastro_funcao(View view){
+        Intent it = new Intent(this, funcao_cadastrado.class);
         startActivity(it);
     }
 

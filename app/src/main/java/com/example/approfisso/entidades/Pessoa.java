@@ -1,5 +1,6 @@
 package com.example.approfisso.entidades;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -124,35 +125,8 @@ public class Pessoa implements Serializable {
             databaseReference.child("Pessoa").child(id).child("Aniversario").setValue(p.getAniversario());
             databaseReference.child("Pessoa").child(id).child("Email").setValue(p.getEmail());
 
-
-
-
-
-
-//            databaseReference.child("Pessoa").child(p.getId_pessoa().toString()
-//            ).setValue(p);
-//            databaseReference.child("Pessoa").child(p.getNome_pessoa().toString()
-//            ).setValue(p);
-//            databaseReference.child("Pessoa").child(p.getTelefone_pessoa().toString()
-//            ).setValue(p);
-//            databaseReference.child("Pessoa").child(p.getData_aniversario().toString()
-//            ).setValue(p);
-//            databaseReference.child("Pessoa").child(p.getEmail_pessoa().toString()
-//            ).setValue(p);
-
         }
     }
-
-//    public  void salvar(View view){
-//        Emprego.setEstado(Estado.getText().toString());
-//        Emprego.setCidade(Cidade.getText().toString());
-//        Emprego.setPeriodo(Periodo.getText().toString());
-//        Emprego.setArea_da_profissao(Area_Da_Profissao.getText().toString());
-//        Emprego.setSalario(Salario.getText().toString());
-//        Emprego.setEmail(Email.getText().toString());
-//        DataFirebase.salvar(Emprego);
-
-
 
 
 
@@ -166,7 +140,8 @@ public class Pessoa implements Serializable {
         databaseReference.child("Pessoa").child(p.getEmail()+"").removeValue();
 
 
-    
+
+
     }
     public static void editarPessoa(Pessoa p){
         databaseReference.child("Pessoa").child(p.getID().toString()

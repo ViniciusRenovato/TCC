@@ -3,7 +3,8 @@ package com.example.tcc;
 import static org.junit.Assert.assertNotNull;
 
 
-import com.example.tcc.entidades.Endereco;
+import com.example.approfisso.entidades.Endereco;
+
 
 
 import org.junit.Before;

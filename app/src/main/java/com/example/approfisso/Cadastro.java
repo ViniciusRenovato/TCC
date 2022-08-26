@@ -2,7 +2,6 @@ package com.example.approfisso;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +20,7 @@ public class Cadastro extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.emprego_oferecido);
+        setContentView(R.layout.cliente_cadastrado);
         Estado=findViewById(R.id.TextOfereceEstado);
         Cidade=findViewById(R.id.TextOfereceCidade);
         Periodo=findViewById(R.id.TextOferecePeriodo);

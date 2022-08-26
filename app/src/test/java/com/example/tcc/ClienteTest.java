@@ -2,7 +2,8 @@ package com.example.tcc;
 
 import static org.junit.Assert.assertNotNull;
 
-import com.example.tcc.entidades.Cliente;
+import com.example.approfisso.entidades.Cliente;
+
 
 
 import org.junit.Before;

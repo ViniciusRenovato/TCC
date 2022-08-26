@@ -4,12 +4,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Servicos implements Serializable {
     private String nome_servico;
     private String duracao_servico;
     private String valor_servico;
     private String id_servico;
+    private String funcao_servico;
     private Cliente cliente;
     private Funcionario funcionario;
     private Agendamento agendamento;
@@ -17,6 +20,12 @@ public class Servicos implements Serializable {
 
     private static FirebaseDatabase firebaseDatabase;
     private static DatabaseReference databaseReference;
+
+    private static void inicio(){
+        firebaseDatabase= FirebaseDatabase.getInstance();
+        //firebaseDatabase.setPersistenceEnabled(true);
+        databaseReference= firebaseDatabase.getReference();
+    }
 
 
     public String getNome_servico() {
@@ -51,6 +60,14 @@ public class Servicos implements Serializable {
         this.id_servico = id_servico;
     }
 
+    public String getFuncao_servico() {
+        return funcao_servico;
+    }
+
+    public void setFuncao_servico(String funcao_servico) {
+        this.funcao_servico = funcao_servico;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -83,24 +100,37 @@ public class Servicos implements Serializable {
         this.produto = produto;
     }
 
+
+    @Override
+    public String toString() {
+        return  ", ID='" + id_servico + '\'' +
+                ", Nome='" + nome_servico + '\'' +
+                ", Duração='" + duracao_servico + '\'' +
+                ", Preço='" + valor_servico + '\'' +
+                ", Função='" + funcao_servico + '\'' + '}';
+    }
+
+    public static DatabaseReference getDatabaseReference() {
+        if(databaseReference==null)
+            inicio();
+        return databaseReference;
+    }
+
+
+
     public static void salvaServicos(Servicos s){
         if(databaseReference==null){
-            databaseReference.child("Servicos").child(s.getId_servico().toString()
-            ).setValue(s);
-            databaseReference.child("Servicos").child(s.getDuracao_servico().toString()
-            ).setValue(s);
-            databaseReference.child("Servicos").child(s.getValor_servico().toString()
-            ).setValue(s);
-            databaseReference.child("Servicos").child(s.getNome_servico().toString()
-            ).setValue(s);
-            databaseReference.child("Servicos").child(s.getProduto().toString()
-            ).setValue(s);
-            databaseReference.child("Servicos").child(s.getCliente().toString()
-            ).setValue(s);
-            databaseReference.child("Servicos").child(s.getAgendamento().toString()
-            ).setValue(s);
-            databaseReference.child("Servicos").child(s.getFuncionario().toString()
-            ).setValue(s);
+            inicio();
+            String id=databaseReference.child("Servicos").push().getKey();
+            List<Servicos> servico = new ArrayList();
+            s.setId_servico(id);
+
+
+            databaseReference.child("Servicos").child(id).child("id_servico").setValue(id);
+            databaseReference.child("Servicos").child(id).child("nome_servico").setValue(s.getNome_servico());
+            databaseReference.child("Servicos").child(id).child("duracao_servico").setValue(s.getDuracao_servico());
+            databaseReference.child("Servicos").child(id).child("valor_servico").setValue(s.getValor_servico());
+            databaseReference.child("Servicos").child(id).child("funcao_servico").setValue(s.getFuncao_servico());
         }
     }
     public static void excluirServicos(Servicos s){

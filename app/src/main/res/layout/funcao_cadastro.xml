@@ -7,6 +7,19 @@
     tools:context="cliente_cadastro">
 
     <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="lista_emprego"
+        android:text="Lista"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botao_Confirmar"
+        app:layout_constraintStart_toEndOf="@+id/Voltar_cadastro" />
+
+    <Button
         android:id="@+id/botao_Confirmar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

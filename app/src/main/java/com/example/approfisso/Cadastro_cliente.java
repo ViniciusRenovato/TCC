@@ -29,10 +29,10 @@ public class Cadastro_cliente extends AppCompatActivity {
         setContentView(R.layout.cliente_cadastro);
 
 
-        nome=findViewById(R.id.Nome_cadastro);
-        sobrenome=findViewById(R.id.Sobrenome_cadastro);
-        telefone=findViewById(R.id.Telefone_cadastro);
-        aniversario=findViewById(R.id.Data_cadastro);
+        nome=findViewById(R.id.Nome_Servico);
+        sobrenome=findViewById(R.id.Duracao_Servico);
+        telefone=findViewById(R.id.Preco_Servico);
+        aniversario=findViewById(R.id.Funcao_Servico);
         email=findViewById(R.id.Email_cadastro);
         Intent i = getIntent();
         Pessoas =(Pessoa) i.getSerializableExtra("Pessoa");

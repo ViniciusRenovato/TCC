@@ -2,7 +2,8 @@ package com.example.tcc;
 
 import static org.junit.Assert.*;
 
-import com.example.tcc.entidades.Pessoa;
+import com.example.approfisso.entidades.Pessoa;
+
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,22 +25,22 @@ public class PessoaTest {
     @Test(expected = NullPointerException.class)
     public void nome(){
         pessoa = new Pessoa();
-        pessoa.setNome_pessoa("");
+        pessoa.setNome("");
     }
     @Test(expected = NullPointerException.class)
     public void telefone(){
         pessoa = new Pessoa();
-        pessoa.setTelefone_pessoa("");
+        pessoa.setTelefone("");
     }
     @Test(expected = NullPointerException.class)
     public void aniversario(){
         pessoa = new Pessoa();
-        pessoa.setData_aniversario("");
+        pessoa.setAniversario("");
     }
     @Test(expected = NullPointerException.class)
     public void email(){
         pessoa = new Pessoa();
-        pessoa.setEmail_pessoa("");
+        pessoa.setEmail("");
     }
     @Test(expected = NullPointerException.class)
     public void enderecol(){
@@ -48,10 +49,10 @@ public class PessoaTest {
     }
     @Test
     public void testepessoa(){
-        pessoa.setNome_pessoa("Andre");
-        pessoa.setTelefone_pessoa("99912165");
-        pessoa.setData_aniversario("21/10");
-        pessoa.setEmail_pessoa("matheus-a-c@hotmail.com");
+        pessoa.setNome("Andre");
+        pessoa.setTelefone("99912165");
+        pessoa.setAniversario("21/10");
+        pessoa.setEmail("matheus-a-c@hotmail.com");
         pessoa.setEndereco(pessoa.getEndereco());
 
         assertNotNull(pessoa);

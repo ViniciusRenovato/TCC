@@ -3,8 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="cliente_cadastro">
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="lista_emprego"
+        android:text="Lista"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botao_Confirmar"
+        app:layout_constraintStart_toEndOf="@+id/Voltar_cadastro" />
 
     <Button
         android:id="@+id/botao_Confirmar"
@@ -35,175 +47,201 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="133dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="132dp"
         android:text="Insira os seus dados"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="132dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/Email_cadastro"
+        android:id="@+id/Email_Funcionario"
         style="@android:style/Widget.AutoCompleteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
         android:layout_marginEnd="101dp"
-        android:layout_marginBottom="32dp"
         android:background="@color/browser_actions_bg_grey"
         android:ems="10"
         android:hint="exemplo@gmail.com"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textColorHint="#546E7A"
-        app:layout_constraintBottom_toTopOf="@+id/botao_Confirmar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="165dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="165dp"
-        android:layout_marginBottom="16dp"
         android:text="Sobrenome"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Duracao_Servico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Nome_Funcionario" />
 
     <EditText
-        android:id="@+id/Preco_Servico"
+        android:id="@+id/Telefone_Funcionario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="105dp"
         android:layout_marginEnd="97dp"
-        android:layout_marginBottom="16dp"
         android:autofillHints=""
+        android:background="@color/browser_actions_bg_grey"
         android:ems="10"
         android:hint="(DDD) 0000-0000"
-        android:background="@color/browser_actions_bg_grey"
         android:inputType="phone"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
-        android:id="@+id/Funcao_Servico"
+        android:id="@+id/Aniversario_Funcionario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="107dp"
         android:layout_marginEnd="95dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/browser_actions_bg_grey"
         android:ems="10"
         android:hint="31/12/2022"
-        android:background="@color/browser_actions_bg_grey"
         android:inputType="date"
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="134dp"
-        android:layout_marginBottom="12dp"
         android:text="Data do aniversário"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Funcao_Servico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Telefone_Funcionario" />
 
     <EditText
-        android:id="@+id/Nome_Servico"
+        android:id="@+id/Nome_Funcionario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
         android:layout_marginEnd="94dp"
-        android:layout_marginBottom="4dp"
+        android:background="@color/browser_actions_bg_grey"
         android:ems="10"
         android:hint="Seu nome"
-        android:background="@color/browser_actions_bg_grey"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
-        android:id="@+id/Duracao_Servico"
+        android:id="@+id/Funcao_Funcionario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="101dp"
+        android:background="@color/browser_actions_bg_grey"
+        android:ems="10"
+        android:hint="Seu nome"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <EditText
+        android:id="@+id/Sobrenome_Funcionario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
         android:layout_marginEnd="94dp"
-        android:layout_marginBottom="16dp"
+        android:background="@color/browser_actions_bg_grey"
         android:ems="10"
         android:hint="Seu sobrenome"
-        android:background="@color/browser_actions_bg_grey"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="175dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="175dp"
-        android:layout_marginBottom="12dp"
         android:text="Telefone"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Preco_Servico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sobrenome_Funcionario" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="189dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="183dp"
-        android:layout_marginBottom="4dp"
         android:text="Email"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Email_cadastro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Aniversario_Funcionario" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="182dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="186dp"
         android:layout_marginBottom="16dp"
         android:text="Nome"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Nome_Servico"
+        app:layout_constraintBottom_toTopOf="@+id/Nome_Funcionario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="174dp"
+        android:text="Funcao"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Email_Funcionario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
