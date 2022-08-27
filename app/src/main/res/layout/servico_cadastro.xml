@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="133dp"
-        android:layout_marginTop="133dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="132dp"
         android:text="Insira os dados do serviço"
         android:textSize="16sp"
@@ -51,14 +51,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="165dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="165dp"
-        android:layout_marginBottom="20dp"
         android:text="Duração"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Duracao_Servico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Nome_Servico" />
 
     <EditText
         android:id="@+id/Preco_Servico"
@@ -66,17 +66,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="105dp"
         android:layout_marginEnd="97dp"
-        android:layout_marginBottom="16dp"
         android:autofillHints=""
         android:background="@color/browser_actions_bg_grey"
         android:ems="10"
         android:inputType="phone"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
         android:id="@+id/Funcao_Servico"
@@ -84,31 +83,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="107dp"
         android:layout_marginEnd="95dp"
-        android:layout_marginBottom="50dp"
         android:background="@color/browser_actions_bg_grey"
+        android:ems="10"
+
         android:hint="31/12/2022"
         android:inputType="date"
-
-        android:ems="10"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/botao_Confirmar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="134dp"
-        android:layout_marginBottom="12dp"
         android:text="Função"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Funcao_Servico"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Preco_Servico" />
 
     <EditText
         android:id="@+id/Nome_Servico"
@@ -116,16 +114,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
         android:layout_marginEnd="94dp"
-        android:layout_marginBottom="4dp"
         android:background="@color/browser_actions_bg_grey"
         android:ems="10"
         android:hint="Nome do serviço"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
         android:id="@+id/Duracao_Servico"
@@ -133,46 +130,53 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
         android:layout_marginEnd="94dp"
-        android:layout_marginBottom="16dp"
         android:background="@color/browser_actions_bg_grey"
         android:ems="10"
         android:hint="Duração do serviço"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="175dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="175dp"
-        android:layout_marginBottom="20dp"
         android:text="Preço"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Preco_Servico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Duracao_Servico" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="182dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="186dp"
-        android:layout_marginBottom="16dp"
         android:text="Nome"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/Nome_Servico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Spinner
+        android:id="@+id/spinner_funcao_servico"
+        android:layout_width="212dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="94dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Funcao_Servico" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
+import com.example.approfisso.entidades.Funcao;
 import com.example.approfisso.entidades.Pessoa;
 import com.google.firebase.database.DatabaseReference;
 
@@ -17,26 +18,19 @@ public class cadastro_funcao extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     private EditText nome;
-    private EditText sobrenome;
-    private EditText telefone;
-    private EditText aniversario;
-    private EditText email;
-    private Pessoa Pessoas;
+
+    private Funcao Funcoes;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cliente_cadastro);
+        setContentView(R.layout.funcao_cadastro);
 
 
-        nome=findViewById(R.id.Nome_Servico);
-        sobrenome=findViewById(R.id.Duracao_Servico);
-        telefone=findViewById(R.id.Preco_Servico);
-        aniversario=findViewById(R.id.Funcao_Servico);
-        email=findViewById(R.id.Email_cadastro);
+        nome=findViewById(R.id.Nome_Funcao);
         Intent i = getIntent();
-        Pessoas =(Pessoa) i.getSerializableExtra("Pessoa");
+        Funcoes =(Funcao) i.getSerializableExtra("Funcao");
 
 
     }
@@ -60,13 +54,9 @@ public class cadastro_funcao extends AppCompatActivity {
 
 
     public void botao_Confirmar (View view){
-        Pessoas = new Pessoa();
-        Pessoas.setNome(nome.getText().toString());
-        Pessoas.setSobrenome(sobrenome.getText().toString());
-        Pessoas.setTelefone(telefone.getText().toString());
-        Pessoas.setAniversario(aniversario.getText().toString());
-        Pessoas.setEmail(email.getText().toString());
-        Pessoa.salvaPessoa(Pessoas);
+        Funcoes = new Funcao();
+        Funcoes.setNome_funcao(nome.getText().toString());
+        Funcao.salvaFuncao(Funcoes);
 
         onBackPressed();
 

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
+import com.example.approfisso.entidades.Funcao;
 import com.example.approfisso.entidades.Pessoa;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +35,7 @@ public class funcao_cadastrado extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cliente_cadastrado);
+        setContentView(R.layout.funcao_cadastrado);
 
 
 //        lista= findViewById(R.id.lista_emprego_oferecido);
@@ -48,28 +49,28 @@ public class funcao_cadastrado extends AppCompatActivity {
         //firebase
         databaseReference= DataFirebase.getDatabaseReference();
 
-        Pessoas= new LinkedList<>();
+        Funcoes= new LinkedList<>();
         //chamada firebase
-        listar();
+        listar_funcao();
 
     }
 
 
 
-    List<Pessoa> Pessoas;
-    public void listar()
+    List<Funcao> Funcoes;
+    public void listar_funcao()
     {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataSnapshot dataSnapshot = snapshot.child("Pessoa");
-                Pessoas.clear();
+                DataSnapshot dataSnapshot = snapshot.child("Funcao");
+                Funcoes.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Pessoa pessoa = postSnapshot.getValue(Pessoa.class);
-                    Pessoas.add(pessoa);
+                    Funcao funcao = postSnapshot.getValue(Funcao.class);
+                    Funcoes.add(funcao);
 
                 }
-                preenche();
+                preenche_funcao();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -78,15 +79,15 @@ public class funcao_cadastrado extends AppCompatActivity {
         });
     }
 
-    pessoaAdapter PessoaAdapter;
-    private void preenche() {
-        PessoaAdapter= new pessoaAdapter(Pessoas);
-        recyclerView.setAdapter(PessoaAdapter);
+    funcaoAdapter FuncaoAdapter;
+    private void preenche_funcao() {
+        FuncaoAdapter= new funcaoAdapter(Funcoes);
+        recyclerView.setAdapter(FuncaoAdapter);
 
     }
 
     public void botao_oferece(View view){
-        Intent it = new Intent(this, cadastro_cliente.class);
+        Intent it = new Intent(this, cadastro_funcao.class);
         startActivity(it);
     }
 

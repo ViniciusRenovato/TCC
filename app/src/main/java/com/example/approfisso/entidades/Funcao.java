@@ -4,6 +4,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Funcao implements Serializable {
 
@@ -29,14 +31,36 @@ public class Funcao implements Serializable {
 
     private static FirebaseDatabase firebaseDatabase;
     private static DatabaseReference databaseReference;
+    private static void inicio(){
+        firebaseDatabase= FirebaseDatabase.getInstance();
+        //firebaseDatabase.setPersistenceEnabled(true);
+        databaseReference= firebaseDatabase.getReference();
+    }
+
+    @Override
+    public String toString() {
+        return  ", ID='" + id_funcao + '\'' +
+                ", Nome='" + nome_funcao + '\'' + '}';
+    }
+
+
+    public static DatabaseReference getDatabaseReference() {
+        if(databaseReference==null)
+            inicio();
+        return databaseReference;
+    }
+
+
 
     public static void salvaFuncao(Funcao fun){
         if(databaseReference==null){
-            databaseReference.child("Funcionario").child(fun.getId_funcao().toString()
-            ).setValue(fun);
-            databaseReference.child("Funcionario").child(fun.getNome_funcao().toString()
-            ).setValue(fun);
+            inicio();
+            String id=databaseReference.child("Funcao").push().getKey();
+            List<Funcao> funcao = new ArrayList();
+            fun.setId_funcao(id);
 
+            databaseReference.child("Funcao").child(id).child("id_funcao").setValue(id);
+            databaseReference.child("Funcao").child(id).child("nome_funcao").setValue(fun.getNome_funcao());
 
 
         }
