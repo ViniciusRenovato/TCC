@@ -4,7 +4,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Agendamento implements Serializable {
     private String id_agendamento;
@@ -13,6 +15,14 @@ public class Agendamento implements Serializable {
     private String funcionario;
     private Servicos servicos;
     private Cliente cliente;
+
+    private static void inicio(){
+        firebaseDatabase= FirebaseDatabase.getInstance();
+        //firebaseDatabase.setPersistenceEnabled(true);
+        databaseReference= firebaseDatabase.getReference();
+    }
+
+
 
     public String getId_agendamento() {
         return id_agendamento;
@@ -63,25 +73,37 @@ public class Agendamento implements Serializable {
     }
 
 
+    @Override
+    public String toString() {
+        return  ", ID='" + id_agendamento + '\'' +
+                ", Nome='" + hora_agendamento + '\'' +
+                ", Duração='" + dia_agendamento + '\'' +
+                ", Função='" + funcionario + '\'' + '}';
+    }
+
+    public static DatabaseReference getDatabaseReference() {
+        if(databaseReference==null)
+            inicio();
+        return databaseReference;
+    }
+
+
 
     private static FirebaseDatabase firebaseDatabase;
     private static DatabaseReference databaseReference;
 
     public static void salvaAgendamento(Agendamento a){
         if(databaseReference==null){
-            databaseReference.child("Agendamento").child(a.getId_agendamento().toString()
-            ).setValue(a);
-            databaseReference.child("Agendamento").child(a.getHora_agendamento().toString()
-            ).setValue(a);
-            databaseReference.child("Agendamento").child(a.getDia_agendamento().toString()
-            ).setValue(a);
-            databaseReference.child("Agendamento").child(a.getFuncionario().toString()
-            ).setValue(a);
-            databaseReference.child("Agendamento").child(a.getServicos().toString()
-            ).setValue(a);
-            databaseReference.child("Agendamento").child(a.getCliente().toString()
-            ).setValue(a);
 
+            inicio();
+            String id=databaseReference.child("Agendamento").push().getKey();
+            List<Agendamento> agendamento = new ArrayList();
+            a.setId_agendamento(id);
+
+            databaseReference.child("Agendamento").child(id).child("id_agendamento").setValue(id);
+            databaseReference.child("Agendamento").child(id).child("hora_agendamento").setValue(a.getHora_agendamento());
+            databaseReference.child("Agendamento").child(id).child("dia_agendamento").setValue(a.getDia_agendamento());
+            databaseReference.child("Agendamento").child(id).child("funcionario").setValue(a.getFuncionario());
 
 
         }

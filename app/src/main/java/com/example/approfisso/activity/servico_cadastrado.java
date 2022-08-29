@@ -62,15 +62,20 @@ public class servico_cadastrado extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 DataSnapshot dataSnapshot = snapshot.child("Servicos");
                 Servico.clear();
+
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+
                     Servicos servico = postSnapshot.getValue(Servicos.class);
                     Servico.add(servico);
 
                 }
                 preenche_servico();
             }
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

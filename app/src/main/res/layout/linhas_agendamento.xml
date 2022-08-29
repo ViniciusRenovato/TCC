@@ -8,6 +8,14 @@
 
 
     <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="--------------------------------------------------------------------------------------------------------"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
         android:id="@+id/txt_option_funcionario"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
@@ -73,16 +81,17 @@
         android:layout_marginStart="32dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        tools:layout_editor_absoluteY="21dp" />
+        app:layout_constraintTop_toBottomOf="@+id/item_agendamento_dia" />
 
     <TextView
-        android:id="@+id/item_funcionario_telefone"
+        android:id="@+id/item_agendamento_funcionario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="1dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        tools:layout_editor_absoluteY="39dp" />
+        app:layout_constraintTop_toBottomOf="@+id/item_agendamento_hora" />
 
     <TextView
         android:id="@+id/textView4"

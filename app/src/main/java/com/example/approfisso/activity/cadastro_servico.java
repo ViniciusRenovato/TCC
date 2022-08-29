@@ -2,19 +2,17 @@ package com.example.approfisso.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
-import com.example.approfisso.entidades.Pessoa;
 import com.example.approfisso.entidades.Servicos;
-import com.example.approfisso.entidades.Funcao;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +23,16 @@ import java.util.ArrayList;
 
 
 public class cadastro_servico extends AppCompatActivity {
+
+
+
+
+
+
+
+
+
+
 
     DatabaseReference databaseReference;
 
@@ -45,6 +53,15 @@ public class cadastro_servico extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servico_cadastro);
+
+
+
+
+
+
+
+
+
 
 
         spinner_funcao_servico = findViewById(R.id.spinner_funcao_servico);
@@ -70,6 +87,38 @@ public class cadastro_servico extends AppCompatActivity {
 
     }
 
+
+//     mDataRef.addValueEventListener(new ValueEventListener() {
+//        @Override
+//        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//            list.clear();
+//            for (DataSnapshot ds : snapshot.getChildren()) {
+//                String name  = String.valueOf(ds.child(snapshot.getKey()).child("name"));
+//                list.add(name);
+//            }
+//        }
+//
+//        @Override
+//        public void onCancelled(@NonNull DatabaseError error) {
+//        }
+//    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private void Showdata(){
 
         spinner_info_funcao_servico.addValueEventListener(new ValueEventListener() {
@@ -77,7 +126,16 @@ public class cadastro_servico extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
-                    spinner_lista_servico.add(item.getValue().toString());
+
+                    String teste = item.child("nome_funcao").getValue(String.class);
+                    spinner_lista_servico.add(teste);
+
+//                    spinner_lista_servico.add(item.getValue().toString());
+
+
+
+
+
                 }
                 adapter.notifyDataSetChanged();
             }

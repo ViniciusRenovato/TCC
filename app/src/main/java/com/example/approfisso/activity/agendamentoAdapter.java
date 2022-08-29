@@ -18,6 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.AgendamentoHolder> {
+
+
+
+
+
+
+
+
     List<Agendamento> dados;
     public agendamentoAdapter(List<Agendamento> agendamento) {
         this.dados=agendamento;
@@ -34,6 +42,7 @@ public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.
         Agendamento agendamento = dados.get(i);
         agendamentoViewHolder.agendamentohora.setText(agendamento.getHora_agendamento());
         agendamentoViewHolder.agendamentodia.setText(agendamento.getDia_agendamento());
+        agendamentoViewHolder.agendamentofuncionario.setText(agendamento.getFuncionario());
 
     }
     @Override
@@ -43,12 +52,14 @@ public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.
     public class AgendamentoHolder extends RecyclerView.ViewHolder {
         private TextView agendamentohora;
         private TextView agendamentodia;
+        private TextView agendamentofuncionario;
 
 
         public AgendamentoHolder(@NonNull View itemView) {
             super(itemView);
             agendamentohora=itemView.findViewById(R.id.item_agendamento_hora);
             agendamentodia=itemView.findViewById(R.id.item_agendamento_dia);
+            agendamentofuncionario=itemView.findViewById(R.id.item_agendamento_funcionario);
         }
     }
 }
