@@ -12,12 +12,13 @@
 
 
         <activity android:name=".activity.cadastro_cliente"></activity>
-        <activity android:name=".activity.busca_menu"></activity>
         <activity android:name=".activity.cliente_cadastrado"></activity>
         <activity android:name=".activity.servico_cadastrado"></activity>
         <activity android:name=".activity.funcionario_cadastrado"></activity>
+        <activity android:name=".activity.agendamento_cadastrado"></activity>
         <activity android:name=".activity.funcao_cadastrado"></activity>
         <activity android:name=".activity.cadastro_servico"></activity>
+        <activity android:name=".activity.cadastro_agendamento"></activity>
         <activity android:name=".activity.cadastro_funcionario"></activity>
         <activity android:name=".activity.cadastro_funcao"></activity>
 
@@ -26,9 +27,6 @@
         <activity
             android:name=".Login"
             android:exported="true"></activity>
-        <activity
-            android:name=".Cadastro"
-            android:exported="true" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">

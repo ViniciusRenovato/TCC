@@ -49,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(it);
     }
 
+    public void botao_cadastro_agendamento(View view){
+        Intent it = new Intent(this, agendamento_cadastrado.class);
+        startActivity(it);
+    }
+
     public void botao_procura(View view){
         Intent it = new Intent(this, busca_menu.class);
         startActivity(it);

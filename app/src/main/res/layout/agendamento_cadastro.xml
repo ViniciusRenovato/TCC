@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F4E3AE">
 
     <Button
         android:id="@+id/botao_Confirmar_Agendamento"
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="monospace"
         android:onClick="botao_Confirmar"
         android:text="Confirmar"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,6 +25,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="165dp"
         android:layout_marginBottom="18dp"
+        android:fontFamily="monospace"
         android:onClick="botao_Cancelar"
         android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,16 +37,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="133dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="132dp"
+        android:fontFamily="cursive"
         android:text="Insira os seus dados"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        android:textColor="#0C0C0C"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.321" />
+        app:layout_constraintVertical_bias="0.28" />
 
     <EditText
         android:id="@+id/Hora_Agendamento"
@@ -60,9 +64,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.707" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView11"
@@ -70,16 +72,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="182dp"
         android:layout_marginEnd="186dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="monospace"
         android:text="Informe o Horario "
+        android:textColor="#000000"
         android:textSize="16sp"
+
         app:layout_constraintBottom_toTopOf="@+id/Hora_Agendamento"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView7"
@@ -88,22 +91,24 @@
         android:layout_marginStart="165dp"
         android:layout_marginEnd="165dp"
 
-        android:text="Informe o dia "
+        android:layout_marginBottom="12dp"
 
+        android:fontFamily="monospace"
+        android:text="Informe o dia "
+        android:textColor="#0B0B0B"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/Dia_Agendamento"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="195dp" />
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/Dia_Agendamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="94dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="36dp"
         android:background="@color/browser_actions_bg_grey"
         android:ems="10"
         android:hint=""
@@ -112,8 +117,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
@@ -121,12 +125,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="175dp"
         android:layout_marginEnd="175dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="monospace"
         android:text="Funcionario"
+        android:textColor="#040404"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_funcao_agendamento_funcionario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="295dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_funcao_agendamento_funcionario"
@@ -137,9 +143,7 @@
         android:layout_marginBottom="344dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

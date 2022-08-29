@@ -7,42 +7,42 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Agendamento implements Serializable {
-    private Integer id_agendamento;
-    private Integer hora_agendamento;
-    private Date dia_agendamento;
-    private Funcionario funcionario;
+    private String id_agendamento;
+    private String hora_agendamento;
+    private String dia_agendamento;
+    private String funcionario;
     private Servicos servicos;
     private Cliente cliente;
 
-    public Integer getId_agendamento() {
+    public String getId_agendamento() {
         return id_agendamento;
     }
 
-    public void setId_agendamento(Integer id_agendamento) {
+    public void setId_agendamento(String id_agendamento) {
         this.id_agendamento = id_agendamento;
     }
 
-    public Integer getHora_agendamento() {
+    public String getHora_agendamento() {
         return hora_agendamento;
     }
 
-    public void setHora_agendamento(Integer hora_agendamento) {
+    public void setHora_agendamento(String hora_agendamento) {
         this.hora_agendamento = hora_agendamento;
     }
 
-    public Date getDia_agendamento() {
+    public String getDia_agendamento() {
         return dia_agendamento;
     }
 
-    public void setDia_agendamento(Date dia_agendamento) {
+    public void setDia_agendamento(String dia_agendamento) {
         this.dia_agendamento = dia_agendamento;
     }
 
-    public Funcionario getFuncionario() {
+    public String getFuncionario() {
         return funcionario;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
+    public void setFuncionario(String funcionario) {
         this.funcionario = funcionario;
     }
 
