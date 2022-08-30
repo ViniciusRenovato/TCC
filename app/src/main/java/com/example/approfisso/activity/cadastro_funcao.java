@@ -42,9 +42,8 @@ public class cadastro_funcao extends AppCompatActivity {
     }
 
 
-    public void botao_retornar (View view){
-        Intent it = new Intent(this, MainActivity.class);
-        startActivity(it);
+    public void Botao_Cancelar_Funcao (View view){
+        super.onBackPressed();
         finish();
     }
 
@@ -54,7 +53,9 @@ public class cadastro_funcao extends AppCompatActivity {
 
 
     public void botao_Confirmar (View view){
+
         Funcoes = new Funcao();
+
         Funcoes.setNome_funcao(nome.getText().toString());
         Funcao.salvaFuncao(Funcoes);
 

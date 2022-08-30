@@ -155,9 +155,8 @@ public class cadastro_servico extends AppCompatActivity {
     }
 
 
-    public void botao_retornar (View view){
-        Intent it = new Intent(this, MainActivity.class);
-        startActivity(it);
+    public void Botao_Cancelar_Servico (View view){
+        super.onBackPressed();
         finish();
     }
 

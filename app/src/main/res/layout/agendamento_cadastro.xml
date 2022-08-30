@@ -26,7 +26,7 @@
         android:layout_marginEnd="165dp"
         android:layout_marginBottom="18dp"
         android:fontFamily="monospace"
-        android:onClick="botao_Cancelar"
+        android:onClick="Botao_Cancelar_Agendamento"
         android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/botao_Confirmar_Agendamento"
@@ -130,6 +130,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Dia_Agendamento" />
 
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="175dp"
+        android:fontFamily="monospace"
+        android:text="Serviço"
+        android:textColor="#040404"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_funcao_agendamento_funcionario" />
+
     <Spinner
         android:id="@+id/spinner_funcao_agendamento_funcionario"
         android:layout_width="212dp"
@@ -141,5 +157,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <Spinner
+        android:id="@+id/spinner_funcao_agendamento_servico"
+        android:layout_width="212dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="94dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

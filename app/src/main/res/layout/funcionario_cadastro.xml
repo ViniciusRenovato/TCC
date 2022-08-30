@@ -5,18 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="58dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="lista_emprego"
-        android:text="Lista"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/botao_Confirmar"
-        app:layout_constraintStart_toEndOf="@+id/Voltar_cadastro" />
+    <Spinner
+        android:id="@+id/spinner_funcao_funcionario"
+        android:layout_width="212dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginEnd="94dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Button
         android:id="@+id/botao_Confirmar"
@@ -36,7 +34,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="165dp"
         android:layout_marginBottom="18dp"
-        android:onClick="botao_Cancelar"
+        android:onClick="Botao_Cancelar_Funcionario"
         android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/botao_Confirmar"
@@ -155,20 +153,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-    <EditText
-        android:id="@+id/Funcao_Funcionario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="101dp"
-        android:background="@color/browser_actions_bg_grey"
-        android:ems="10"
-        android:hint="Seu nome"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
 
     <EditText
         android:id="@+id/Sobrenome_Funcionario"

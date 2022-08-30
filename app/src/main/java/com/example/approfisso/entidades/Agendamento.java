@@ -13,7 +13,7 @@ public class Agendamento implements Serializable {
     private String hora_agendamento;
     private String dia_agendamento;
     private String funcionario;
-    private Servicos servicos;
+    private String servicos;
     private Cliente cliente;
 
     private static void inicio(){
@@ -56,11 +56,11 @@ public class Agendamento implements Serializable {
         this.funcionario = funcionario;
     }
 
-    public Servicos getServicos() {
+    public String getServicos() {
         return servicos;
     }
 
-    public void setServicos(Servicos servicos) {
+    public void setServicos(String servicos) {
         this.servicos = servicos;
     }
 
@@ -78,6 +78,7 @@ public class Agendamento implements Serializable {
         return  ", ID='" + id_agendamento + '\'' +
                 ", Nome='" + hora_agendamento + '\'' +
                 ", Duração='" + dia_agendamento + '\'' +
+                ", Servicos='" + servicos + '\'' +
                 ", Função='" + funcionario + '\'' + '}';
     }
 
@@ -104,7 +105,7 @@ public class Agendamento implements Serializable {
             databaseReference.child("Agendamento").child(id).child("hora_agendamento").setValue(a.getHora_agendamento());
             databaseReference.child("Agendamento").child(id).child("dia_agendamento").setValue(a.getDia_agendamento());
             databaseReference.child("Agendamento").child(id).child("funcionario").setValue(a.getFuncionario());
-
+            databaseReference.child("Agendamento").child(id).child("servicos").setValue(a.getServicos());
 
         }
     }

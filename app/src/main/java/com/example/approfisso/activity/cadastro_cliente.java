@@ -50,9 +50,8 @@ public class cadastro_cliente extends AppCompatActivity {
     }
 
 
-    public void botao_retornar (View view){
-        Intent it = new Intent(this, MainActivity.class);
-        startActivity(it);
+    public void Botao_Cancelar_Cliente (View view){
+        super.onBackPressed();
         finish();
     }
 

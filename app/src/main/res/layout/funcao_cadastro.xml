@@ -24,7 +24,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="165dp"
         android:layout_marginBottom="18dp"
-        android:onClick="botao_Cancelar"
+        android:onClick="Botao_Cancelar_Funcao"
         android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/botao_Confirmar_Funcao"

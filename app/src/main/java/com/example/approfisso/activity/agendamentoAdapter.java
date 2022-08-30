@@ -43,6 +43,7 @@ public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.
         agendamentoViewHolder.agendamentohora.setText(agendamento.getHora_agendamento());
         agendamentoViewHolder.agendamentodia.setText(agendamento.getDia_agendamento());
         agendamentoViewHolder.agendamentofuncionario.setText(agendamento.getFuncionario());
+        agendamentoViewHolder.agendamentoservico.setText(agendamento.getServicos());
 
     }
     @Override
@@ -53,6 +54,7 @@ public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.
         private TextView agendamentohora;
         private TextView agendamentodia;
         private TextView agendamentofuncionario;
+        private TextView agendamentoservico;
 
 
         public AgendamentoHolder(@NonNull View itemView) {
@@ -60,6 +62,7 @@ public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.
             agendamentohora=itemView.findViewById(R.id.item_agendamento_hora);
             agendamentodia=itemView.findViewById(R.id.item_agendamento_dia);
             agendamentofuncionario=itemView.findViewById(R.id.item_agendamento_funcionario);
+            agendamentoservico=itemView.findViewById(R.id.item_agendamento_servico);
         }
     }
 }
