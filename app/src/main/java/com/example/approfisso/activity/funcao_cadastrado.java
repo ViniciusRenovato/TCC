@@ -3,6 +3,7 @@ package com.example.approfisso.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class funcao_cadastrado extends AppCompatActivity {
     DatabaseReference databaseReference;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-
+    private Funcao Funcoes_delete;
 
 
     DataFirebase db;
@@ -52,6 +53,14 @@ public class funcao_cadastrado extends AppCompatActivity {
         Funcoes= new LinkedList<>();
         //chamada firebase
         listar_funcao();
+
+
+
+
+
+
+
+
 
     }
 
@@ -90,6 +99,19 @@ public class funcao_cadastrado extends AppCompatActivity {
         Intent it = new Intent(this, cadastro_funcao.class);
         startActivity(it);
     }
+
+
+    public void botao_Remover_Funcao (View view){
+
+        Funcoes_delete = new Funcao();
+        Funcao.excluirFuncao(Funcoes_delete);
+
+        onBackPressed();
+
+    }
+
+
+
 
 
     public void botao_retornar_busca (View view){

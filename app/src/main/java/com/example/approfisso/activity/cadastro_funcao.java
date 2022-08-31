@@ -3,6 +3,7 @@ package com.example.approfisso.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,6 +63,22 @@ public class cadastro_funcao extends AppCompatActivity {
         onBackPressed();
 
     }
+
+
+
+
+
+    public void botao_Remover_Funcao (View view){
+
+        Funcoes = new Funcao();
+        Funcao.excluirFuncao(Funcoes);
+
+        onBackPressed();
+
+    }
+
+
+
 
 
  //   public void botao_Salvar (View view){
