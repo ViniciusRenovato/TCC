@@ -47,7 +47,7 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
 
 
     @Override
-    public void onBindViewHolder(@NonNull FuncaoHolder funcaoViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final FuncaoHolder funcaoViewHolder, int i) {
         Funcao funcao = dados.get(i);
 
 
@@ -63,8 +63,9 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
 
                 builder.setPositiveButton("Deletar", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference().child("Funcao").removeValue();
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        FirebaseDatabase.getInstance().getReference().child("Funcao")
+                                .child(funcao.getId_funcao()).removeValue();
 //                                .child(getRef(position).getkey()).removeValue();
                     }
                 });
@@ -72,7 +73,7 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
 
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(DialogInterface dialogInterface, int which) {
                         Toast.makeText(funcaoViewHolder.funcaonome.getContext(),"Cancelado", Toast.LENGTH_SHORT).show();
                     }
                 });

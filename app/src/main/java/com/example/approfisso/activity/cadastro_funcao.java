@@ -23,6 +23,9 @@ public class cadastro_funcao extends AppCompatActivity {
     private Funcao Funcoes;
 
 
+    private Button button_salvar_funcao;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,42 @@ public class cadastro_funcao extends AppCompatActivity {
         nome=findViewById(R.id.Nome_Funcao);
         Intent i = getIntent();
         Funcoes =(Funcao) i.getSerializableExtra("Funcao");
+
+        button_salvar_funcao = findViewById(R.id.botao_Confirmar_Funcao);
+
+
+        button_salvar_funcao.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void  onClick(View view){
+
+
+                Funcoes =new
+
+                        Funcao();
+
+                Funcoes.setNome_funcao(nome.getText().
+
+                        toString());
+                Funcao.salvaFuncao(Funcoes);
+
+                onBackPressed();
+
+
+
+
+            }
+
+        });
+
+
+
+
+
+
+
+
+
 
 
     }
@@ -55,14 +94,23 @@ public class cadastro_funcao extends AppCompatActivity {
 
     public void botao_Confirmar (View view){
 
-        Funcoes = new Funcao();
+                Funcoes =new
 
-        Funcoes.setNome_funcao(nome.getText().toString());
-        Funcao.salvaFuncao(Funcoes);
+                        Funcao();
 
-        onBackPressed();
+                Funcoes.setNome_funcao(nome.getText().
 
-    }
+                        toString());
+                Funcao.salvaFuncao(Funcoes);
+
+        super.onBackPressed();
+        finish();
+
+
+
+            }
+
+
 
 
 
