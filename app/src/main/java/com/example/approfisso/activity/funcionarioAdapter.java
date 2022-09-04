@@ -1,12 +1,14 @@
 package com.example.approfisso.activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,10 +19,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Funcionario;
 import com.example.approfisso.entidades.Pessoa;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.FuncionarioHolder> {
@@ -46,7 +54,7 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
         return new FuncionarioHolder(view);
     }
     @Override
-    public void onBindViewHolder(@NonNull FuncionarioHolder funcionarioViewHolder, int i) {
+    public void onBindViewHolder(@NonNull FuncionarioHolder funcionarioViewHolder, int i ) {
         Funcionario funcionario = dados.get(i);
         funcionarioViewHolder.funcionarionome.setText(funcionario.getNome_funcionario());
         funcionarioViewHolder.funcionariosobrenome.setText(funcionario.getSobrenome_funcionario());
@@ -54,6 +62,63 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
         funcionarioViewHolder.funcionariotelefone.setText(funcionario.getTelefone_funcionario());
         funcionarioViewHolder.funcionarioaniversario.setText(funcionario.getAniversario_funcionario());
         funcionarioViewHolder.funcionarioemail.setText(funcionario.getEmail_funcionario());
+
+        funcionarioViewHolder.funcionarioeditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final DialogPlus dialogPlus = DialogPlus.newDialog(funcionarioViewHolder.funcionarionome.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.uptade_popup))
+                        .setExpanded(true,1500)
+                        .create();
+
+                View view1 = dialogPlus.getHolderView();
+                EditText name = view1.findViewById(R.id.item_funcionario_nome);
+                EditText sobrenome = view1.findViewById(R.id.item_funcionario_sobrenome);
+                EditText telefone = view1.findViewById(R.id.item_funcionario_telefone);
+                EditText aniversario = view1.findViewById(R.id.item_funcionario_aniversario);
+                EditText email = view1.findViewById(R.id.item_funcionario_email);
+
+                dialogPlus.show();
+
+//                Button funcionaroeditar = view1.findViewById(R.id.button_editar_funcionario);
+//
+//                name.setText(funcionario.getNome_funcionario());
+//                sobrenome.setText(funcionario.getSobrenome_funcionario());
+//                telefone.setText(funcionario.getTelefone_funcionario());
+//                aniversario.setText(funcionario.getAniversario_funcionario());
+//                email.setText(funcionario.getEmail_funcionario());
+//
+//                dialogPlus.show();
+//
+//                funcionaroeditar.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Map<String,Object> map = new HashMap<>();
+//                        map.put("nome_funcionario",name.getText().toString());
+//                        map.put("sobrenome_funcionario",sobrenome.getText().toString());
+//                        map.put("telefone_funcionario",telefone.getText().toString());
+//                        map.put("aniversario_funcionario",aniversario.getText().toString());
+//                        map.put("email_funcionario",email.getText().toString());
+//
+//                        FirebaseDatabase.getInstance().getReference().child("Funcionario")
+//                                .child(funcionario.getId_funcionario()).updateChildren(map)
+//                                .addOnSuccessListener(new OnSuccessListener<Void>(){  
+//                                    @Override
+//                                    public void onSuccess(Void unused){
+//                                        Toast.makeText(funcionarioViewHolder.funcionarionome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
+//                                        dialogPlus.dismiss();
+//                                    }
+//                        })
+//                                .addOnFailureListener(new OnFailureListener() {
+//                                    @Override
+//                                    public void onFailure(@NonNull Exception e) {
+//                                        Toast.makeText(funcionarioViewHolder.funcionarionome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                    }
+//                });
+            }
+        });
 
         funcionarioViewHolder.funcionariodelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +158,8 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
         private TextView funcionariotelefone;
         private TextView funcionarioaniversario;
         private TextView funcionarioemail;
-        private TextView txt_option_funcionario;
         private Button funcionariodelete;
+        private Button funcionarioeditar;
 
 
         public FuncionarioHolder(@NonNull View itemView) {
@@ -107,6 +172,7 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
             funcionarioemail=itemView.findViewById(R.id.item_funcionario_email);
 
             funcionariodelete =(Button)itemView.findViewById(R.id.button_remover_funcionario);
+            funcionarioeditar =(Button)itemView.findViewById(R.id.button_editar_funcionario);
 
         }
     }
