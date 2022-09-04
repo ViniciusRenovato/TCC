@@ -1,11 +1,15 @@
 package com.example.approfisso.activity;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.approfisso.R;
 
 import com.example.approfisso.entidades.Servicos;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.util.List;
@@ -41,6 +46,31 @@ public class servicoAdapter extends RecyclerView.Adapter<servicoAdapter.Servicos
         serviViewHolder.servicovalor.setText(servi.getValor_servico());
         serviViewHolder.servicofuncao.setText(servi.getFuncao_servico());
 
+        serviViewHolder.servicodelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(serviViewHolder.serviconome.getContext());
+                builder.setTitle("Você tem certeza?");
+                builder.setMessage("Informação deletada nao pode ser recuperada.");
+
+                builder.setPositiveButton("Deletar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        FirebaseDatabase.getInstance().getReference().child("Servicos").child(servi.getId_servico()).removeValue();
+                    }
+                });
+
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Toast.makeText(serviViewHolder.serviconome.getContext(),"Cancelado", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
+            }
+        });
+
     }
 
     @Override
@@ -52,7 +82,7 @@ public class servicoAdapter extends RecyclerView.Adapter<servicoAdapter.Servicos
         private TextView servicoduracao;
         private TextView servicovalor;
         private TextView servicofuncao;
-        private TextView txt_option_funcao;
+        private Button servicodelete;
 
         public ServicosHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,7 +90,7 @@ public class servicoAdapter extends RecyclerView.Adapter<servicoAdapter.Servicos
             servicoduracao=itemView.findViewById(R.id.item_servico_duracao);
             servicovalor=itemView.findViewById(R.id.item_servico_preco);
             servicofuncao=itemView.findViewById(R.id.item_servico_funcao);
-            txt_option_funcao=itemView.findViewById(R.id.txt_option_servico);
+            servicodelete =(Button)itemView.findViewById(R.id.button_remover_servico);
 
         }
     }

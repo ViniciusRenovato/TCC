@@ -1,11 +1,15 @@
 package com.example.approfisso.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Funcionario;
 import com.example.approfisso.entidades.Pessoa;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,64 +55,31 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
         funcionarioViewHolder.funcionarioaniversario.setText(funcionario.getAniversario_funcionario());
         funcionarioViewHolder.funcionarioemail.setText(funcionario.getEmail_funcionario());
 
-//        clientesViewHolder.txt_option.setOnClickListener(v->
-//        {
-//
-//            PopupMenu popupMenu=new PopupMenu(context,clientesViewHolder.txt_option);
-//            popupMenu.inflate(R.menu.option_menu);
-//            popupMenu.setOnMenuItemClickListener(item->
-//            {
-//                switch (item.getItemId())
-//                {
-//                    case R.id.menu_edit:
-//
-//
-//                        break;
-//                    case R.id.menu_remove:
-//
-//
-//                        break;
-//                }
-//                return false;
-//            });
-//            popupMenu.show();
-//        });
+        funcionarioViewHolder.funcionariodelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(funcionarioViewHolder.funcionarionome.getContext());
+                builder.setTitle("Você tem certeza?");
+                builder.setMessage("Informação deletada nao pode ser recuperada.");
+
+                builder.setPositiveButton("Deletar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        FirebaseDatabase.getInstance().getReference().child("Funcionario").child(funcionario.getId_funcionario()).removeValue();
+                    }
+                });
 
 
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Toast.makeText(funcionarioViewHolder.funcionarionome.getContext(),"Cancelado", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
+            }
+        });
     }
-
-//    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, Pessoa p)
-//    {
-//        PessoaHolder vh = (PessoaHolder) holder;
-//        Pessoa pes = p==null? list.get(position):p;
-//        vh.pessoaNome.setText(pes.getNome());
-//        vh.pessoaSobrenome.setText(pes.getNome());
-//        vh.pessoaTelefone.setText(pes.getNome());
-//        vh.pessoaAniversario.setText(pes.getNome());
-//        vh.pessoaEmail.setText(pes.getNome());
-//        vh.txt_option.setOnClickListener(v->
-//                {
-//
-//                            PopupMenu popupMenu=new PopupMenu(context,vh.txt_option);
-//                            popupMenu.inflate(R.menu.option_menu);
-//                            popupMenu.setOnMenuItemClickListener(item->
-//                            {
-//                                        switch (item.getItemId())
-//                                        {
-//                                            case R.id.menu_edit:
-//
-//
-//                                                break;
-//                                            case R.id.menu_remove:
-//
-//
-//                                                break;
-//                                        }
-//                                  return false;
-//                            });
-//                            popupMenu.show();
-//               });
-
 
 
     @Override
@@ -122,6 +94,8 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
         private TextView funcionarioaniversario;
         private TextView funcionarioemail;
         private TextView txt_option_funcionario;
+        private Button funcionariodelete;
+
 
         public FuncionarioHolder(@NonNull View itemView) {
             super(itemView);
@@ -131,7 +105,8 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
             funcionariotelefone=itemView.findViewById(R.id.item_funcionario_telefone);
             funcionarioaniversario=itemView.findViewById(R.id.item_funcionario_aniversario);
             funcionarioemail=itemView.findViewById(R.id.item_funcionario_email);
-            txt_option_funcionario=itemView.findViewById(R.id.txt_option_funcionario);
+
+            funcionariodelete =(Button)itemView.findViewById(R.id.button_remover_funcionario);
 
         }
     }

@@ -1,17 +1,22 @@
 package com.example.approfisso.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Pessoa;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,29 +54,30 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
         clientesViewHolder.pessoaAniversario.setText(clientes.getAniversario());
         clientesViewHolder.pessoaEmail.setText(clientes.getEmail());
 
-        clientesViewHolder.txt_option.setOnClickListener(v->
-        {
+        clientesViewHolder.clientedelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(clientesViewHolder.pessoaNome.getContext());
+                builder.setTitle("Você tem certeza?");
+                builder.setMessage("Informação deletada nao pode ser recuperada.");
 
-//            PopupMenu popupMenu=new PopupMenu(context,clientesViewHolder.txt_option);
-//            popupMenu.inflate(R.menu.option_menu);
-//            popupMenu.setOnMenuItemClickListener(item->
-//            {
-//                switch (item.getItemId())
-//                {
-//                    case R.id.menu_edit:
-//
-//
-//                        break;
-//                    case R.id.menu_remove:
-//
-//
-//                        break;
-//                }
-//                return false;
-//            });
-//            popupMenu.show();
+                builder.setPositiveButton("Deletar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        FirebaseDatabase.getInstance().getReference().child("Pessoa").child(clientes.getID()).removeValue();
+                    }
+                });
+
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Toast.makeText(clientesViewHolder.pessoaNome.getContext(),"Cancelado", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
+            }
         });
-
 
     }
 
@@ -84,28 +90,7 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
         vh.pessoaTelefone.setText(pes.getNome());
         vh.pessoaAniversario.setText(pes.getNome());
         vh.pessoaEmail.setText(pes.getNome());
-//        vh.txt_option.setOnClickListener(v->
-//                {
 //
-//                            PopupMenu popupMenu=new PopupMenu(context,vh.txt_option);
-//                            popupMenu.inflate(R.menu.option_menu);
-//                            popupMenu.setOnMenuItemClickListener(item->
-//                            {
-//                                        switch (item.getItemId())
-//                                        {
-//                                            case R.id.menu_edit:
-//
-//
-//                                                break;
-//                                            case R.id.menu_remove:
-//
-//
-//                                                break;
-//                                        }
-//                                  return false;
-//                            });
-//                            popupMenu.show();
-//               });
     }
 
 
@@ -119,7 +104,7 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
         private TextView pessoaTelefone;
         private TextView pessoaAniversario;
         private TextView pessoaEmail;
-        private TextView txt_option;
+        private Button clientedelete;
 
         public PessoaHolder(@NonNull View itemView) {
             super(itemView);
@@ -128,7 +113,7 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
             pessoaTelefone=itemView.findViewById(R.id.item_pessoa_telefone);
             pessoaAniversario=itemView.findViewById(R.id.item_pessoa_aniversario);
             pessoaEmail=itemView.findViewById(R.id.item_pessoa_email);
-            txt_option=itemView.findViewById(R.id.txt_option_pessoa);
+            clientedelete =(Button)itemView.findViewById(R.id.button_remover_cliente);
 
         }
     }
