@@ -66,57 +66,71 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
         funcionarioViewHolder.funcionarioeditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final DialogPlus dialogPlus = DialogPlus.newDialog(funcionarioViewHolder.funcionarionome.getContext())
+                final DialogPlus dialogPlus = DialogPlus.newDialog(funcionarioViewHolder.funcionariosobrenome.getContext())
                         .setContentHolder(new ViewHolder(R.layout.uptade_popup))
                         .setExpanded(true,1500)
                         .create();
 
+
+
+
+
+
+
                 View view1 = dialogPlus.getHolderView();
-                EditText name = view1.findViewById(R.id.item_funcionario_nome);
-                EditText sobrenome = view1.findViewById(R.id.item_funcionario_sobrenome);
-                EditText telefone = view1.findViewById(R.id.item_funcionario_telefone);
-                EditText aniversario = view1.findViewById(R.id.item_funcionario_aniversario);
-                EditText email = view1.findViewById(R.id.item_funcionario_email);
+                EditText name = view1.findViewById(R.id.txtnome);
+                EditText sobrenome = view1.findViewById(R.id.txtsobrenome);
+                EditText telefone = view1.findViewById(R.id.txttelefone);
+                EditText aniversario = view1.findViewById(R.id.txtaniversario);
+                EditText email = view1.findViewById(R.id.txtemail);
 
                 dialogPlus.show();
 
-//                Button funcionaroeditar = view1.findViewById(R.id.button_editar_funcionario);
-//
-//                name.setText(funcionario.getNome_funcionario());
-//                sobrenome.setText(funcionario.getSobrenome_funcionario());
-//                telefone.setText(funcionario.getTelefone_funcionario());
-//                aniversario.setText(funcionario.getAniversario_funcionario());
-//                email.setText(funcionario.getEmail_funcionario());
-//
-//                dialogPlus.show();
-//
-//                funcionaroeditar.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Map<String,Object> map = new HashMap<>();
-//                        map.put("nome_funcionario",name.getText().toString());
-//                        map.put("sobrenome_funcionario",sobrenome.getText().toString());
-//                        map.put("telefone_funcionario",telefone.getText().toString());
-//                        map.put("aniversario_funcionario",aniversario.getText().toString());
-//                        map.put("email_funcionario",email.getText().toString());
-//
-//                        FirebaseDatabase.getInstance().getReference().child("Funcionario")
-//                                .child(funcionario.getId_funcionario()).updateChildren(map)
-//                                .addOnSuccessListener(new OnSuccessListener<Void>(){  
-//                                    @Override
-//                                    public void onSuccess(Void unused){
-//                                        Toast.makeText(funcionarioViewHolder.funcionarionome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
-//                                        dialogPlus.dismiss();
-//                                    }
-//                        })
-//                                .addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        Toast.makeText(funcionarioViewHolder.funcionarionome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
-//                                    }
-//                                });
-//                    }
-//                });
+                Button funcionarioeditar = view1.findViewById(R.id.btneditar);
+
+                name.setText(funcionario.getNome_funcionario());
+                sobrenome.setText(funcionario.getSobrenome_funcionario());
+                telefone.setText(funcionario.getTelefone_funcionario());
+                aniversario.setText(funcionario.getAniversario_funcionario());
+                email.setText(funcionario.getEmail_funcionario());
+
+                dialogPlus.show();
+
+                funcionarioeditar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("nome_funcionario",name.getText().toString());
+                        map.put("sobrenome_funcionario",sobrenome.getText().toString());
+                        map.put("telefone_funcionario",telefone.getText().toString());
+                        map.put("aniversario_funcionario",aniversario.getText().toString());
+                        map.put("email_funcionario",email.getText().toString());
+
+                        FirebaseDatabase.getInstance().getReference().child("Funcionario")
+                                .child(funcionario.getId_funcionario()).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                                    @Override
+                                    public void onSuccess(Void unused){
+                                        Toast.makeText(funcionarioViewHolder.funcionarionome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
+                                        dialogPlus.dismiss();
+                                    }
+                        })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(funcionarioViewHolder.funcionarionome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+
+
+
+
+
+
+
+
             }
         });
 

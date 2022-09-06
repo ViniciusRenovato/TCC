@@ -1,5 +1,6 @@
 package com.example.approfisso.entidades;
 
+import com.example.approfisso.classes.empregos;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -150,17 +151,57 @@ public class Funcionario implements Serializable {
         databaseReference.child("Funcionario").child(funciona.getEmail_funcionario()+"").removeValue();
         databaseReference.child("Funcionario").child(funciona.getPessoa()+"").removeValue();
     }
-    public static void editarFuncionario(Funcionario funciona){
-       // databaseReference.child("Funcionario").child(funciona.getId_funcionario().toString()
-       // ).child("nome").setValue(funciona.getNome_funcionario());
-        databaseReference.child("Funcionario").child(funciona.getId_funcionario().toString()
-        ).child("nome").setValue(funciona.getNome_funcionario());
-        databaseReference.child("Funcionario").child(funciona.getId_funcionario().toString()
-        ).child("Email").setValue(funciona.getEmail_funcionario());
-        databaseReference.child("Funcionario").child(funciona.getId_funcionario().toString()
-        ).child("Pessoa").setValue(funciona.getPessoa());
 
-    }
+
+
+//    public static void editar_funcionario(Funcionario funciona) {
+//
+//        databaseReference.child("Funcionario").child(id).child("id_funcionario").setValue(id);
+//        databaseReference.child("Funcionario").child(id).child("nome_funcionario").setValue(funciona.getNome_funcionario());
+//        databaseReference.child("Funcionario").child(id).child("sobrenome_funcionario").setValue(funciona.getSobrenome_funcionario());
+//        databaseReference.child("Funcionario").child(id).child("funcao_funcionario").setValue(funciona.getFuncao_funcionario());
+//        databaseReference.child("Funcionario").child(id).child("telefone_funcionario").setValue(funciona.getTelefone_funcionario());
+//        databaseReference.child("Funcionario").child(id).child("aniversario_funcionario").setValue(funciona.getAniversario_funcionario());
+//        databaseReference.child("Funcionario").child(id).child("email_funcionario").setValue(funciona.getEmail_funcionario());
+//
+//
+//
+//
+//
+//        databaseReference.child("Emprego").child(e.getId().toString()).child("Cidade").setValue(e.getCidade());
+//        databaseReference.child("Emprego").child(e.getId().toString()).child("Email").setValue(e.getEmail());
+//        databaseReference.child("Emprego").child(e.getId().toString()).child("Estado").setValue(e.getEstado());
+//        databaseReference.child("Emprego").child(e.getId().toString()).child("Periodo").setValue(e.getPeriodo());
+//        databaseReference.child("Emprego").child(e.getId().toString()).child("Profissao").setValue(e.getArea_da_profissao());
+////        databaseReference.child("Emprego").child(e.getId().toString()).child("Salario").setValue(e.getSalario());
+//
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public static void editarFuncionario(Funcionario funciona){
+//       // databaseReference.child("Funcionario").child(funciona.getId_funcionario().toString()
+//       // ).child("nome").setValue(funciona.getNome_funcionario());
+//        databaseReference.child("Funcionario").child(funciona.getId_funcionario().toString()
+//        ).child("nome").setValue(funciona.getNome_funcionario());
+//        databaseReference.child("Funcionario").child(funciona.getId_funcionario().toString()
+//        ).child("Email").setValue(funciona.getEmail_funcionario());
+//        databaseReference.child("Funcionario").child(funciona.getId_funcionario().toString()
+//        ).child("Pessoa").setValue(funciona.getPessoa());
+//
+//    }
 
 
 }
