@@ -20,6 +20,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
+        android:textColor="#000000"
+        android:fontFamily="monospace"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:text="Nome"/>
@@ -38,6 +40,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
+        android:textColor="#000000"
+        android:fontFamily="monospace"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:text="Sobrenome"/>
@@ -74,6 +78,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
+        android:textColor="#000000"
+        android:fontFamily="monospace"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:text="Telefone"/>
@@ -91,10 +97,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="#000000"
+        android:fontFamily="monospace"
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Aniversario"/>
+        android:text="Aniversário"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -110,6 +118,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
+        android:textColor="#000000"
+        android:fontFamily="monospace"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:text="Email"/>
@@ -124,16 +134,18 @@
         android:id="@+id/txtemail"/>
 
     <Button
+        android:id="@+id/btneditar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
         android:layout_marginTop="10dp"
-        android:text="Atualizar "
-        android:textSize="21dp"
-        android:textAllCaps="false"
+        android:layout_marginRight="25dp"
         android:background="@drawable/rounded"
-        android:id="@+id/btneditar"/>
+        android:text="Atualizar "
+
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="21dp" />
 
 
 </LinearLayout>
