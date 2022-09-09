@@ -33,7 +33,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
         android:gravity="center"
-        android:id="@+id/txtnome"/>
+        android:id="@+id/txtnome_funcionario"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
         android:gravity="center"
-        android:id="@+id/txtsobrenome"/>
+        android:id="@+id/txtsobrenome_funcionario"/>
 
 <!--    <TextView-->
 <!--        android:layout_width="match_parent"-->
@@ -91,7 +91,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
         android:gravity="center"
-        android:id="@+id/txttelefone"/>
+        android:id="@+id/txttelefone_funcionario"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -111,7 +111,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
         android:gravity="center"
-        android:id="@+id/txtaniversario"/>
+        android:id="@+id/txtaniversario_funcionario"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -131,10 +131,10 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
         android:gravity="center"
-        android:id="@+id/txtemail"/>
+        android:id="@+id/txtemail_funcionario"/>
 
     <Button
-        android:id="@+id/btneditar"
+        android:id="@+id/btneditar_funcionario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"

@@ -1,15 +1,12 @@
 package com.example.approfisso.activity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,14 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Funcionario;
-import com.example.approfisso.entidades.Pessoa;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +62,7 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
             @Override
             public void onClick(View view) {
                 final DialogPlus dialogPlus = DialogPlus.newDialog(funcionarioViewHolder.funcionariosobrenome.getContext())
-                        .setContentHolder(new ViewHolder(R.layout.uptade_popup))
+                        .setContentHolder(new ViewHolder(R.layout.update_funcionario_popup))
                         .setExpanded(true,1500)
                         .create();
 
@@ -78,15 +73,15 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
 
 
                 View view1 = dialogPlus.getHolderView();
-                EditText name = view1.findViewById(R.id.txtnome);
-                EditText sobrenome = view1.findViewById(R.id.txtsobrenome);
-                EditText telefone = view1.findViewById(R.id.txttelefone);
-                EditText aniversario = view1.findViewById(R.id.txtaniversario);
-                EditText email = view1.findViewById(R.id.txtemail);
+                EditText name = view1.findViewById(R.id.txtnome_funcionario);
+                EditText sobrenome = view1.findViewById(R.id.txtsobrenome_funcionario);
+                EditText telefone = view1.findViewById(R.id.txttelefone_funcionario);
+                EditText aniversario = view1.findViewById(R.id.txtaniversario_funcionario);
+                EditText email = view1.findViewById(R.id.txtemail_funcionario);
 
                 dialogPlus.show();
 
-                Button funcionarioeditar = view1.findViewById(R.id.btneditar);
+                Button funcionarioeditar = view1.findViewById(R.id.btneditar_funcionario);
 
                 name.setText(funcionario.getNome_funcionario());
                 sobrenome.setText(funcionario.getSobrenome_funcionario());
