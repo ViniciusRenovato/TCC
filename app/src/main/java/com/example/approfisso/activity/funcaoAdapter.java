@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,10 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Funcao;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHolder> {
@@ -41,11 +48,6 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
         return new FuncaoHolder(view);
     }
 
-
-
-
-
-
     @Override
     public void onBindViewHolder(@NonNull final FuncaoHolder funcaoViewHolder, int i) {
         Funcao funcao = dados.get(i);
@@ -53,6 +55,51 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
 
         funcaoViewHolder.funcaonome.setText(funcao.getNome_funcao());
 
+        funcaoViewHolder.funcaoeditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final DialogPlus dialogPlus = DialogPlus.newDialog(funcaoViewHolder.funcaonome.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.update_funcao_popup))
+                        .setExpanded(true,1200)
+                        .create();
+
+
+                View view1 = dialogPlus.getHolderView();
+                EditText name = view1.findViewById(R.id.txtnome_funcao);
+
+                dialogPlus.show();
+
+                Button funcaoeditar = view1.findViewById(R.id.btneditar_funcao);
+
+                name.setText(funcao.getNome_funcao());
+
+                dialogPlus.show();
+
+                funcaoeditar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("nome_funcao",name.getText().toString());
+
+                        FirebaseDatabase.getInstance().getReference().child("Funcao")
+                                .child(funcao.getId_funcao()).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                                    @Override
+                                    public void onSuccess(Void unused){
+                                        Toast.makeText(funcaoViewHolder.funcaonome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
+                                        dialogPlus.dismiss();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(funcaoViewHolder.funcaonome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+            }
+        });
 
         funcaoViewHolder.funcaodelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +117,6 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
                     }
                 });
 
-
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
@@ -78,40 +124,26 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
                     }
                 });
                 builder.show();
-
-
             }
         });
-
-
-
     }
-
-
 
     @Override
     public int getItemCount() {
         return dados.size();
     }
 
-
-
     public class FuncaoHolder extends RecyclerView.ViewHolder {
 
         private Button funcaodelete;
-
-
+        private Button funcaoeditar;
         private TextView funcaonome;
-
-        private TextView txt_option_funcao;
-
 
         public FuncaoHolder(@NonNull View itemView) {
             super(itemView);
             funcaonome=itemView.findViewById(R.id.item_funcao_nome);
-
-            txt_option_funcao=itemView.findViewById(R.id.txt_option_funcao);
-            funcaodelete =(Button)itemView.findViewById(R.id.button_remover);
+            funcaodelete =(Button)itemView.findViewById(R.id.button_remover_funcao);
+            funcaoeditar =(Button)itemView.findViewById(R.id.button_editar_funcao);
 
         }
     }

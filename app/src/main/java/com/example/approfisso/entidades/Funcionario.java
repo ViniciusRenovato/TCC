@@ -18,6 +18,7 @@ public class Funcionario implements Serializable {
     private String aniversario_funcionario;
     private String email_funcionario;
     private Pessoa pessoa;
+    private String imagem_funcionario;
 
 
     private static FirebaseDatabase firebaseDatabase;
@@ -94,10 +95,13 @@ public class Funcionario implements Serializable {
     }
 
 
+    public String getImagem_funcionario() {
+        return imagem_funcionario;
+    }
 
-
-
-
+    public void setImagem_funcionario(String imagem_funcionario) {
+        this.imagem_funcionario = imagem_funcionario;
+    }
 
     @Override
     public String toString() {

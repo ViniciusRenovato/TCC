@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,10 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Pessoa;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHolder> {
@@ -53,6 +60,66 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
         clientesViewHolder.pessoaTelefone.setText(clientes.getTelefone());
         clientesViewHolder.pessoaAniversario.setText(clientes.getAniversario());
         clientesViewHolder.pessoaEmail.setText(clientes.getEmail());
+
+        clientesViewHolder.clienteeditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final DialogPlus dialogPlus = DialogPlus.newDialog(clientesViewHolder.pessoaSobrenome.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.update_cliente_popup))
+                        .setExpanded(true,1500)
+                        .create();
+
+
+                View view1 = dialogPlus.getHolderView();
+                EditText name = view1.findViewById(R.id.txtnome_cliente);
+                EditText sobrenome = view1.findViewById(R.id.txtsobrenome_cliente);
+                EditText telefone = view1.findViewById(R.id.txttelefone_cliente);
+                EditText aniversario = view1.findViewById(R.id.txtaniversario_cliente);
+                EditText email = view1.findViewById(R.id.txtemail_cliente);
+
+                dialogPlus.show();
+
+                Button clienteeditar = view1.findViewById(R.id.btneditar_cliente);
+
+                name.setText(clientes.getNome());
+                sobrenome.setText(clientes.getSobrenome());
+                telefone.setText(clientes.getTelefone());
+                aniversario.setText(clientes.getAniversario());
+                email.setText(clientes.getEmail());
+
+                dialogPlus.show();
+
+                clienteeditar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("nome_pessoa",name.getText().toString());
+                        map.put("sobrenome_pessoa",sobrenome.getText().toString());
+                        map.put("telefone_pessoa",telefone.getText().toString());
+                        map.put("aniversario_pessoa",aniversario.getText().toString());
+                        map.put("email_pessoa",email.getText().toString());
+
+                        FirebaseDatabase.getInstance().getReference().child("Pessoa")
+                                .child(clientes.getID()).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                                    @Override
+                                    public void onSuccess(Void unused){
+                                        Toast.makeText(clientesViewHolder.pessoaNome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
+                                        dialogPlus.dismiss();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(clientesViewHolder.pessoaNome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+            }
+        });
+
+
 
         clientesViewHolder.clientedelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +172,7 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
         private TextView pessoaAniversario;
         private TextView pessoaEmail;
         private Button clientedelete;
+        private Button clienteeditar;
 
         public PessoaHolder(@NonNull View itemView) {
             super(itemView);
@@ -114,7 +182,7 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
             pessoaAniversario=itemView.findViewById(R.id.item_pessoa_aniversario);
             pessoaEmail=itemView.findViewById(R.id.item_pessoa_email);
             clientedelete =(Button)itemView.findViewById(R.id.button_remover_cliente);
-
+            clienteeditar =(Button)itemView.findViewById(R.id.button_editar_cliente);
         }
     }
 }

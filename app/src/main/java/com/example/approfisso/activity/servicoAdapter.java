@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,10 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.approfisso.R;
 
 import com.example.approfisso.entidades.Servicos;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class servicoAdapter extends RecyclerView.Adapter<servicoAdapter.ServicosHolder> {
@@ -45,6 +52,63 @@ public class servicoAdapter extends RecyclerView.Adapter<servicoAdapter.Servicos
         serviViewHolder.servicoduracao.setText(servi.getDuracao_servico());
         serviViewHolder.servicovalor.setText(servi.getValor_servico());
         serviViewHolder.servicofuncao.setText(servi.getFuncao_servico());
+
+        serviViewHolder.servicoeditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final DialogPlus dialogPlus = DialogPlus.newDialog(serviViewHolder.serviconome.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.update_servico_popup))
+                        .setExpanded(true,1150)
+                        .create();
+
+
+                View view1 = dialogPlus.getHolderView();
+                EditText name = view1.findViewById(R.id.txtnome_servico);
+                EditText duracao = view1.findViewById(R.id.txtduracao_servico);
+                EditText valor = view1.findViewById(R.id.txtvalor_servico);
+                EditText funcao = view1.findViewById(R.id.txtfuncao_servico);
+
+                dialogPlus.show();
+
+                Button servicoeditar = view1.findViewById(R.id.btneditar_servico);
+
+                name.setText(servi.getNome_servico());
+                duracao.setText(servi.getDuracao_servico());
+                valor.setText(servi. getValor_servico());
+                funcao.setText(servi.getFuncao_servico());
+                //email.setText(funcionario.getEmail_funcionario());
+
+                dialogPlus.show();
+
+                servicoeditar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("nome_servico",name.getText().toString());
+                        map.put("duracao_servico",duracao.getText().toString());
+                        map.put("valor_servico",valor.getText().toString());
+                        map.put("funcao_servico",funcao.getText().toString());
+                        //map.put("email_funcionario",email.getText().toString());
+
+                        FirebaseDatabase.getInstance().getReference().child("Servicos")
+                                .child(servi.getId_servico()).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                                    @Override
+                                    public void onSuccess(Void unused){
+                                        Toast.makeText(serviViewHolder.serviconome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
+                                        dialogPlus.dismiss();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(serviViewHolder.serviconome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+            }
+        });
 
         serviViewHolder.servicodelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +147,7 @@ public class servicoAdapter extends RecyclerView.Adapter<servicoAdapter.Servicos
         private TextView servicovalor;
         private TextView servicofuncao;
         private Button servicodelete;
+        private Button servicoeditar;
 
         public ServicosHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,6 +156,7 @@ public class servicoAdapter extends RecyclerView.Adapter<servicoAdapter.Servicos
             servicovalor=itemView.findViewById(R.id.item_servico_preco);
             servicofuncao=itemView.findViewById(R.id.item_servico_funcao);
             servicodelete =(Button)itemView.findViewById(R.id.button_remover_servico);
+            servicoeditar =(Button)itemView.findViewById(R.id.button_editar_servico);
 
         }
     }

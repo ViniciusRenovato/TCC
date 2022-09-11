@@ -44,7 +44,7 @@
         android:fontFamily="monospace"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Sobrenome"/>
+        android:text="Duracao"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -53,25 +53,8 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
         android:gravity="center"
-        android:id="@+id/txtsobrenome_servico"/>
+        android:id="@+id/txtduracao_servico"/>
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center"-->
-<!--        android:textSize="20sp"-->
-<!--        android:layout_marginTop="5dp"-->
-<!--        android:layout_marginBottom="5dp"-->
-<!--        android:text="Funcao"/>-->
-<!--    -->
-<!--    <EditText-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="35dp"-->
-<!--        android:layout_marginLeft="10dp"-->
-<!--        android:layout_marginRight="10dp"-->
-<!--        android:background="@drawable/rounded"-->
-<!--        android:gravity="center"-->
-<!--        android:id="@+id/txtnome"/>-->
 
     <TextView
         android:layout_width="match_parent"
@@ -82,7 +65,7 @@
         android:fontFamily="monospace"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Telefone"/>
+        android:text="Valor"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -91,7 +74,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
         android:gravity="center"
-        android:id="@+id/txttelefone_servico"/>
+        android:id="@+id/txtvalor_servico"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -111,27 +94,9 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
         android:gravity="center"
-        android:id="@+id/txtaniversario_servico"/>
+        android:id="@+id/txtfuncao_servico"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:fontFamily="monospace"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="Email"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/rounded"
-        android:gravity="center"
-        android:id="@+id/txtemail_servico"/>
 
     <Button
         android:id="@+id/btneditar_servico"

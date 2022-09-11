@@ -67,11 +67,6 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
                         .create();
 
 
-
-
-
-
-
                 View view1 = dialogPlus.getHolderView();
                 EditText name = view1.findViewById(R.id.txtnome_funcionario);
                 EditText sobrenome = view1.findViewById(R.id.txtsobrenome_funcionario);
@@ -118,14 +113,6 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
                                 });
                     }
                 });
-
-
-
-
-
-
-
-
             }
         });
 
