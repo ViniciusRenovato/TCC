@@ -80,7 +80,7 @@ public class cadastro_servico extends AppCompatActivity {
         nome=findViewById(R.id.Nome_Servico);
         duracao=findViewById(R.id.Duracao_Servico);
         valor=findViewById(R.id.Preco_Servico);
-        funcao=findViewById(R.id.Funcao_Servico);
+
         Intent i = getIntent();
         servicos =(Servicos) i.getSerializableExtra("Servicos");
 

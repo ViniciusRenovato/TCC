@@ -93,11 +93,11 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
                     @Override
                     public void onClick(View view) {
                         Map<String,Object> map = new HashMap<>();
-                        map.put("nome_pessoa",name.getText().toString());
-                        map.put("sobrenome_pessoa",sobrenome.getText().toString());
-                        map.put("telefone_pessoa",telefone.getText().toString());
-                        map.put("aniversario_pessoa",aniversario.getText().toString());
-                        map.put("email_pessoa",email.getText().toString());
+                        map.put("Nome",name.getText().toString());
+                        map.put("Sobrenome",sobrenome.getText().toString());
+                        map.put("Telefone",telefone.getText().toString());
+                        map.put("Aniversario",aniversario.getText().toString());
+                        map.put("Email",email.getText().toString());
 
                         FirebaseDatabase.getInstance().getReference().child("Pessoa")
                                 .child(clientes.getID()).updateChildren(map)

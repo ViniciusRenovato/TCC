@@ -60,11 +60,11 @@ public class cadastro_cliente extends AppCompatActivity {
 
 
 
-        nome=findViewById(R.id.Nome_Servico);
-        sobrenome=findViewById(R.id.Duracao_Servico);
-        telefone=findViewById(R.id.Preco_Servico);
-        aniversario=findViewById(R.id.Funcao_Servico);
-        email=findViewById(R.id.Email_cadastro);
+        nome=findViewById(R.id.Nome_Cliente);
+        sobrenome=findViewById(R.id.Sobrenome_Cliente);
+        telefone=findViewById(R.id.Telefone_Cliente);
+        aniversario=findViewById(R.id.Aniversario_Cliente);
+        email=findViewById(R.id.Email_Cliente);
         Intent i = getIntent();
         Clientes =(Pessoa) i.getSerializableExtra("Clientes");
 
