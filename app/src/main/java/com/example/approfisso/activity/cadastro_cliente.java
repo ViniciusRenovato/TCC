@@ -3,6 +3,7 @@ package com.example.approfisso.activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.DatePicker;
@@ -64,6 +65,7 @@ public class cadastro_cliente extends AppCompatActivity {
         sobrenome=findViewById(R.id.Sobrenome_Cliente);
         telefone=findViewById(R.id.Telefone_Cliente);
         aniversario=findViewById(R.id.Aniversario_Cliente);
+
         email=findViewById(R.id.Email_Cliente);
         Intent i = getIntent();
         Clientes =(Pessoa) i.getSerializableExtra("Clientes");
@@ -75,7 +77,8 @@ public class cadastro_cliente extends AppCompatActivity {
                         myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
+       // aniversario.setInputType(InputType.TYPE_NULL);
+        //aniversario.setFocusable(false);
 
     }
 

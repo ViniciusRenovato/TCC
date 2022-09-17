@@ -110,18 +110,19 @@
         android:layout_marginBottom="16dp"
         android:background="@color/browser_actions_bg_grey"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="31/12/2022"
-        android:inputType="date"
+
+
+        android:inputType="none"
         android:maxLength="10"
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-
-
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView9"

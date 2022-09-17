@@ -3,6 +3,7 @@ package com.example.approfisso.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -14,6 +15,7 @@ import com.example.approfisso.R;
 import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.Funcionario;
 import com.example.approfisso.entidades.Pessoa;
+import com.example.approfisso.entidades.Servicos;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class cadastro_agendamento extends AppCompatActivity {
     DatabaseReference databaseReference;
@@ -65,46 +69,68 @@ public class cadastro_agendamento extends AppCompatActivity {
         dia=findViewById(R.id.Dia_Agendamento);
         Intent i = getIntent();
         Agendamentos =(Agendamento) i.getSerializableExtra("Agendamento");
-
-    }
-
-    private void Showdata_Funcionario(){
-
-        spinner_info_funcao_agendamento_funcionario.addValueEventListener(new ValueEventListener() {
+        spinner_funcao_agendamento_servico.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot item : snapshot.getChildren()) {
-
-                    String nome_do_funcionario = item.child("nome_funcionario").getValue(String.class);
-                    spinner_lista_agendamento_funcionario.add(nome_do_funcionario);
-
-//                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
-                }
-                adapter_agendamento_funcionario.notifyDataSetChanged();
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Showdata_Funcionario();
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
 
     }
 
-    private void Showdata_Servico(){
+    private void Showdata_Funcionario(){
 
+        if(serviços!=null&&spinner_funcao_agendamento_servico.getSelectedItem()!=null) {
+            List<Servicos> collect = serviços.stream().filter
+                    (c -> c.getNome_servico().equals(spinner_funcao_agendamento_servico.getSelectedItem().toString())).collect(Collectors.toList());
+            spinner_info_funcao_agendamento_funcionario.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    spinner_lista_agendamento_funcionario.clear();
+                    spinner_lista_agendamento_funcionario.add("---Selecione--");
+
+
+                    for (DataSnapshot item : snapshot.getChildren()) {
+
+                        String nome_do_funcionario = item.child("nome_funcionario").getValue(String.class);
+                        if (item.child("funcao_funcionario").getValue(String.class).equals(collect.get(0).getFuncao_servico()))
+                            spinner_lista_agendamento_funcionario.add(nome_do_funcionario);
+
+//                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
+                    }
+                    adapter_agendamento_funcionario.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }
+List<Servicos> serviços;
+    private void Showdata_Servico(){
+        serviços= new ArrayList<>();
         spinner_info_funcao_agendamento_servico.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
-
-                    String nome_do_servico = item.child("nome_servico").getValue(String.class);
-                    spinner_lista_agendamento_servico.add(nome_do_servico);
+                        Servicos serv= new Servicos();
+                    serv.setNome_servico(item.child("nome_servico").getValue(String.class));
+                    serv.setFuncao_servico(item.child("funcao_servico").getValue(String.class));
+                    spinner_lista_agendamento_servico.add(serv.getNome_servico());
+                    serviços.add(serv);
 
 //                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
                 }
                 adapter_agendamento_servico.notifyDataSetChanged();
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
