@@ -31,6 +31,7 @@ public class cadastro_cliente extends AppCompatActivity {
     private EditText telefone;
 
     private EditText aniversario;
+
     Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -42,24 +43,13 @@ public class cadastro_cliente extends AppCompatActivity {
         }
     };
 
-
-
-
-
     private EditText email;
     private Pessoa Clientes;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cliente_cadastro);
-
-
-
-
-
-
 
         nome=findViewById(R.id.Nome_Cliente);
         sobrenome=findViewById(R.id.Sobrenome_Cliente);
@@ -77,17 +67,12 @@ public class cadastro_cliente extends AppCompatActivity {
                         myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-       // aniversario.setInputType(InputType.TYPE_NULL);
-        //aniversario.setFocusable(false);
-
     }
-
 
     public void lista_emprego(View view){
         Intent it = new Intent(this, cliente_cadastrado.class);
         startActivity(it);
     }
-
 
     public void Botao_Cancelar_Cliente (View view){
         super.onBackPressed();
@@ -118,20 +103,4 @@ public class cadastro_cliente extends AppCompatActivity {
         onBackPressed();
 
     }
-
-
- //   public void botao_Salvar (View view){
- //      Emprego = new empregos();
- //       Emprego.setEstado(Estado.getText().toString());
- //       Emprego.setCidade(Cidade.getText().toString());
- //       Emprego.setPeriodo(Periodo.getText().toString());
- //       Emprego.setArea_da_profissao(Profissao.getText().toString());
- //       Emprego.setSalario(Salario.getText().toString());
- //       Emprego.setEmail(Email.getText().toString());
- //       empregos.salvar(Emprego);
- //       onBackPressed();
-//
-//
- //   }
-
 }
