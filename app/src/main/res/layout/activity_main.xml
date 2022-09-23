@@ -4,120 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4E3AE"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <Button
-        android:id="@+id/button_cliente"
-        android:layout_width="wrap_content"
+        android:id="@+id/btLogar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="monospace"
-        android:onClick="botao_cadastro_cliente"
-        android:text="Cliente"
-        app:layout_constraintBottom_toTopOf="@+id/button_servico"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="Logar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/button_servico"
+        android:id="@+id/btCadastrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Cadastrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btLogar" />
+
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="monospace"
-        android:onClick="botao_cadastro_servico"
-        android:text="serviço"
-        app:layout_constraintBottom_toTopOf="@+id/button_funcionario"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_cliente" />
-
-    <Button
-        android:id="@+id/button_funcionario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="monospace"
-        android:onClick="botao_cadastro_funcionario"
-        android:text="Funcionario"
-        app:layout_constraintBottom_toTopOf="@+id/button_funcao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_servico"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/button_funcao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="180dp"
-        android:fontFamily="monospace"
-        android:onClick="botao_cadastro_funcao"
-        android:text="Função"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_funcionario" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="165dp"
-        android:fontFamily="cursive"
-        android:text="Cadastro"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_produto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginEnd="97dp"
-
-        android:fontFamily="monospace"
-        android:onClick="botao_cadastro_agendamento"
-        android:text="Agendamento"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_funcao"
-        app:layout_constraintVertical_bias="0.18" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="117dp"
-        android:layout_height="95dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="128dp"
-        android:contentDescription="@string/app_name"
-        android:src="@mipmap/ic_launcher_foreground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/TCC/app/src/main/res/drawable/rounded.xml" value="0.175" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_cadastro.xml" value="0.1956521739130435" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_cadastro_cliente.xml" value="0.14583333333333334" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_login.xml" value="0.1118659420289855" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_login.xml" value="0.17" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_login2.xml" value="0.1956521739130435" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastrado.xml" value="0.26875" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastro.xml" value="0.33" />
@@ -13,7 +15,7 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/atendimentos_marcados.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/calendario_cliente.xml" value="0.14583333333333334" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastrado.xml" value="0.33" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro.xml" value="0.33" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro.xml" value="0.1" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/content_main.xml" value="0.14583333333333334" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/crud.xml" value="0.1" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/emprego_oferecido.xml" value="0.1" />
@@ -31,10 +33,11 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_funcionario.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_servico.xml" value="0.1" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/pedido_realizado.xml" value="0.1" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/principal.xml" value="0.1956521739130435" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastrado.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastro.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_agendamento_popup.xml" value="0.25" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/update_cliente_popup.xml" value="0.22" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/update_cliente_popup.xml" value="0.15217391304347827" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_funcionario_popup.xml" value="0.16530797101449277" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/uptade_funcao_popup.xml" value="0.15217391304347827" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/uptade_popup.xml" value="0.25364583333333335" />

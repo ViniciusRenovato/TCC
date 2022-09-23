@@ -2,24 +2,18 @@ package com.example.approfisso.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.approfisso.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
-
-
-
-
+import com.example.approfisso.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button btLogar;
+    private Button btCadastrar;
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
 
 
     @Override
@@ -27,41 +21,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    }
+        btLogar = findViewById(R.id.btLogar);
+        btCadastrar = findViewById(R.id.btCadastrar);
 
-    public void botao_cadastro_cliente(View view){
-        Intent it = new Intent(this, cliente_cadastrado.class);
-        startActivity(it);
-    }
+        btLogar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                telaLogar();
+            }
+        });
 
-    public void botao_cadastro_servico(View view){
-        Intent it = new Intent(this, servico_cadastrado.class);
-        startActivity(it);
-    }
+        btCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                telaCadastrar();
+            }
+        });
 
-    public void botao_cadastro_funcionario(View view){
-        Intent it = new Intent(this, funcionario_cadastrado.class);
-        startActivity(it);
-    }
-
-    public void botao_cadastro_funcao(View view){
-        Intent it = new Intent(this, funcao_cadastrado.class);
-        startActivity(it);
-    }
-
-    public void botao_cadastro_agendamento(View view){
-        Intent it = new Intent(this, agendamento_cadastrado.class);
-        startActivity(it);
-    }
-
-    public void botao_procura(View view){
-        Intent it = new Intent(this, busca_menu.class);
-        startActivity(it);
-    }
-
-    public void botao_sair (View view){
-        finish();
 
     }
 
+    private void telaCadastrar() {
+        startActivity(new Intent(this, CadastroActivity.class));
+    }
+
+    private void telaLogar() {
+        startActivity(new Intent(this,LoginActivity.class));
+    }
 }

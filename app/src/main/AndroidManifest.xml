@@ -9,44 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.APProfissão">
-
-
-        <activity android:name=".activity.cadastro_cliente"></activity>
-        <activity android:name=".activity.cliente_cadastrado"></activity>
-        <activity android:name=".activity.servico_cadastrado"></activity>
-        <activity android:name=".activity.funcionario_cadastrado"></activity>
-        <activity android:name=".activity.agendamento_cadastrado"></activity>
-        <activity android:name=".activity.funcao_cadastrado"></activity>
-        <activity android:name=".activity.cadastro_servico"></activity>
-        <activity android:name=".activity.cadastro_agendamento"></activity>
-        <activity android:name=".activity.cadastro_funcionario"></activity>
-        <activity android:name=".activity.cadastro_funcao"></activity>
-
-
-
         <activity
-            android:name=".Login"
-            android:exported="true"></activity>
+            android:name=".activity.Principal"
+            android:exported="true" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CadastroActivity"
+            android:exported="false" />
+        <activity android:name=".activity.cadastro_cliente" />
+        <activity android:name=".activity.cliente_cadastrado" />
+        <activity android:name=".activity.servico_cadastrado" />
+        <activity android:name=".activity.funcionario_cadastrado" />
+        <activity android:name=".activity.agendamento_cadastrado" />
+        <activity android:name=".activity.funcao_cadastrado" />
+        <activity android:name=".activity.cadastro_servico" />
+        <activity android:name=".activity.cadastro_agendamento" />
+        <activity android:name=".activity.cadastro_funcionario" />
+        <activity android:name=".activity.cadastro_funcao" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
-
-
-
-
-
-
     </application>
-
-
 
 </manifest>

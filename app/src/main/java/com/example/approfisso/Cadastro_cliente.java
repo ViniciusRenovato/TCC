@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.approfisso.activity.MainActivity;
+import com.example.approfisso.activity.Principal;
 import com.example.approfisso.entidades.Pessoa;
 import com.google.firebase.database.DatabaseReference;
 
@@ -42,7 +42,7 @@ public class Cadastro_cliente extends AppCompatActivity {
 
     public void botao_Cancelar (View view){
 
-        Intent it = new Intent(this, MainActivity.class);
+        Intent it = new Intent(this, Principal.class);
         startActivity(it);
 
     }
