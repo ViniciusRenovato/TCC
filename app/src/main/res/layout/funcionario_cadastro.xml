@@ -94,7 +94,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Nome_Funcionario" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Telefone_Funcionario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -103,9 +103,11 @@
         android:autofillHints=""
         android:background="@drawable/rounded"
         android:ems="10"
+        android:gravity="center"
         android:hint=" (DDD) 0000-0000"
         android:inputType="phone"
         android:minHeight="48dp"
+        android:maxLength="15"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -125,6 +127,8 @@
         android:inputType="date"
         android:minHeight="48dp"
         android:textColorHint="#757575"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

@@ -3,7 +3,11 @@ package com.example.approfisso.activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.DatePicker;
@@ -13,6 +17,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.entidades.Pessoa;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 
 import com.example.approfisso.R;
@@ -67,12 +72,61 @@ public class cadastro_cliente extends AppCompatActivity {
                         myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
+        TextInputEditText phone = (TextInputEditText) findViewById(R.id.Telefone_Cliente);
+        //Add to mask
+        phone.addTextChangedListener(textWatcher);
     }
+
+
+    TextWatcher textWatcher = new TextWatcher() {
+        private boolean mFormatting; // this is a flag which prevents the  stack overflow.
+        private int mAfter;
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // nothing to do here..
+        }
+
+        //called before the text is changed...
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            //nothing to do here...
+            mAfter  =   after; // flag to detect backspace..
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            // Make sure to ignore calls to afterTextChanged caused by the work done below
+            if (!mFormatting) {
+                mFormatting = true;
+                // using US or RU formatting...
+                if(mAfter!=0) // in case back space ain't clicked...
+                {
+                    String num =s.toString();
+                    String data = PhoneNumberUtils.formatNumber(num, "BR");
+                    if(data!=null)
+                    {
+                        s.clear();
+                        s.append(data);
+                        Log.i("Number", data);//8 (999) 123-45-67 or +7 999 123-45-67
+                    }
+
+                }
+                mFormatting = false;
+            }
+        }
+    };
+
+
+
 
     public void lista_emprego(View view){
         Intent it = new Intent(this, cliente_cadastrado.class);
         startActivity(it);
     }
+
 
     public void Botao_Cancelar_Cliente (View view){
         super.onBackPressed();

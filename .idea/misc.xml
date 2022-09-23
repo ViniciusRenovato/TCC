@@ -13,7 +13,7 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/atendimentos_marcados.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/calendario_cliente.xml" value="0.14583333333333334" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastrado.xml" value="0.33" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro.xml" value="0.5" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/content_main.xml" value="0.14583333333333334" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/crud.xml" value="0.1" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/emprego_oferecido.xml" value="0.1" />
@@ -34,7 +34,7 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastrado.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastro.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_agendamento_popup.xml" value="0.25" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/update_cliente_popup.xml" value="0.15217391304347827" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/update_cliente_popup.xml" value="0.22" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_funcionario_popup.xml" value="0.16530797101449277" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/uptade_funcao_popup.xml" value="0.15217391304347827" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/uptade_popup.xml" value="0.25364583333333335" />
