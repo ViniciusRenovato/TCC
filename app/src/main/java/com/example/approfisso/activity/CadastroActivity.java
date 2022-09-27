@@ -32,11 +32,11 @@ import java.util.Map;
 public class CadastroActivity extends AppCompatActivity {
 
     private EditText etNome;
-    private EditText etSobrenome;
     private EditText etAniversario;
     private EditText etTelefone;
     private EditText etEmail;
     private EditText etSenha;
+    private EditText etRepetirSenha;
     private Switch sEstabelecimento;
     private Button btCadastrarCadastro;
     private String userID;
@@ -54,11 +54,11 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
 
         etNome = findViewById(R.id.NomeCadastro);
-//        etSobrenome = findViewById(R.id.);
-//        etAniversario = findViewById(R.id.);
-//        etTelefone = findViewById(R.id.);
+        etAniversario = findViewById(R.id.AniverrsárioCadastro);
+        etTelefone = findViewById(R.id.TelefoneCadastro);
         etEmail = findViewById(R.id.EmailCadastro);
         etSenha = findViewById(R.id.SenhaCadastro);
+        etRepetirSenha = findViewById(R.id.RepetirSenhaCadastro);
         sEstabelecimento = findViewById(R.id.sEstabelecimento);
         btCadastrarCadastro = findViewById(R.id.btCadastrarCadastro);
 
@@ -79,11 +79,12 @@ public class CadastroActivity extends AppCompatActivity {
 
         String email = etEmail.getText().toString().trim();
         String senha = etSenha.getText().toString().trim();
+        String senharepetida = etRepetirSenha.getText().toString().trim();
 
         String nome = etNome.getText().toString();
-//        String sobrenome = etSobrenome.getText().toString();
-//        String aniversario = etAniversario.getText().toString();
-//        String telefone = etTelefone.getText().toString();
+
+        String aniversario = etAniversario.getText().toString();
+        String telefone = etTelefone.getText().toString();
 
 
 
@@ -101,6 +102,23 @@ public class CadastroActivity extends AppCompatActivity {
             return;
         }
 
+        if(TextUtils.isEmpty(senharepetida)) {
+            etSenha.setError("Insira uma Senha");
+            return;
+        }
+
+        if(senharepetida.length() < 6){
+            etSenha.setError("A Senha tem que ter no mínimo 6 caracteres.");
+            return;
+        }
+
+        if(senharepetida.equals(senha)){
+
+        }else{
+            etRepetirSenha.setError("A deve ser igual.");
+        }
+
+
         //registrando no firebase
 
         mAuth.createUserWithEmailAndPassword(u.getEmail_usuario(),u.getSenha_usuario())
@@ -114,10 +132,9 @@ public class CadastroActivity extends AppCompatActivity {
 
                             Map<String,Object> usuario_cadastro = new HashMap<>();
                             usuario_cadastro.put("nome",nome);
-//                            usuario_cadastro.put("sobrenome",sobrenome);
                             usuario_cadastro.put("email",email);
-//                            usuario_cadastro.put("telefone",telefone);
-//                            usuario_cadastro.put("aniversario",aniversario);
+                            usuario_cadastro.put("telefone",telefone);
+                            usuario_cadastro.put("aniversario",aniversario);
 
                             documentReference.set(usuario_cadastro).addOnSuccessListener((OnSuccessListener) (aVoid) -> {
                                 Log.d(TAG,"onSuccess: Perfil de usuário criado para "+userID);
