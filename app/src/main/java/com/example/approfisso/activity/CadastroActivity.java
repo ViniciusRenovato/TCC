@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,15 +84,81 @@ public class CadastroActivity extends AppCompatActivity {
         String senha = etSenha.getText().toString().trim();
         String senharepetida = etRepetirSenha.getText().toString().trim();
 
-        String nome = etNome.getText().toString();
+        String nome = etNome.getText().toString().trim();
 
         String aniversario = etAniversario.getText().toString();
         String telefone = etTelefone.getText().toString();
+        String tipo_login = sEstabelecimento.toString();
+
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
+//        String datePattern = "[01-31]+[/]+[01-12]*";
 
 
 
-        if(TextUtils.isEmpty(email)){
+
+        if(TextUtils.isEmpty(nome)) {
+            etNome.setError("Insira um Nome");
+            return;
+        }else {
+            if (nome.matches(namePattern)) {
+
+            } else {
+                etNome.setError("Insira seu nome completo");
+                return;
+            }
+        }
+        if(TextUtils.isEmpty(email)) {
             etEmail.setError("Insira um Email");
+            return;
+        }else{
+            if(email.matches(emailPattern)){
+
+            }else{
+                etEmail.setError("Insira um Email válido");
+                return;
+            }
+        }
+
+
+
+
+        if(TextUtils.isEmpty(telefone)) {
+            etTelefone.setError("Insira o numero do seu telefone ");
+            return;
+        }
+
+        if(telefone.length() < 6){
+            etTelefone.setError("Insira um numero maior q 6 válido");
+            return;
+        }
+
+
+        if(TextUtils.isEmpty(aniversario)) {
+            etAniversario.setError("Insira uma Data");
+            return;
+        }else {
+//            if (aniversario.matches(datePattern)) {
+//
+//            } else {
+//                etAniversario.setError("Insira uma data válida");
+//                return;
+//            }
+        }
+
+
+
+
+
+
+        if(TextUtils.isEmpty(senha)) {
+            etSenha.setError("Insira uma Senha");
+            return;
+        }
+
+        if(senha.length() < 6){
+            etSenha.setError("A Senha tem que ter no mínimo 6 caracteres.");
+            return;
         }
 
         if(TextUtils.isEmpty(senha)) {
@@ -103,20 +172,18 @@ public class CadastroActivity extends AppCompatActivity {
         }
 
         if(TextUtils.isEmpty(senharepetida)) {
-            etSenha.setError("Insira uma Senha");
+            etRepetirSenha.setError("Insira novamente a Senha");
             return;
         }
 
-        if(senharepetida.length() < 6){
-            etSenha.setError("A Senha tem que ter no mínimo 6 caracteres.");
-            return;
-        }
 
-        if(senharepetida.equals(senha)){
+        if(senha.equalsIgnoreCase(senharepetida)){
 
         }else{
-            etRepetirSenha.setError("A deve ser igual.");
+            etRepetirSenha.setError("A Senha deve ser igual.");
+            return;
         }
+
 
 
         //registrando no firebase
@@ -135,6 +202,7 @@ public class CadastroActivity extends AppCompatActivity {
                             usuario_cadastro.put("email",email);
                             usuario_cadastro.put("telefone",telefone);
                             usuario_cadastro.put("aniversario",aniversario);
+                            usuario_cadastro.put("tipo+login",tipo_login);
 
                             documentReference.set(usuario_cadastro).addOnSuccessListener((OnSuccessListener) (aVoid) -> {
                                 Log.d(TAG,"onSuccess: Perfil de usuário criado para "+userID);
