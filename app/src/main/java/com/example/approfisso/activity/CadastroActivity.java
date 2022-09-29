@@ -5,8 +5,10 @@ import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -23,19 +26,41 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class CadastroActivity extends AppCompatActivity {
 
     private EditText etNome;
     private EditText etAniversario;
+
+    Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view,
+                              int year,
+                              int monthOfYear,
+                              int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+    };
+
+
+
+
     private EditText etTelefone;
     private EditText etEmail;
     private EditText etSenha;
@@ -76,7 +101,36 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
 
+        etAniversario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(CadastroActivity.this, date,
+                        myCalendar.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
+
+        TextInputEditText phone = (TextInputEditText) findViewById(R.id.TelefoneCadastro);
+        //Add to mask
+        phone.addTextChangedListener(textWatcher);
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void criarLogin() {
 
@@ -128,8 +182,19 @@ public class CadastroActivity extends AppCompatActivity {
             return;
         }
 
-        if(telefone.length() < 6){
-            etTelefone.setError("Insira um numero maior q 6 válido");
+        if(telefone.length() <= 9){
+            etTelefone.setError("Insira o numero válido");
+            return;
+        }
+
+        if(telefone.length() <= 10){
+            etTelefone.setError("Insira o prefixo");
+            return;
+        }
+
+
+        if(telefone.length() <= 14){
+            etTelefone.setError("Insira um prefixo válido");
             return;
         }
 
@@ -137,18 +202,7 @@ public class CadastroActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(aniversario)) {
             etAniversario.setError("Insira uma Data");
             return;
-        }else {
-//            if (aniversario.matches(datePattern)) {
-//
-//            } else {
-//                etAniversario.setError("Insira uma data válida");
-//                return;
-//            }
         }
-
-
-
-
 
 
         if(TextUtils.isEmpty(senha)) {
@@ -226,6 +280,61 @@ public class CadastroActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void updateLabel(){
+
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt","BR"));
+
+        etAniversario.setText(sdf.format(myCalendar.getTime()));
+    }
+
+
+
+
+
+
+    TextWatcher textWatcher = new TextWatcher() {
+        private boolean mFormatting; // this is a flag which prevents the  stack overflow.
+        private int mAfter;
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // nothing to do here..
+        }
+
+        //called before the text is changed...
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            //nothing to do here...
+            mAfter  =   after; // flag to detect backspace..
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            // Make sure to ignore calls to afterTextChanged caused by the work done below
+            if (!mFormatting) {
+                mFormatting = true;
+                // using US or RU formatting...
+                if(mAfter!=0) // in case back space ain't clicked...
+                {
+                    String num =s.toString();
+                    String data = PhoneNumberUtils.formatNumber(num, "BR");
+                    if(data!=null)
+                    {
+                        s.clear();
+                        s.append(data);
+                        Log.i("Number", data);//8 (999) 123-45-67 or +7 999 123-45-67
+                    }
+
+                }
+                mFormatting = false;
+            }
+        }
+    };
+
+
 
     private void recuperarDados() {
         if(etNome.getText().toString()==""||etEmail.getText().toString()==""||etSenha.getText().toString()==""){
