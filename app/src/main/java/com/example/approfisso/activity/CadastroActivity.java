@@ -38,6 +38,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -127,7 +129,11 @@ public class CadastroActivity extends AppCompatActivity {
 
 
 
-
+    public boolean validateUpperCase(String name) {
+        Pattern ps = Pattern.compile("([A-Z]*)");
+        Matcher ms = ps.matcher(name);
+        return ms.matches();
+    }
 
 
 
@@ -144,7 +150,7 @@ public class CadastroActivity extends AppCompatActivity {
         String telefone = etTelefone.getText().toString();
         String tipo_login = sEstabelecimento.toString();
 
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String emailPattern = "[a-zA-Z0-9._]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]*[a-z.]*?";
         String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
 //        String datePattern = "[01-31]+[/]+[01-12]*";
 
@@ -231,14 +237,12 @@ public class CadastroActivity extends AppCompatActivity {
         }
 
 
-        if(senha.equalsIgnoreCase(senharepetida)){
+        if(senha.equals(senharepetida)){
 
         }else{
             etRepetirSenha.setError("A Senha deve ser igual.");
             return;
         }
-
-
 
         //registrando no firebase
 
