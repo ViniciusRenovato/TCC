@@ -13,10 +13,7 @@
         <activity
             android:name=".activity.Principal"
             android:exported="true" />
-        <activity
-            android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+
         <activity
             android:name=".activity.CadastroActivity"
             android:exported="false" />
@@ -30,9 +27,11 @@
         <activity android:name=".activity.cadastro_agendamento" />
         <activity android:name=".activity.cadastro_funcionario" />
         <activity android:name=".activity.cadastro_funcao" />
+
         <activity
-            android:name=".activity.MainActivity"
-            android:exported="true">
+            android:name=".activity.LoginActivity"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
