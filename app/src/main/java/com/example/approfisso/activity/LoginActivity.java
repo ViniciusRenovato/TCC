@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etSenha;
     private Button btLogar;
-    private Button btCadastrar_Login;
 
     private FirebaseAuth mAuth;
 
@@ -52,25 +50,12 @@ public class LoginActivity extends AppCompatActivity {
         etSenha = findViewById(R.id.senha_login);
         btLogar = findViewById(R.id.LogarLogin);
 
-        btCadastrar_Login = findViewById(R.id.btCadastro_login);
-
-        btCadastrar_Login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                telaCadastrar_login();
-            }
-        });
-
-
         sharedPreferences = getSharedPreferences(filename, Context.MODE_PRIVATE);
 
-
-//          looping sem login
-
-//        if(sharedPreferences.contains(Username)){
-//            Intent i = new Intent(LoginActivity.this, Principal.class);
-//            startActivity(i);
-//        }
+        if(sharedPreferences.contains(Username)){
+            Intent i = new Intent(LoginActivity.this, Principal.class);
+            startActivity(i);
+        }
 
 
 
@@ -86,55 +71,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
     private void logar() {
-
-
-        String email = etEmail.getText().toString();
-        String senha = etSenha.getText().toString();
-
-        String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]*[a-z.]*?";
-
-
-
-
-
-
-        if(TextUtils.isEmpty(email)) {
-            etEmail.setError("Insira um Email");
-            return;
-        }else{
-            if(email.matches(emailPattern)){
-
-            }else{
-                etEmail.setError("Insira um Email válido");
-                return;
-            }
-        }
-
-
-
-
-
-
-
-
-
-        if(TextUtils.isEmpty(senha)) {
-            etSenha.setError("Insira a sua senha.");
-            return;
-        }
-
-
-
-
-
-
-
         mAuth.signInWithEmailAndPassword(u.getEmail_usuario(), u.getSenha_usuario())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -142,12 +79,6 @@ public class LoginActivity extends AppCompatActivity {
 
                         String username = etEmail.getText().toString();
                         String password = etSenha.getText().toString();
-
-
-
-
-
-
 
                         if(task.isSuccessful()) {
 
@@ -174,11 +105,4 @@ public class LoginActivity extends AppCompatActivity {
         u.setSenha_usuario(etSenha.getText().toString());
 
     }
-
-
-
-    private void telaCadastrar_login() {
-        startActivity(new Intent(this, CadastroActivity.class));
-    }
-
 }
