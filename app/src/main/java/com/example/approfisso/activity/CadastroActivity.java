@@ -30,6 +30,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -123,17 +124,45 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
 
+public void checkEmail(View view)
+{
+
+
+
+
+    mAuth.fetchSignInMethodsForEmail(etEmail.getText().toString())
+            .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                @Override
+                public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+
+                    boolean check = !task.getResult().getSignInMethods().isEmpty();
+
+                    if(!check)
+                    {
+
+                    }
+                    else{
+                        etEmail.setError("Email ja Cadastrado.");
+                    }
+
+                }
+            });
+}
 
 
 
 
 
 
-    public boolean validateUpperCase(String name) {
-        Pattern ps = Pattern.compile("([A-Z]*)");
-        Matcher ms = ps.matcher(name);
-        return ms.matches();
-    }
+
+
+
+
+//    public boolean validateUpperCase(String name) {
+//        Pattern ps = Pattern.compile("([A-Z]*)");
+//        Matcher ms = ps.matcher(name);
+//        return ms.matches();
+//    }
 
 
 
@@ -150,7 +179,7 @@ public class CadastroActivity extends AppCompatActivity {
         String telefone = etTelefone.getText().toString();
         String tipo_login = sEstabelecimento.toString();
 
-        String emailPattern = "[a-zA-Z0-9._]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]*[a-z.]*?";
+        String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]*[a-z.]*?";
         String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
 //        String datePattern = "[01-31]+[/]+[01-12]*";
 
@@ -179,6 +208,26 @@ public class CadastroActivity extends AppCompatActivity {
                 return;
             }
         }
+
+        mAuth.fetchSignInMethodsForEmail(etEmail.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+
+                        boolean check = !task.getResult().getSignInMethods().isEmpty();
+
+                        if(!check)
+                        {
+
+                        }
+                        else{
+                            etEmail.setError("Email ja Cadastrado.");
+                        }
+
+                    }
+                });
+
+
 
 
 
@@ -245,6 +294,7 @@ public class CadastroActivity extends AppCompatActivity {
         }
 
         //registrando no firebase
+
 
         mAuth.createUserWithEmailAndPassword(u.getEmail_usuario(),u.getSenha_usuario())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
