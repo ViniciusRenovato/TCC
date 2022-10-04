@@ -2,6 +2,7 @@ package com.example.approfisso.activity;
 
 import static com.example.approfisso.activity.LoginActivity.Username;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
@@ -10,11 +11,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Principal extends AppCompatActivity {
@@ -24,7 +31,13 @@ public class Principal extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     private FirebaseAuth mFirebaseAuth;
+    private FirebaseFirestore db;
+
     private TextView mTVEmail;
+    private String userID;
+
+
+
 
 
     @Override
@@ -42,6 +55,43 @@ public class Principal extends AppCompatActivity {
         super.onStart();
 
         FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+
+
+//        db.collection("usuários").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .get().addOnCompleteListener(task -> {
+//                    if(task.isSuccessful() && task.getResult() != null){
+//                        String nome = task.getResult().getString("nome");
+//                        mTVEmail.setText(nome);
+//                    }else{
+//                        Toast.makeText(Principal.this,"Erro ao colocar o nome.",
+//                                Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+
+
+
+
+
+
+
+
+
+//        userID = auth.getCurrentUser().getUid();
+//        DocumentReference documentReference = db.collection("usuários").document(userID);
+//        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+//                if(documentSnapshot != null)
+//                {
+//                    mTVEmail.setText(documentSnapshot.getString("nome"));
+//                }
+//            }
+//        });
+
+
+
         if(mFirebaseUser!=null){
             mTVEmail.setText(mFirebaseUser.getEmail());
         }

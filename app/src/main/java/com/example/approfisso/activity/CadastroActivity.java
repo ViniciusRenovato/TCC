@@ -179,7 +179,7 @@ public void checkEmail(View view)
         String telefone = etTelefone.getText().toString();
         String tipo_login = sEstabelecimento.toString();
 
-        String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]*[a-z.]*?";
+        String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]+[a-zA-Z0-9]*[a-zA-Z.]+[a-zA-Z.]*?";
         String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
 //        String datePattern = "[01-31]+[/]+[01-12]*";
 
@@ -305,7 +305,9 @@ public void checkEmail(View view)
                             userID = mAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("usuários").document(userID);
 
+
                             Map<String,Object> usuario_cadastro = new HashMap<>();
+                            usuario_cadastro.put("id",userID);
                             usuario_cadastro.put("nome",nome);
                             usuario_cadastro.put("email",email);
                             usuario_cadastro.put("telefone",telefone);
