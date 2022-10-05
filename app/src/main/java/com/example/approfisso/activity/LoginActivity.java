@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -67,10 +68,10 @@ public class LoginActivity extends AppCompatActivity {
 
 //          looping sem login
 
-//        if(sharedPreferences.contains(Username)){
-//            Intent i = new Intent(LoginActivity.this, Principal.class);
-//            startActivity(i);
-//        }
+        if(sharedPreferences.contains(Username)){
+            Intent i = new Intent(LoginActivity.this, Principal.class);
+            startActivity(i);
+        }
 
 
 
@@ -99,11 +100,6 @@ public class LoginActivity extends AppCompatActivity {
 
         String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]*[a-z.]*?";
 
-
-
-
-
-
         if(TextUtils.isEmpty(email)) {
             etEmail.setError("Insira um Email");
             return;
@@ -117,7 +113,19 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
+        mAuth.fetchSignInMethodsForEmail(etEmail.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
 
+                        boolean check = !task.getResult().getSignInMethods().isEmpty();
+
+                        if(!check)
+                        {
+                            etEmail.setError("Email não Cadastrado.");
+                        }
+                    }
+                });
 
 
 

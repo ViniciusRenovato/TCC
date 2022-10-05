@@ -197,6 +197,7 @@ public void checkEmail(View view)
                 return;
             }
         }
+
         if(TextUtils.isEmpty(email)) {
             etEmail.setError("Insira um Email");
             return;

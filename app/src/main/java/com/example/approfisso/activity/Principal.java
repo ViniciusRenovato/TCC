@@ -155,8 +155,7 @@ public class Principal extends AppCompatActivity {
 
     public void logout(View view){
         mFirebaseAuth.signOut();
-        startActivity(new Intent(this,LoginActivity.class));
-        finish();
+        onBackPressed();
     }
 
 
