@@ -1,5 +1,7 @@
 package com.example.approfisso.activity;
 
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,8 +38,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail;
     private EditText etSenha;
+    private EditText etRecuperar;
     private Button btLogar;
     private Button btCadastrar_Login;
+    private Button btRecuperar;
 
     private FirebaseAuth mAuth;
 
@@ -52,6 +57,32 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.email_login);
         etSenha = findViewById(R.id.senha_login);
         btLogar = findViewById(R.id.LogarLogin);
+
+
+
+        etRecuperar = (EditText) findViewById(R.id.etRecuperar);
+        btRecuperar = findViewById(R.id.btRecuperar);
+
+        btRecuperar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String recuperar = etRecuperar.getText().toString().trim();
+
+                mAuth.getInstance().sendPasswordResetEmail(recuperar)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Log.d(TAG, "Email enviado");
+                                }else{
+                                    etRecuperar.setError("Email não cadastrado.");
+                                }
+                            }
+                        });
+            }
+        });
+
 
         btCadastrar_Login = findViewById(R.id.btCadastro_login);
 
@@ -166,10 +197,18 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(LoginActivity.this,Principal.class));
                         }else{
-                            Toast.makeText(LoginActivity.this, "Autenticação falhou", Toast.LENGTH_SHORT).show();
-                            etEmail.setText("");
+
+
+                                etSenha.setError("Senha incorreta.");
+
+
+
+                           // Toast.makeText(LoginActivity.this, "Login ou senha incorreta.", Toast.LENGTH_SHORT).show();
+//                            etEmail.setText("");
                             etEmail.requestFocus();
-                            etSenha.setText("");
+//                            etSenha.setText("");
+
+
 
                         }
                     }
