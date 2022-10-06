@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.approfisso.R;
@@ -24,6 +25,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
+
+import java.security.PrivateKey;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -35,13 +40,14 @@ public class LoginActivity extends AppCompatActivity {
     public static  final String Password = "password";
 
 
-
+    private TextView TextoRecuperar;
     private EditText etEmail;
     private EditText etSenha;
     private EditText etRecuperar;
     private Button btLogar;
     private Button btCadastrar_Login;
     private Button btRecuperar;
+    private Button botao_recuperar_email;
 
     private FirebaseAuth mAuth;
 
@@ -58,31 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         etSenha = findViewById(R.id.senha_login);
         btLogar = findViewById(R.id.LogarLogin);
 
-
-
-        etRecuperar = (EditText) findViewById(R.id.etRecuperar);
-        btRecuperar = findViewById(R.id.btRecuperar);
-
-        btRecuperar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String recuperar = etRecuperar.getText().toString().trim();
-
-                mAuth.getInstance().sendPasswordResetEmail(recuperar)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()){
-                                    Log.d(TAG, "Email enviado");
-                                }else{
-                                    etRecuperar.setError("Email não cadastrado.");
-                                }
-                            }
-                        });
-            }
-        });
-
+        TextoRecuperar = findViewById(R.id.texto_recuperar);
 
         btCadastrar_Login = findViewById(R.id.btCadastro_login);
 
@@ -115,6 +97,67 @@ public class LoginActivity extends AppCompatActivity {
                 logar();
             }
         });
+
+        TextoRecuperar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final DialogPlus dialogPlus = DialogPlus.newDialog(TextoRecuperar.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.recuperar_senha_email))
+                        .setExpanded(true,600)
+                        .create();
+
+                View view1 = dialogPlus.getHolderView();
+                EditText email_senha = view1.findViewById(R.id.email_recuperar_senha);
+
+                dialogPlus.show();
+
+                Button recuperar_senha = view1.findViewById(R.id.btn_email_recuperar_senha);
+
+
+
+                recuperar_senha.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        String recuperar = email_senha.getText().toString().trim();
+
+//                        if(TextUtils.isEmpty(email)) {
+//                            etEmail.setError("Insira um Email");
+//                            return;
+
+
+                        if(TextUtils.isEmpty(recuperar)){
+                            email_senha.setError("Insira um Email.");
+                            return;
+                        }
+                        mAuth.getInstance().sendPasswordResetEmail(recuperar)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
+
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+
+                                            Toast.makeText(TextoRecuperar.getContext(),"Email de recuperação enviado", Toast.LENGTH_LONG).show();
+                                            Log.d(TAG, "Email enviado");
+                                            dialogPlus.dismiss();
+                                        }else{
+                                            email_senha.setError("Email não cadastrado.");
+                                        }
+                                    }
+                                });
+
+
+                    }
+                });
+
+            }
+        });
+
+
+
+
 
     }
 

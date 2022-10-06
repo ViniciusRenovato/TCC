@@ -68,29 +68,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LogarLogin" />
 
-    <EditText
-        android:id="@+id/etRecuperar"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/texto_recuperar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="recuperar senha"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btCadastro_login" />
-
-    <Button
-        android:id="@+id/btRecuperar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Recuperar senha"
+
+        android:textColorLink="@color/dialogplus_card_shadow"
+
+        android:text="clique aqui"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRecuperar" />
+        app:layout_constraintTop_toBottomOf="@+id/btCadastro_login" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="Esqueceu sua senha?"
+        app:layout_constraintEnd_toStartOf="@+id/texto_recuperar"
+        app:layout_constraintTop_toBottomOf="@+id/btCadastro_login" />
 </androidx.constraintlayout.widget.ConstraintLayout>
