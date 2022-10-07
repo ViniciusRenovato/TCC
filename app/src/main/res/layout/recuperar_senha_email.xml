@@ -33,6 +33,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
         android:gravity="center"
+        android:inputType="textEmailAddress"
         android:id="@+id/email_recuperar_senha"/>
 
 

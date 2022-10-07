@@ -37,6 +37,19 @@ public class Principal extends AppCompatActivity {
 
         mTVEmail = findViewById(R.id.User_Email);
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+
+
+        mTVEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Principal.this,cadastro_cliente_editar.class));
+            }
+        });
+
+
+
+
     }
 
 
@@ -60,6 +73,12 @@ public class Principal extends AppCompatActivity {
                     }
                 });
     }
+
+
+
+
+
+
 
     public void botao_cadastro_cliente(View view){
         Intent it = new Intent(this, cliente_cadastrado.class);

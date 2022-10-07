@@ -16,7 +16,8 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/atendimentos_marcados.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/calendario_cliente.xml" value="0.14583333333333334" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastrado.xml" value="0.33" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro.xml" value="0.1" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro.xml" value="0.22" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro_editar.xml" value="0.20416666666666666" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/content_main.xml" value="0.14583333333333334" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/crud.xml" value="0.1" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/emprego_oferecido.xml" value="0.1" />
@@ -88,7 +89,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.5" />
+        <option name="scale" value="0.20416666666666666" />
       </ProjectState>
     </option>
   </component>
