@@ -1,10 +1,13 @@
 package com.example.approfisso.activity;
 
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Pessoa;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -26,9 +30,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,11 +47,13 @@ public class cadastro_cliente_editar extends AppCompatActivity {
 
     DatabaseReference databaseReference;
 
+    private String userID;
     private EditText nome;
-    private EditText sobrenome;
     private EditText telefone;
-
     private EditText aniversario;
+
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore fStore;
 
     Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -66,10 +74,13 @@ public class cadastro_cliente_editar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cliente_cadastro_editar);
 
+
+
+
+
         nome=findViewById(R.id.Nome_Cliente_Editar);
         telefone=findViewById(R.id.Telefone_Cliente_Editar);
         aniversario=findViewById(R.id.Aniversario_Cliente_Editar);
-
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -77,13 +88,20 @@ public class cadastro_cliente_editar extends AppCompatActivity {
 
         db.collection("usuários")
                 .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult()){
+
+
                                 nome.setText((CharSequence) document.get("nome"));
                                 telefone.setText((CharSequence) document.get("telefone"));
                                 aniversario.setText((CharSequence) document.get("aniversario"));
+
+
+
                             }
                         }
                     }
@@ -91,12 +109,11 @@ public class cadastro_cliente_editar extends AppCompatActivity {
 
 
 
+        Button clienteeditar = findViewById(R.id.botao_Confirmar_Editar_Cliente);
 
-
-
-
-        Intent i = getIntent();
-        Clientes =(Pessoa) i.getSerializableExtra("Clientes");
+        TextInputEditText phone = (TextInputEditText) findViewById(R.id.Telefone_Cliente_Editar);
+        //Add to mask
+        telefone.addTextChangedListener(textWatcher);
 
         aniversario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,30 +123,96 @@ public class cadastro_cliente_editar extends AppCompatActivity {
             }
         });
 
-        TextInputEditText phone = (TextInputEditText) findViewById(R.id.Telefone_Cliente_Editar);
-        //Add to mask
-        phone.addTextChangedListener(textWatcher);
-
-
-        Button clienteeditar = findViewById(R.id.botao_Confirmar_Editar_Cliente);
-
         clienteeditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                final String current = user.getUid();
+
+
+                String nome_editar = nome.getText().toString().trim();
+                String telefone_editar = telefone.getText().toString().trim();
+
+                String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
+
+                if(TextUtils.isEmpty(nome_editar)) {
+                    nome.setError("Insira um Nome");
+                    return;
+                }else {
+                    if (nome_editar.matches(namePattern)) {
+
+                    } else {
+                        nome.setError("Insira seu nome completo");
+                        return;
+                    }
+                }
+
+
+                if(TextUtils.isEmpty(telefone_editar)) {
+                    telefone.setError("Insira o numero do seu telefone ");
+                    return;
+                }
+
+                if(telefone_editar.length() <= 9){
+                    telefone.setError("Insira o numero válido");
+                    return;
+                }
+
+                if(telefone_editar.length() <= 10){
+                    telefone.setError("Insira o prefixo");
+                    return;
+                }
+
+
+                if(telefone_editar.length() <= 14){
+                    telefone.setError("Insira um prefixo válido");
+                    return;
+                }
+
+
+
+
+
+
+                Intent i = getIntent();
+                Clientes =(Pessoa) i.getSerializableExtra("Clientes");
+
+
+
+
+
+
                 Map<String,Object> map = new HashMap<>();
                 map.put("nome",nome.getText().toString());
                 map.put("telefone",telefone.getText().toString());
                 map.put("aniversario",aniversario.getText().toString());
 
-                FirebaseDatabase.getInstance().getReference().child("usuários")
-                        .child(current).updateChildren(map)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+
+
+
+                db.collection("usuários")
+                                .document(current).set(map, SetOptions.merge())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+
                             @Override
                             public void onSuccess(Void unused) {
                                 Toast.makeText(clienteeditar.getContext(), "Dados Atualizados", Toast.LENGTH_SHORT).show();
                                 onBackPressed();
                             }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(clienteeditar.getContext(), "Algo de errado aconteceu", Toast.LENGTH_SHORT).show();
+
+                            }
                         });
+
+
+
+
+
 
             }
         });
@@ -179,20 +262,8 @@ public class cadastro_cliente_editar extends AppCompatActivity {
     };
 
 
-
-
-    public void lista_emprego(View view){
-        Intent it = new Intent(this, cliente_cadastrado.class);
-        startActivity(it);
-    }
-
-
     public void Botao_Cancelar_Cliente (View view){
         super.onBackPressed();
-        finish();
-    }
-
-    public void botao_sair (View view) {
         finish();
     }
 
@@ -204,16 +275,4 @@ public class cadastro_cliente_editar extends AppCompatActivity {
         aniversario.setText(sdf.format(myCalendar.getTime()));
     }
 
-    public void botao_Confirmar (View view){
-        Clientes = new Pessoa();
-        Clientes.setNome(nome.getText().toString());
-        Clientes.setSobrenome(sobrenome.getText().toString());
-        Clientes.setTelefone(telefone.getText().toString());
-        Clientes.setAniversario(aniversario.getText().toString());
-        Clientes.setEmail(email.getText().toString());
-        Pessoa.salvaPessoa(Clientes);
-        finish();
-        onBackPressed();
-
-    }
 }

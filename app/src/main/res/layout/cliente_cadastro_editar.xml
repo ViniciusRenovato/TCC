@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:onClick="botao_Confirmar"
         android:text="Confirmar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -85,8 +84,7 @@
         android:hint="(DDD) 0000-0000"
         android:inputType="phone"
 
-        android:maxLength="17"
-
+        android:maxLength="15"
 
         android:minHeight="48dp"
         android:textColorHint="#757575"
@@ -123,7 +121,7 @@
 
 
         android:inputType="none"
-        android:maxLength="10"
+        android:maxLength="5"
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
