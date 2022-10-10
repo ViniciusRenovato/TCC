@@ -64,58 +64,58 @@ public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHold
         clientesViewHolder.clienteeditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final DialogPlus dialogPlus = DialogPlus.newDialog(clientesViewHolder.pessoaSobrenome.getContext())
-                        .setContentHolder(new ViewHolder(R.layout.update_cliente_popup))
-                        .setExpanded(true,1500)
-                        .create();
-
-
-                View view1 = dialogPlus.getHolderView();
-                EditText name = view1.findViewById(R.id.txtnome_cliente);
-                EditText sobrenome = view1.findViewById(R.id.txtsobrenome_cliente);
-                EditText telefone = view1.findViewById(R.id.txttelefone_cliente);
-                EditText aniversario = view1.findViewById(R.id.txtaniversario_cliente);
-                EditText email = view1.findViewById(R.id.txtemail_cliente);
-
-                dialogPlus.show();
-
-                Button clienteeditar = view1.findViewById(R.id.btneditar_cliente);
-
-                name.setText(clientes.getNome());
-                sobrenome.setText(clientes.getSobrenome());
-                telefone.setText(clientes.getTelefone());
-                aniversario.setText(clientes.getAniversario());
-                email.setText(clientes.getEmail());
-
-                dialogPlus.show();
-
-                clienteeditar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Map<String,Object> map = new HashMap<>();
-                        map.put("Nome",name.getText().toString());
-                        map.put("Sobrenome",sobrenome.getText().toString());
-                        map.put("Telefone",telefone.getText().toString());
-                        map.put("Aniversario",aniversario.getText().toString());
-                        map.put("Email",email.getText().toString());
-
-                        FirebaseDatabase.getInstance().getReference().child("Pessoa")
-                                .child(clientes.getID()).updateChildren(map)
-                                .addOnSuccessListener(new OnSuccessListener<Void>(){
-                                    @Override
-                                    public void onSuccess(Void unused){
-                                        Toast.makeText(clientesViewHolder.pessoaNome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
-                                        dialogPlus.dismiss();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(clientesViewHolder.pessoaNome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    }
-                });
+//                final DialogPlus dialogPlus = DialogPlus.newDialog(clientesViewHolder.pessoaSobrenome.getContext())
+//                        .setContentHolder(new ViewHolder(R.layout.update_cliente_popup))
+//                        .setExpanded(true,1500)
+//                        .create();
+//
+//
+//                View view1 = dialogPlus.getHolderView();
+//                EditText name = view1.findViewById(R.id.txtnome_cliente);
+//                EditText sobrenome = view1.findViewById(R.id.txtsobrenome_cliente);
+//                EditText telefone = view1.findViewById(R.id.txttelefone_cliente);
+//                EditText aniversario = view1.findViewById(R.id.txtaniversario_cliente);
+//                EditText email = view1.findViewById(R.id.txtemail_cliente);
+//
+//                dialogPlus.show();
+//
+//                Button clienteeditar = view1.findViewById(R.id.btneditar_cliente);
+//
+//                name.setText(clientes.getNome());
+//                sobrenome.setText(clientes.getSobrenome());
+//                telefone.setText(clientes.getTelefone());
+//                aniversario.setText(clientes.getAniversario());
+//                email.setText(clientes.getEmail());
+//
+//                dialogPlus.show();
+//
+//                clienteeditar.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Map<String,Object> map = new HashMap<>();
+//                        map.put("Nome",name.getText().toString());
+//                        map.put("Sobrenome",sobrenome.getText().toString());
+//                        map.put("Telefone",telefone.getText().toString());
+//                        map.put("Aniversario",aniversario.getText().toString());
+//                        map.put("Email",email.getText().toString());
+//
+//                        FirebaseDatabase.getInstance().getReference().child("Pessoa")
+//                                .child(clientes.getID()).updateChildren(map)
+//                                .addOnSuccessListener(new OnSuccessListener<Void>(){
+//                                    @Override
+//                                    public void onSuccess(Void unused){
+//                                        Toast.makeText(clientesViewHolder.pessoaNome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
+//                                        dialogPlus.dismiss();
+//                                    }
+//                                })
+//                                .addOnFailureListener(new OnFailureListener() {
+//                                    @Override
+//                                    public void onFailure(@NonNull Exception e) {
+//                                        Toast.makeText(clientesViewHolder.pessoaNome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                    }
+//                });
             }
         });
 

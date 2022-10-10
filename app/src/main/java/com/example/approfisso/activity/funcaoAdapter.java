@@ -58,46 +58,46 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
         funcaoViewHolder.funcaoeditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final DialogPlus dialogPlus = DialogPlus.newDialog(funcaoViewHolder.funcaonome.getContext())
-                        .setContentHolder(new ViewHolder(R.layout.update_funcao_popup))
-                        .setExpanded(true,1200)
-                        .create();
-
-
-                View view1 = dialogPlus.getHolderView();
-                EditText name = view1.findViewById(R.id.txtnome_funcao);
-
-                dialogPlus.show();
-
-                Button funcaoeditar = view1.findViewById(R.id.btneditar_funcao);
-
-                name.setText(funcao.getNome_funcao());
-
-                dialogPlus.show();
-
-                funcaoeditar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Map<String,Object> map = new HashMap<>();
-                        map.put("nome_funcao",name.getText().toString());
-
-                        FirebaseDatabase.getInstance().getReference().child("Funcao")
-                                .child(funcao.getId_funcao()).updateChildren(map)
-                                .addOnSuccessListener(new OnSuccessListener<Void>(){
-                                    @Override
-                                    public void onSuccess(Void unused){
-                                        Toast.makeText(funcaoViewHolder.funcaonome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
-                                        dialogPlus.dismiss();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(funcaoViewHolder.funcaonome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    }
-                });
+//                final DialogPlus dialogPlus = DialogPlus.newDialog(funcaoViewHolder.funcaonome.getContext())
+//                        .setContentHolder(new ViewHolder(R.layout.update_funcao_popup))
+//                        .setExpanded(true,1200)
+//                        .create();
+//
+//
+//                View view1 = dialogPlus.getHolderView();
+//                EditText name = view1.findViewById(R.id.txtnome_funcao);
+//
+//                dialogPlus.show();
+//
+//                Button funcaoeditar = view1.findViewById(R.id.btneditar_funcao);
+//
+//                name.setText(funcao.getNome_funcao());
+//
+//                dialogPlus.show();
+//
+//                funcaoeditar.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Map<String,Object> map = new HashMap<>();
+//                        map.put("nome_funcao",name.getText().toString());
+//
+//                        FirebaseDatabase.getInstance().getReference().child("Funcao")
+//                                .child(funcao.getId_funcao()).updateChildren(map)
+//                                .addOnSuccessListener(new OnSuccessListener<Void>(){
+//                                    @Override
+//                                    public void onSuccess(Void unused){
+//                                        Toast.makeText(funcaoViewHolder.funcaonome.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
+//                                        dialogPlus.dismiss();
+//                                    }
+//                                })
+//                                .addOnFailureListener(new OnFailureListener() {
+//                                    @Override
+//                                    public void onFailure(@NonNull Exception e) {
+//                                        Toast.makeText(funcaoViewHolder.funcaonome.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                    }
+//                });
             }
         });
 
