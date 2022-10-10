@@ -48,7 +48,7 @@
 
 
     <EditText
-        android:id="@+id/Nome_Funcao"
+        android:id="@+id/Nome_Funcao_Cadastro"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

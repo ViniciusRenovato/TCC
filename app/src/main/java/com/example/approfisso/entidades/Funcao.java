@@ -28,6 +28,10 @@ public class Funcao implements Serializable {
         this.id_funcao = id_funcao;
     }
 
+    public void salvarDadosFuncao(){
+
+    }
+
 
     private static FirebaseDatabase firebaseDatabase;
     private static DatabaseReference databaseReference;

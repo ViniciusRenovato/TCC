@@ -32,7 +32,7 @@ public class cadastro_funcao extends AppCompatActivity {
         setContentView(R.layout.funcao_cadastro);
 
 
-        nome=findViewById(R.id.Nome_Funcao);
+        nome=findViewById(R.id.Nome_Funcao_Cadastro);
         Intent i = getIntent();
         Funcoes =(Funcao) i.getSerializableExtra("Funcao");
 

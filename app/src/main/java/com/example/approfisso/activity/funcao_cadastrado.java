@@ -96,7 +96,7 @@ public class funcao_cadastrado extends AppCompatActivity {
     }
 
     public void botao_oferece(View view){
-        Intent it = new Intent(this, cadastro_funcao.class);
+        Intent it = new Intent(this, CadastroFuncaoActivity.class);
         startActivity(it);
     }
 

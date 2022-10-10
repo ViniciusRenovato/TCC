@@ -19,6 +19,8 @@
             android:exported="false" />
         <activity android:name=".activity.cadastro_cliente" />
 
+        <activity android:name=".activity.CadastroFuncaoActivity" />
+
         <activity android:name=".activity.cliente_cadastrado" />
         <activity android:name=".activity.servico_cadastrado" />
         <activity android:name=".activity.funcionario_cadastrado" />
