@@ -105,7 +105,7 @@ public class CadastroFuncaoActivity extends AppCompatActivity {
         cadastro_funcao.put("id",userID);
         cadastro_funcao.put("nome",nome);
 
-        documentReference.update(cadastro_funcao);
+        documentReference.set(cadastro_funcao);
 
 
 
