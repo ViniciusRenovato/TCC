@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Login"
+    android:background="#F4E3AE">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,27 +19,31 @@
 
     <EditText
         android:id="@+id/email_login"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/login"
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <EditText
         android:id="@+id/senha_login"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/login"
         android:ems="10"
         android:hint="Senha"
+        android:textColor="#000000"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,10 +51,10 @@
 
     <Button
         android:id="@+id/LogarLogin"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:text="Logar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +63,7 @@
 
     <Button
         android:id="@+id/btCadastro_login"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -74,9 +79,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-
+        android:textColor="#000000"
         android:textColorLink="@color/dialogplus_card_shadow"
-
         android:text="clique aqui"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btCadastro_login" />
@@ -87,7 +91,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
+        android:textColor="#000000"
         android:text="Esqueceu sua senha?"
         app:layout_constraintEnd_toStartOf="@+id/texto_recuperar"
         app:layout_constraintTop_toBottomOf="@+id/btCadastro_login" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="cursive"
+        android:text="Login"
+        android:textColor="#070707"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

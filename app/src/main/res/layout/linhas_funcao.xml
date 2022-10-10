@@ -11,9 +11,9 @@
         android:id="@+id/item_funcao_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
         android:text="TextView"
+        android:fontFamily="monospace"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,8 +21,10 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="2dp"
         android:text="Nome:"
+        android:fontFamily="monospace"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,21 +32,21 @@
         android:id="@+id/button_remover_funcao"
         android:layout_width="65dp"
         android:layout_height="50dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="4dp"
         android:fontFamily="monospace"
         android:onClick="botao_Remover_Funcao"
         app:icon="@android:drawable/ic_menu_delete"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_editar_funcao"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_editar_funcao"
         android:layout_width="65dp"
         android:layout_height="50dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginEnd="124dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
         android:onClick="botao_Remover_Funcao"
         app:icon="@android:drawable/ic_menu_edit"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,7 +65,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="143dp" />
+        app:layout_constraintGuide_begin="87dp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/purple_500"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="79dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

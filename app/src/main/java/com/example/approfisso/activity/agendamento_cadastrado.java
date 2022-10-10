@@ -48,7 +48,6 @@ public class agendamento_cadastrado extends AppCompatActivity {
         Agendamento = new LinkedList<>();
         //chamada firebase
         listar_agendamento();
-
     }
     List<Agendamento> Agendamento;
     public void listar_agendamento()
@@ -75,18 +74,14 @@ public class agendamento_cadastrado extends AppCompatActivity {
     private void preenche_agendamento() {
         AgendamentoAdapter= new agendamentoAdapter(Agendamento);
         recyclerView.setAdapter(AgendamentoAdapter);
-
     }
-
     public void botao_cadastrar_agendamento(View view){
         Intent it = new Intent(this, cadastro_agendamento.class);
         startActivity(it);
     }
 
-
     public void botao_retornar_busca (View view){
         finish();
 
     }
-
 }

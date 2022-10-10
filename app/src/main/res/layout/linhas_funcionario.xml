@@ -11,9 +11,9 @@
         android:id="@+id/item_funcionario_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="TextView"
+        android:layout_marginStart="4dp"
         android:fontFamily="monospace"
+        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,9 +21,10 @@
         android:id="@+id/item_funcionario_funcao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
-        android:text="TextView"
         android:fontFamily="monospace"
+        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -41,9 +42,9 @@
         android:id="@+id/item_funcionario_telefone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:text="TextView"
+        android:layout_marginStart="4dp"
         android:fontFamily="monospace"
+        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/item_funcionario_sobrenome" />
 
@@ -51,9 +52,9 @@
         android:id="@+id/item_funcionario_aniversario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:text="TextView"
+        android:layout_marginStart="4dp"
         android:fontFamily="monospace"
+        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/item_funcionario_telefone" />
 
@@ -61,10 +62,10 @@
         android:id="@+id/item_funcionario_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="40dp"
-        android:text="TextView"
         android:fontFamily="monospace"
+        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/item_funcionario_telefone" />
 
@@ -72,10 +73,10 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome:"
-
-        android:textColor="#000000"
+        android:layout_marginStart="2dp"
         android:fontFamily="monospace"
+        android:text="Nome:"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,10 +84,11 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="80dp"
+        android:fontFamily="monospace"
         android:text="Função:"
         android:textColor="#000000"
-        android:fontFamily="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,9 +96,10 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="monospace"
         android:text="Sobrenome:"
         android:textColor="#000000"
-        android:fontFamily="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -104,9 +107,10 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="monospace"
         android:text="Telefone:"
         android:textColor="#000000"
-        android:fontFamily="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -114,10 +118,11 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="1dp"
+        android:fontFamily="monospace"
         android:text="Aniversário:"
         android:textColor="#000000"
-        android:fontFamily="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -125,10 +130,11 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="20dp"
+        android:fontFamily="monospace"
         android:text="Email:"
         android:textColor="#000000"
-        android:fontFamily="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -136,24 +142,27 @@
         android:id="@+id/button_remover_funcionario"
         android:layout_width="65dp"
         android:layout_height="50dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="4dp"
         android:fontFamily="monospace"
         android:onClick="botao_Remover_Funcao"
         app:icon="@android:drawable/ic_menu_delete"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_editar_funcionario"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_editar_funcionario"
         android:layout_width="65dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="128dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:onClick="botao_Remover_Funcao"
         app:icon="@android:drawable/ic_menu_edit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/button_remover_funcionario" />
 
     <androidx.constraintlayout.widget.Barrier
         android:layout_width="wrap_content"
@@ -174,6 +183,7 @@
         android:layout_width="409dp"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/purple_500"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="171dp" />
 

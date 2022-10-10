@@ -49,13 +49,7 @@ public class Principal extends AppCompatActivity {
                 startActivity(new Intent(Principal.this,cadastro_cliente_editar.class));
             }
         });
-
-
-
-
     }
-
-
     @Override
     protected void onStart(){
         super.onStart();
@@ -76,12 +70,6 @@ public class Principal extends AppCompatActivity {
                     }
                 });
     }
-
-
-
-
-
-
 
     public void botao_cadastro_cliente(View view){
         Intent it = new Intent(this, cliente_cadastrado.class);
@@ -117,5 +105,4 @@ public class Principal extends AppCompatActivity {
 
         onBackPressed();
     }
-
 }

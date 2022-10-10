@@ -171,16 +171,8 @@ public class cadastro_cliente_editar extends AppCompatActivity {
                     return;
                 }
 
-
-
-
-
-
                 Intent i = getIntent();
                 Clientes =(Pessoa) i.getSerializableExtra("Clientes");
-
-
-
 
 
 
