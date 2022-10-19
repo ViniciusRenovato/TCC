@@ -154,7 +154,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Spinner
-        android:id="@+id/Editar_Funcao_Servico"
+        android:id="@+id/Spinner_Editar_Funcao_Servico"
         android:layout_width="212dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"

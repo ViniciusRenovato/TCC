@@ -60,7 +60,7 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
             @Override
             public void onClick(View view) {
 
-                Intent it = new Intent(view.getContext(),cadastro_cliente_editar.class);
+                Intent it = new Intent(view.getContext(),cadastro_funcao_editar.class);
                 view.getContext().startActivity(it);
 
 

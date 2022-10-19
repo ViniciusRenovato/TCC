@@ -25,15 +25,6 @@ import java.util.ArrayList;
 public class cadastro_servico extends AppCompatActivity {
 
 
-
-
-
-
-
-
-
-
-
     DatabaseReference databaseReference;
 
     Spinner spinner_funcao_servico;
@@ -53,15 +44,6 @@ public class cadastro_servico extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servico_cadastro);
-
-
-
-
-
-
-
-
-
 
 
         spinner_funcao_servico = findViewById(R.id.spinner_funcao_servico);

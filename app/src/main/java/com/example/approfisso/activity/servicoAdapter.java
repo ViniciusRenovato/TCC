@@ -3,6 +3,7 @@ package com.example.approfisso.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,13 @@ public class servicoAdapter extends RecyclerView.Adapter<servicoAdapter.Servicos
         serviViewHolder.servicoeditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent it = new Intent(view.getContext(),cadastro_servico_editar.class);
+                view.getContext().startActivity(it);
+
+
+
+
 //                final DialogPlus dialogPlus = DialogPlus.newDialog(serviViewHolder.serviconome.getContext())
 //                        .setContentHolder(new ViewHolder(R.layout.update_servico_popup))
 //                        .setExpanded(true,1150)

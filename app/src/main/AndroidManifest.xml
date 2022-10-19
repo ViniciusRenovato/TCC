@@ -32,11 +32,17 @@
         <activity android:name=".activity.cadastro_funcao" />
         <activity android:name=".activity.Update_agendamento" />
         <activity android:name=".activity.cadastro_cliente_editar" />
+        <activity android:name=".activity.cadastro_funcao_editar" />
+        <activity android:name=".activity.cadastro_servico_editar" />
+        <activity android:name=".activity.cadastro_funcionario_editar" />
+        <activity android:name=".activity.cadastro_agendamento_editar" />
+
 
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait"
+
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
