@@ -18,6 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +27,9 @@ import java.util.List;
 public class funcao_cadastrado extends AppCompatActivity {
 
     DatabaseReference databaseReference;
+
+    FirebaseFirestore fstore;
+
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private Funcao Funcoes_delete;

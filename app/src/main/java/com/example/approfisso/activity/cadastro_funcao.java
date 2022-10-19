@@ -1,22 +1,37 @@
 package com.example.approfisso.activity;
 
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Funcao;
 import com.example.approfisso.entidades.Pessoa;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class cadastro_funcao extends AppCompatActivity {
 
     DatabaseReference databaseReference;
+    private FirebaseFirestore fstore;
+    private FirebaseAuth mAuth;
+    private String userID;
 
     private EditText nome;
 
@@ -31,6 +46,8 @@ public class cadastro_funcao extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.funcao_cadastro);
 
+        mAuth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
 
         nome=findViewById(R.id.Nome_Funcao_Cadastro);
         Intent i = getIntent();
@@ -44,20 +61,35 @@ public class cadastro_funcao extends AppCompatActivity {
             @Override
             public void  onClick(View view){
 
+                Funcoes = new Funcao();
 
-                Funcoes =new
-
-                        Funcao();
-
-                Funcoes.setNome_funcao(nome.getText().
-
-                        toString());
+                Funcoes.setNome_funcao(nome.getText().toString());
                 Funcao.salvaFuncao(Funcoes);
 
+                userID = mAuth.getCurrentUser().getUid();
+                DocumentReference documentReference = fstore.collection("estabelecimento").document(userID).collection("função").document(userID);
+
+
+                Map<String,Object> funcao_cadastro = new HashMap<>();
+                funcao_cadastro.put("id_cadastro",userID);
+                funcao_cadastro.put("id_funcao",userID);
+                funcao_cadastro.put("nome", nome );
+
+
+                documentReference.set(funcao_cadastro).addOnSuccessListener((OnSuccessListener) (aVoid) -> {
+                    Log.d(TAG,"onSuccess: Perfil de usuário criado para "+userID);
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG,"onFailure: " + e.toString());
+                    }
+                });
+
+
+
+
+
                 onBackPressed();
-
-
-
 
             }
 
@@ -92,23 +124,23 @@ public class cadastro_funcao extends AppCompatActivity {
     }
 
 
-    public void botao_Confirmar (View view){
-
-                Funcoes =new
-
-                        Funcao();
-
-                Funcoes.setNome_funcao(nome.getText().
-
-                        toString());
-                Funcao.salvaFuncao(Funcoes);
-
-        super.onBackPressed();
-        finish();
-
-
-
-            }
+//    public void botao_Confirmar (View view){
+//
+//                Funcoes =new
+//
+//                        Funcao();
+//
+//                Funcoes.setNome_funcao(nome.getText().
+//
+//                        toString());
+//                Funcao.salvaFuncao(Funcoes);
+//
+//        super.onBackPressed();
+//        finish();
+//
+//
+//
+//            }
 
 
 

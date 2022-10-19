@@ -2,10 +2,13 @@ package com.example.approfisso.entidades;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Funcao implements Serializable {
 
@@ -35,10 +38,17 @@ public class Funcao implements Serializable {
 
     private static FirebaseDatabase firebaseDatabase;
     private static DatabaseReference databaseReference;
+    private static FirebaseFirestore fstore;
+
+
     private static void inicio(){
         firebaseDatabase= FirebaseDatabase.getInstance();
         //firebaseDatabase.setPersistenceEnabled(true);
         databaseReference= firebaseDatabase.getReference();
+
+        fstore = FirebaseFirestore.getInstance();
+
+
     }
 
     @Override
@@ -69,6 +79,11 @@ public class Funcao implements Serializable {
 
         }
     }
+
+
+
+
+
     public static void excluirFuncao(Funcao fun){
         databaseReference.child("Funcionario").child(fun.getId_funcao()+"").removeValue();
         databaseReference.child("Funcionario").child(fun.getNome_funcao()+"").removeValue();

@@ -46,10 +46,10 @@ public class CadastroFuncaoActivity extends AppCompatActivity {
 
 
     private Button btCadastrarFuncao;
+    private Button btCancelarFuncao;
+
     private String userID;
-
     private FirebaseAuth mAuth;
-
     private FirebaseFirestore fStore;
 
     private Usuario u;
@@ -63,8 +63,10 @@ public class CadastroFuncaoActivity extends AppCompatActivity {
 
 
         btCadastrarFuncao = findViewById(R.id.botao_Confirmar_Funcao);
+        btCancelarFuncao = findViewById(R.id.Voltar_cadastro);
 
         etNome_Funcao = findViewById(R.id.Nome_Funcao_Cadastro);
+
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -73,6 +75,13 @@ public class CadastroFuncaoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 recuperarDados();
                 criarLogin();
+            }
+        });
+
+        btCancelarFuncao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 
@@ -93,7 +102,7 @@ public class CadastroFuncaoActivity extends AppCompatActivity {
         //registrando no firebase
 
 
-        Toast.makeText(CadastroFuncaoActivity.this, "Usuário Criado", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CadastroFuncaoActivity.this, "Cadastro da função realizada.", Toast.LENGTH_SHORT).show();
         userID = mAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("estabelecimento").document(userID).collection("função").document(userID);
 
@@ -102,70 +111,14 @@ public class CadastroFuncaoActivity extends AppCompatActivity {
 
 
         Map<String,Object> cadastro_funcao = new HashMap<>();
-        cadastro_funcao.put("id",userID);
+        cadastro_funcao.put("id_cadastro",userID);
+        cadastro_funcao.put("id_funçao",documentReference.get().toString() );
         cadastro_funcao.put("nome",nome);
 
         documentReference.set(cadastro_funcao);
 
+        onBackPressed();
 
-
-//
-//        documentReference.set(cadastro_funcao).addOnSuccessListener((OnSuccessListener) (aVoid) -> {
-//            Log.d(TAG,"onSuccess: Perfil de usuário criado para "+userID);
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.d(TAG,"onFailure: " + e.toString());
-//            }
-//        });
-
-
-
-//        FirebaseUser user = mAuth.getCurrentUser();
-//        u.setId_usuario(user.getUid());
-//        u.salvarDados();
-//        startActivity(new Intent(CadastroFuncaoActivity.this,Principal.class));
-
-
-
-
-
-//        mAuth.createUserWithEmailAndPassword(u.getEmail_usuario(),u.getSenha_usuario())
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if(task.isSuccessful()){
-//                            Toast.makeText(CadastroFuncaoActivity.this, "Usuário Criado", Toast.LENGTH_SHORT).show();
-//                            userID = mAuth.getCurrentUser().getUid();
-//                            DocumentReference documentReference = fStore.collection("funcão").document(userID);
-//
-//
-//                            Map<String,Object> cadastro_funcao = new HashMap<>();
-//                            cadastro_funcao.put("id",userID);
-//                            cadastro_funcao.put("nome",nome);
-//
-//
-//                            documentReference.set(cadastro_funcao).addOnSuccessListener((OnSuccessListener) (aVoid) -> {
-//                                Log.d(TAG,"onSuccess: Perfil de usuário criado para "+userID);
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                                @Override
-//                                public void onFailure(@NonNull Exception e) {
-//                                    Log.d(TAG,"onFailure: " + e.toString());
-//                                }
-//                            });
-//
-//
-//
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//                            u.setId_usuario(user.getUid());
-//                            u.salvarDados();
-//                            startActivity(new Intent(CadastroFuncaoActivity.this,Principal.class));
-//                        }else{
-//                            Toast.makeText(CadastroFuncaoActivity.this,"Erro ao criar um login.",
-//                                    Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
     }
 
 
