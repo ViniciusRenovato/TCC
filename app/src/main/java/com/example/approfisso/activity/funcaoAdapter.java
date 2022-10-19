@@ -3,6 +3,7 @@ package com.example.approfisso.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,12 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
         funcaoViewHolder.funcaoeditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent it = new Intent(view.getContext(),cadastro_cliente_editar.class);
+                view.getContext().startActivity(it);
+
+
+
 //                final DialogPlus dialogPlus = DialogPlus.newDialog(funcaoViewHolder.funcaonome.getContext())
 //                        .setContentHolder(new ViewHolder(R.layout.update_funcao_popup))
 //                        .setExpanded(true,1200)
