@@ -19,7 +19,7 @@
             android:exported="false" />
         <activity android:name=".activity.cadastro_cliente" />
 
-        <activity android:name=".activity.CadastroFuncaoActivity" />
+        <activity android:name=".activity.cadastro_funcao" />
 
         <activity android:name=".activity.cliente_cadastrado" />
         <activity android:name=".activity.servico_cadastrado" />
@@ -29,7 +29,6 @@
         <activity android:name=".activity.cadastro_servico" />
         <activity android:name=".activity.cadastro_agendamento" />
         <activity android:name=".activity.cadastro_funcionario" />
-        <activity android:name=".activity.cadastro_funcao" />
         <activity android:name=".activity.Update_agendamento" />
         <activity android:name=".activity.cadastro_cliente_editar" />
         <activity android:name=".activity.cadastro_funcao_editar" />

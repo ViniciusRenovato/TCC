@@ -3,7 +3,6 @@ package com.example.approfisso.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Funcao;
-import com.example.approfisso.entidades.Pessoa;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -100,7 +98,7 @@ public class funcao_cadastrado extends AppCompatActivity {
     }
 
     public void botao_oferece(View view){
-        Intent it = new Intent(this, CadastroFuncaoActivity.class);
+        Intent it = new Intent(this, cadastro_funcao.class);
         startActivity(it);
     }
 
