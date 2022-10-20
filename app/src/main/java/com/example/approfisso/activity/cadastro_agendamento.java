@@ -16,11 +16,18 @@ import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.Funcionario;
 import com.example.approfisso.entidades.Pessoa;
 import com.example.approfisso.entidades.Servicos;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +49,7 @@ public class cadastro_agendamento extends AppCompatActivity {
 
     private EditText hora;
     private EditText dia;
+    private String nome_cliente;
     private Agendamento Agendamentos;
 
     @Override
@@ -64,6 +72,25 @@ public class cadastro_agendamento extends AppCompatActivity {
         Showdata_Servico();
 
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String current = user.getUid();
+
+        db.collection("usuários")
+                .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for(DocumentSnapshot document : task.getResult()){
+
+                                nome_cliente = (String) document.get("nome");
+
+                            }
+                        }
+                    }
+                });
 
         hora=findViewById(R.id.Hora_Agendamento);
         dia=findViewById(R.id.Dia_Agendamento);
@@ -146,6 +173,7 @@ List<Servicos> serviços;
 
     public void botao_Confirmar (View view){
         Agendamentos = new Agendamento();
+        Agendamentos.setNome_cliente(nome_cliente);
         Agendamentos.setHora_agendamento(hora.getText().toString());
         Agendamentos.setDia_agendamento(dia.getText().toString());
         Agendamentos.setFuncionario(spinner_funcao_agendamento_funcionario.getSelectedItem().toString());

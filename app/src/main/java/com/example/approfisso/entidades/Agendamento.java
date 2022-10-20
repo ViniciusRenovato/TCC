@@ -14,6 +14,7 @@ public class Agendamento implements Serializable {
     private String dia_agendamento;
     private String funcionario;
     private String servicos;
+    private String nome_cliente;
     private Cliente cliente;
 
     private static void inicio(){
@@ -22,7 +23,13 @@ public class Agendamento implements Serializable {
         databaseReference= firebaseDatabase.getReference();
     }
 
+    public String getNome_cliente() {
+        return nome_cliente;
+    }
 
+    public void setNome_cliente(String nome_cliente) {
+        this.nome_cliente = nome_cliente;
+    }
 
     public String getId_agendamento() {
         return id_agendamento;
@@ -102,6 +109,7 @@ public class Agendamento implements Serializable {
             a.setId_agendamento(id);
 
             databaseReference.child("Agendamento").child(id).child("id_agendamento").setValue(id);
+            databaseReference.child("Agendamento").child(id).child("nome_cliente").setValue(a.getNome_cliente());
             databaseReference.child("Agendamento").child(id).child("hora_agendamento").setValue(a.getHora_agendamento());
             databaseReference.child("Agendamento").child(id).child("dia_agendamento").setValue(a.getDia_agendamento());
             databaseReference.child("Agendamento").child(id).child("funcionario").setValue(a.getFuncionario());
