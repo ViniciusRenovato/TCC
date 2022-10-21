@@ -25,6 +25,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
@@ -238,7 +240,12 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString(Password,password);
                             editor.commit();
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            retrieveAndStoreToken();
+
                             startActivity(new Intent(LoginActivity.this,Principal.class));
+
+
                         }else{
 
 
@@ -257,6 +264,29 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void retrieveAndStoreToken(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+
+                        if(task.isSuccessful()  ){
+                            String token = task.getResult();
+                            String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                            FirebaseDatabase.getInstance()
+                                    .getReference("tokens")
+                                    .child(userID).setValue(token);
+                        }
+
+                    }
+                });
+    }
+
+
+
+
 
     private void receberDados() {
         u = new Usuario();

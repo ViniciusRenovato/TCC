@@ -101,8 +101,15 @@ public class Principal extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.apply();
+
+        clearToken(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
         mFirebaseAuth.signOut();
 
         onBackPressed();
+    }
+
+    public void clearToken(String UserID){
+        FirebaseDatabase.getInstance().getReference("tokens").child(UserID).removeValue();
     }
 }
