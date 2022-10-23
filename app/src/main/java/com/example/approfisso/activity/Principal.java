@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -36,7 +37,6 @@ public class Principal extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseFirestore db;
-
     private TextView mTVEmail;
 
     @Override
@@ -84,6 +84,7 @@ public class Principal extends AppCompatActivity {
 
     public void botao_cadastro_servico(View view){
         Intent it = new Intent(this, servico_cadastrado.class);
+
         startActivity(it);
     }
 
@@ -112,7 +113,9 @@ public class Principal extends AppCompatActivity {
 
         mFirebaseAuth.signOut();
 
-        onBackPressed();
+        Intent it = new Intent(this, LoginActivity.class);
+        startActivity(it);
+        //onBackPressed();
     }
 
     public void clearToken(String UserID){

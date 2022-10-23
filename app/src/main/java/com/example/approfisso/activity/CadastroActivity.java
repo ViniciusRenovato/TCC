@@ -149,22 +149,11 @@ public void checkEmail(View view)
             });
 }
 
-
-
-
-
-
-
-
-
-
 //    public boolean validateUpperCase(String name) {
 //        Pattern ps = Pattern.compile("([A-Z]*)");
 //        Matcher ms = ps.matcher(name);
 //        return ms.matches();
 //    }
-
-
 
 
     private void criarLogin() {
@@ -423,7 +412,6 @@ public void checkEmail(View view)
         u.setSenha_usuario(etSenha.getText().toString());
         u.setSalao(sEstabelecimento.getShowText());
         }
-
 
 
 

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button btCadastrar_Login;
     private Button btRecuperar;
     private Button botao_recuperar_email;
+    public ProgressBar progressBarLogin;
+
 
     private FirebaseAuth mAuth;
 
@@ -57,7 +60,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        progressBarLogin = findViewById(R.id.progressbarLogin);
+        progressBarLogin.setVisibility(View.INVISIBLE);
         mAuth = FirebaseAuth.getInstance();
 
         etEmail = findViewById(R.id.email_login);
@@ -154,17 +158,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
-
-
-
-
-
 
     private void logar() {
 
@@ -238,11 +232,11 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString(Password,password);
                             editor.commit();
                             FirebaseUser user = mAuth.getCurrentUser();
-
                             retrieveAndStoreToken();
 
                             startActivity(new Intent(LoginActivity.this,Principal.class));
-
+                            progressBarLogin.setVisibility(View.GONE);
+                            progressBarLogin.setVisibility(View.VISIBLE);
 
                         }else{
 
