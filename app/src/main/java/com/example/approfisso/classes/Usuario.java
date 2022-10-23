@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.classes;
 
 public class Usuario {
 

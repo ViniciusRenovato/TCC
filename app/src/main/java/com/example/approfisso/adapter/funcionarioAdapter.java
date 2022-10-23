@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,16 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.R;
+import com.example.approfisso.ediçao.cadastro_funcionario_editar;
 import com.example.approfisso.entidades.Funcionario;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
-import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.ViewHolder;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.FuncionarioHolder> {
@@ -63,7 +57,7 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
             @Override
             public void onClick(View view) {
 
-                Intent it = new Intent(view.getContext(),cadastro_funcionario_editar.class);
+                Intent it = new Intent(view.getContext(), cadastro_funcionario_editar.class);
                 view.getContext().startActivity(it);
 
 

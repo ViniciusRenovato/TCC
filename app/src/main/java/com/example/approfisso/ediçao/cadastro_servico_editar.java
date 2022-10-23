@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.ediçao;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -51,10 +51,8 @@ public class cadastro_servico_editar extends AppCompatActivity {
         spinner_lista_servico = new ArrayList<>();
         adapter = new ArrayAdapter<String>(cadastro_servico_editar.this, android.R.layout.simple_spinner_dropdown_item, spinner_lista_servico);
 
-
         spinner_editar_funcao_servico.setAdapter(adapter);
         Showdata();
-
 
 
         nome_servico=findViewById(R.id.Editar_Nome_Funcao);
@@ -63,8 +61,6 @@ public class cadastro_servico_editar extends AppCompatActivity {
 
 
         Button funcao_editar = findViewById(R.id.botao_Confirmar_Editar_Funcao);
-
-
 
     }
 
@@ -80,11 +76,6 @@ public class cadastro_servico_editar extends AppCompatActivity {
                     spinner_lista_servico.add(teste);
 
 //                    spinner_lista_servico.add(item.getValue().toString());
-
-
-
-
-
                 }
                 adapter.notifyDataSetChanged();
             }

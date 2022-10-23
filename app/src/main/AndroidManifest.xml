@@ -17,24 +17,24 @@
         <activity
             android:name=".activity.CadastroActivity"
             android:exported="false" />
-        <activity android:name=".activity.cadastro_cliente" />
+        <activity android:name=".cadastro.cadastro_cliente" />
 
-        <activity android:name=".activity.cadastro_funcao" />
+        <activity android:name=".cadastro.cadastro_funcao" />
 
-        <activity android:name=".activity.cliente_cadastrado" />
-        <activity android:name=".activity.servico_cadastrado" />
-        <activity android:name=".activity.funcionario_cadastrado" />
-        <activity android:name=".activity.agendamento_cadastrado" />
-        <activity android:name=".activity.funcao_cadastrado" />
-        <activity android:name=".activity.cadastro_servico" />
-        <activity android:name=".activity.cadastro_agendamento" />
-        <activity android:name=".activity.cadastro_funcionario" />
+        <activity android:name=".cadastrado.cliente_cadastrado" />
+        <activity android:name=".cadastrado.servico_cadastrado" />
+        <activity android:name=".cadastrado.funcionario_cadastrado" />
+        <activity android:name=".cadastrado.agendamento_cadastrado" />
+        <activity android:name=".cadastrado.funcao_cadastrado" />
+        <activity android:name=".cadastro.cadastro_servico" />
+        <activity android:name=".cadastro.cadastro_agendamento" />
+        <activity android:name=".cadastro.cadastro_funcionario" />
         <activity android:name=".activity.Update_agendamento" />
-        <activity android:name=".activity.cadastro_cliente_editar" />
-        <activity android:name=".activity.cadastro_funcao_editar" />
-        <activity android:name=".activity.cadastro_servico_editar" />
-        <activity android:name=".activity.cadastro_funcionario_editar" />
-        <activity android:name=".activity.cadastro_agendamento_editar" />
+        <activity android:name=".ediçao.cadastro_cliente_editar" />
+        <activity android:name=".ediçao.cadastro_funcao_editar" />
+        <activity android:name=".ediçao.cadastro_servico_editar" />
+        <activity android:name=".ediçao.cadastro_funcionario_editar" />
+        <activity android:name=".ediçao.cadastro_agendamento_editar" />
 
 
         <activity

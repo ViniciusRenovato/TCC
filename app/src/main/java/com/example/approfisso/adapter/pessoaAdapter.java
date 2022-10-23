@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,16 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Pessoa;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
-import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class pessoaAdapter extends RecyclerView.Adapter<pessoaAdapter.PessoaHolder> {

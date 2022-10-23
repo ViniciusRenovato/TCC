@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.cadastrado;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,26 +11,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
-import com.example.approfisso.entidades.Funcao;
+import com.example.approfisso.adapter.pessoaAdapter;
+import com.example.approfisso.cadastro.cadastro_cliente;
+import com.example.approfisso.entidades.Pessoa;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.LinkedList;
 import java.util.List;
 
 
-public class funcao_cadastrado extends AppCompatActivity {
+public class cliente_cadastrado extends AppCompatActivity {
 
     DatabaseReference databaseReference;
-
-    FirebaseFirestore fstore;
-
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-    private Funcao Funcoes_delete;
+
 
 
     DataFirebase db;
@@ -38,13 +36,13 @@ public class funcao_cadastrado extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.funcao_cadastrado);
+        setContentView(R.layout.cliente_cadastrado);
 
 
 //        lista= findViewById(R.id.lista_emprego_oferecido);
 
         //recycle view
-        recyclerView=findViewById(R.id.lista_funcao_cadastrado);
+        recyclerView=findViewById(R.id.lista_cliente_cadastrado);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         //fim recycle view
@@ -52,36 +50,28 @@ public class funcao_cadastrado extends AppCompatActivity {
         //firebase
         databaseReference= DataFirebase.getDatabaseReference();
 
-        Funcoes= new LinkedList<>();
+        Pessoas= new LinkedList<>();
         //chamada firebase
-        listar_funcao();
-
-
-
-
-
-
-
-
+        listar_pessoa_cliente();
 
     }
 
 
 
-    List<Funcao> Funcoes;
-    public void listar_funcao()
+    List<Pessoa> Pessoas;
+    public void listar_pessoa_cliente()
     {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataSnapshot dataSnapshot = snapshot.child("Funcao");
-                Funcoes.clear();
+                DataSnapshot dataSnapshot = snapshot.child("Pessoa");
+                Pessoas.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Funcao funcao = postSnapshot.getValue(Funcao.class);
-                    Funcoes.add(funcao);
+                    Pessoa pessoa = postSnapshot.getValue(Pessoa.class);
+                    Pessoas.add(pessoa);
 
                 }
-                preenche_funcao();
+                preenche_cliente();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -90,30 +80,17 @@ public class funcao_cadastrado extends AppCompatActivity {
         });
     }
 
-    funcaoAdapter FuncaoAdapter;
-    private void preenche_funcao() {
-        FuncaoAdapter= new funcaoAdapter(Funcoes);
-        recyclerView.setAdapter(FuncaoAdapter);
+    pessoaAdapter PessoaAdapter;
+    private void preenche_cliente() {
+        PessoaAdapter= new pessoaAdapter(Pessoas);
+        recyclerView.setAdapter(PessoaAdapter);
 
     }
 
     public void botao_oferece(View view){
-        Intent it = new Intent(this, cadastro_funcao.class);
+        Intent it = new Intent(this, cadastro_cliente.class);
         startActivity(it);
     }
-
-
-    public void botao_Remover_Funcao (View view){
-
-        Funcoes_delete = new Funcao();
-        Funcao.excluirFuncao(Funcoes_delete);
-
-        onBackPressed();
-
-    }
-
-
-
 
 
     public void botao_retornar_busca (View view){

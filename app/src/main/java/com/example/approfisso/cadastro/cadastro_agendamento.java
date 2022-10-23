@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.cadastro;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Agendamento;
-import com.example.approfisso.entidades.Funcionario;
-import com.example.approfisso.entidades.Pessoa;
 import com.example.approfisso.entidades.Servicos;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

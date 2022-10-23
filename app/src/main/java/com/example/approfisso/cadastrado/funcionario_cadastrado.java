@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.cadastrado;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
-import com.example.approfisso.entidades.Servicos;
+import com.example.approfisso.adapter.funcionarioAdapter;
+import com.example.approfisso.cadastro.cadastro_funcionario;
+import com.example.approfisso.entidades.Funcionario;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class servico_cadastrado extends AppCompatActivity {
+public class funcionario_cadastrado extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     private RecyclerView recyclerView;
@@ -34,13 +36,13 @@ public class servico_cadastrado extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.servico_cadastrado);
+        setContentView(R.layout.funcionario_cadastrado);
 
 
 //        lista= findViewById(R.id.lista_emprego_oferecido);
 
         //recycle view
-        recyclerView=findViewById(R.id.lista_servicos_cadastrados);
+        recyclerView=findViewById(R.id.lista_funcionario_cadastrado);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         //fim recycle view
@@ -48,34 +50,29 @@ public class servico_cadastrado extends AppCompatActivity {
         //firebase
         databaseReference= DataFirebase.getDatabaseReference();
 
-        Servico= new LinkedList<>();
+        Funcionario= new LinkedList<>();
         //chamada firebase
-        listar_servico();
+        listar_funcionario();
 
     }
 
 
 
-    List<Servicos> Servico;
-    public void listar_servico()
+    List<Funcionario> Funcionario;
+    public void listar_funcionario()
     {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                DataSnapshot dataSnapshot = snapshot.child("Servicos");
-                Servico.clear();
-
+                DataSnapshot dataSnapshot = snapshot.child("Funcionario");
+                Funcionario.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-
-                    Servicos servico = postSnapshot.getValue(Servicos.class);
-                    Servico.add(servico);
+                    Funcionario funcionario = postSnapshot.getValue(Funcionario.class);
+                    Funcionario.add(funcionario);
 
                 }
-                preenche_servico();
+                preenche_funcionario();
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -83,15 +80,15 @@ public class servico_cadastrado extends AppCompatActivity {
         });
     }
 
-    servicoAdapter ServicoAdapter;
-    private void preenche_servico() {
-        ServicoAdapter= new servicoAdapter(Servico);
-        recyclerView.setAdapter(ServicoAdapter);
+    funcionarioAdapter FuncionarioAdapter;
+    private void preenche_funcionario() {
+        FuncionarioAdapter= new funcionarioAdapter(Funcionario);
+        recyclerView.setAdapter(FuncionarioAdapter);
 
     }
 
-    public void botao_oferece_servico(View view){
-        Intent it = new Intent(this, cadastro_servico.class);
+    public void botao_cadastrar_funcionario(View view){
+        Intent it = new Intent(this, cadastro_funcionario.class);
         startActivity(it);
     }
 

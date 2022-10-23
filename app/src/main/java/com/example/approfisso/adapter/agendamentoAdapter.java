@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,19 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.R;
+import com.example.approfisso.ediçao.cadastro_agendamento_editar;
 import com.example.approfisso.entidades.Agendamento;
-import com.example.approfisso.entidades.Funcionario;
-import com.example.approfisso.entidades.Pessoa;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
-import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.ViewHolder;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.AgendamentoHolder> {
 
@@ -62,7 +52,7 @@ public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.
             @Override
             public void onClick(View view) {
 
-                Intent it = new Intent(view.getContext(),cadastro_agendamento_editar.class);
+                Intent it = new Intent(view.getContext(), cadastro_agendamento_editar.class);
                 view.getContext().startActivity(it);
 
 //                final DialogPlus dialogPlus = DialogPlus.newDialog(agendamentoViewHolder.agendamentohora.getContext())

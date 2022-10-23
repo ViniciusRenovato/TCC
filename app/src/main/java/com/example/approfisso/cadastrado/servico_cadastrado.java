@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.cadastrado;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
-import com.example.approfisso.entidades.Pessoa;
+import com.example.approfisso.adapter.servicoAdapter;
+import com.example.approfisso.cadastro.cadastro_servico;
+import com.example.approfisso.entidades.Servicos;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class cliente_cadastrado extends AppCompatActivity {
+public class servico_cadastrado extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     private RecyclerView recyclerView;
@@ -34,13 +36,13 @@ public class cliente_cadastrado extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cliente_cadastrado);
+        setContentView(R.layout.servico_cadastrado);
 
 
 //        lista= findViewById(R.id.lista_emprego_oferecido);
 
         //recycle view
-        recyclerView=findViewById(R.id.lista_cliente_cadastrado);
+        recyclerView=findViewById(R.id.lista_servicos_cadastrados);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         //fim recycle view
@@ -48,29 +50,34 @@ public class cliente_cadastrado extends AppCompatActivity {
         //firebase
         databaseReference= DataFirebase.getDatabaseReference();
 
-        Pessoas= new LinkedList<>();
+        Servico= new LinkedList<>();
         //chamada firebase
-        listar_pessoa_cliente();
+        listar_servico();
 
     }
 
 
 
-    List<Pessoa> Pessoas;
-    public void listar_pessoa_cliente()
+    List<Servicos> Servico;
+    public void listar_servico()
     {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataSnapshot dataSnapshot = snapshot.child("Pessoa");
-                Pessoas.clear();
+
+                DataSnapshot dataSnapshot = snapshot.child("Servicos");
+                Servico.clear();
+
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Pessoa pessoa = postSnapshot.getValue(Pessoa.class);
-                    Pessoas.add(pessoa);
+
+                    Servicos servico = postSnapshot.getValue(Servicos.class);
+                    Servico.add(servico);
 
                 }
-                preenche_cliente();
+                preenche_servico();
             }
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -78,15 +85,15 @@ public class cliente_cadastrado extends AppCompatActivity {
         });
     }
 
-    pessoaAdapter PessoaAdapter;
-    private void preenche_cliente() {
-        PessoaAdapter= new pessoaAdapter(Pessoas);
-        recyclerView.setAdapter(PessoaAdapter);
+    servicoAdapter ServicoAdapter;
+    private void preenche_servico() {
+        ServicoAdapter= new servicoAdapter(Servico);
+        recyclerView.setAdapter(ServicoAdapter);
 
     }
 
-    public void botao_oferece(View view){
-        Intent it = new Intent(this, cadastro_cliente.class);
+    public void botao_oferece_servico(View view){
+        Intent it = new Intent(this, cadastro_servico.class);
         startActivity(it);
     }
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
-import com.example.approfisso.classes.empregos;
+import com.example.approfisso.adapter.pessoaAdapter;
 import com.example.approfisso.entidades.Pessoa;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

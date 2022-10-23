@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.cadastrado;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
-import com.example.approfisso.entidades.Funcionario;
-import com.example.approfisso.entidades.Pessoa;
+import com.example.approfisso.adapter.agendamentoAdapter;
+import com.example.approfisso.cadastro.cadastro_agendamento;
+import com.example.approfisso.entidades.Agendamento;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,26 +23,21 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class funcionario_cadastrado extends AppCompatActivity {
-
+public class agendamento_cadastrado extends AppCompatActivity {
     DatabaseReference databaseReference;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
 
-
-
-    DataFirebase db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.funcionario_cadastrado);
+        setContentView(R.layout.agendamento_cadastrado);
 
 
 //        lista= findViewById(R.id.lista_emprego_oferecido);
 
         //recycle view
-        recyclerView=findViewById(R.id.lista_funcionario_cadastrado);
+        recyclerView=findViewById(R.id.lista_agendamento_cadastrado);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         //fim recycle view
@@ -49,28 +45,24 @@ public class funcionario_cadastrado extends AppCompatActivity {
         //firebase
         databaseReference= DataFirebase.getDatabaseReference();
 
-        Funcionario= new LinkedList<>();
+        Agendamento = new LinkedList<>();
         //chamada firebase
-        listar_funcionario();
-
+        listar_agendamento();
     }
-
-
-
-    List<Funcionario> Funcionario;
-    public void listar_funcionario()
+    List<Agendamento> Agendamento;
+    public void listar_agendamento()
     {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataSnapshot dataSnapshot = snapshot.child("Funcionario");
-                Funcionario.clear();
+                DataSnapshot dataSnapshot = snapshot.child("Agendamento");
+                Agendamento.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Funcionario funcionario = postSnapshot.getValue(Funcionario.class);
-                    Funcionario.add(funcionario);
+                    Agendamento agendamento = postSnapshot.getValue(Agendamento.class);
+                    Agendamento.add(agendamento);
 
                 }
-                preenche_funcionario();
+                preenche_agendamento();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -78,23 +70,18 @@ public class funcionario_cadastrado extends AppCompatActivity {
             }
         });
     }
-
-    funcionarioAdapter FuncionarioAdapter;
-    private void preenche_funcionario() {
-        FuncionarioAdapter= new funcionarioAdapter(Funcionario);
-        recyclerView.setAdapter(FuncionarioAdapter);
-
+    agendamentoAdapter AgendamentoAdapter;
+    private void preenche_agendamento() {
+        AgendamentoAdapter= new agendamentoAdapter(Agendamento);
+        recyclerView.setAdapter(AgendamentoAdapter);
     }
-
-    public void botao_cadastrar_funcionario(View view){
-        Intent it = new Intent(this, cadastro_funcionario.class);
+    public void botao_cadastrar_agendamento(View view){
+        Intent it = new Intent(this, cadastro_agendamento.class);
         startActivity(it);
     }
-
 
     public void botao_retornar_busca (View view){
         finish();
 
     }
-
 }

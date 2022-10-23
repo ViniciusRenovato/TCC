@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.cadastro;
 
 import android.os.Bundle;
 import android.text.TextUtils;

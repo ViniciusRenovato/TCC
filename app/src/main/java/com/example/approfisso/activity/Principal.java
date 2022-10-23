@@ -4,6 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
+import com.example.approfisso.cadastrado.agendamento_cadastrado;
+import com.example.approfisso.cadastrado.cliente_cadastrado;
+import com.example.approfisso.cadastrado.funcao_cadastrado;
+import com.example.approfisso.cadastrado.funcionario_cadastrado;
+import com.example.approfisso.cadastrado.servico_cadastrado;
+import com.example.approfisso.ediçao.cadastro_cliente_editar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,7 +52,7 @@ public class Principal extends AppCompatActivity {
         mTVEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Principal.this,cadastro_cliente_editar.class));
+                startActivity(new Intent(Principal.this, cadastro_cliente_editar.class));
             }
         });
     }

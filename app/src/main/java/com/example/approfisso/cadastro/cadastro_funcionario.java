@@ -1,4 +1,4 @@
-package com.example.approfisso.activity;
+package com.example.approfisso.cadastro;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -17,8 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
+import com.example.approfisso.cadastrado.cliente_cadastrado;
 import com.example.approfisso.entidades.Funcionario;
-import com.example.approfisso.entidades.Pessoa;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
