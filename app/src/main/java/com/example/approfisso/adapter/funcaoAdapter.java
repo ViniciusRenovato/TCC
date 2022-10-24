@@ -18,13 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.approfisso.R;
 import com.example.approfisso.ediçao.cadastro_funcao_editar;
 import com.example.approfisso.entidades.Funcao;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 
 public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHolder> {
-
 
 
 
@@ -53,7 +53,12 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
             @Override
             public void onClick(View view) {
 
+
+
                 Intent it = new Intent(view.getContext(), cadastro_funcao_editar.class);
+
+                it.putExtra("funcaoid", funcao.getId_funcao());
+
                 view.getContext().startActivity(it);
 
 
@@ -138,9 +143,11 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
         private Button funcaodelete;
         private Button funcaoeditar;
         private TextView funcaonome;
+        private DatabaseReference funcaoid;
 
         public FuncaoHolder(@NonNull View itemView) {
             super(itemView);
+
             funcaonome=itemView.findViewById(R.id.item_funcao_nome);
             funcaodelete =(Button)itemView.findViewById(R.id.button_remover_funcao);
             funcaoeditar =(Button)itemView.findViewById(R.id.button_editar_funcao);
