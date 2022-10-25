@@ -58,6 +58,7 @@ public class funcaoAdapter extends RecyclerView.Adapter<funcaoAdapter.FuncaoHold
                 Intent it = new Intent(view.getContext(), cadastro_funcao_editar.class);
 
                 it.putExtra("funcaoid", funcao.getId_funcao());
+                it.putExtra("funcaonome",funcao.getNome_funcao());
 
                 view.getContext().startActivity(it);
 

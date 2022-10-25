@@ -24,12 +24,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="165dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="monospace"
         android:onClick="Botao_Cancelar_Agendamento"
         android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/botao_Confirmar_Editar_Funcionario"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -130,6 +131,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:maxLength="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />

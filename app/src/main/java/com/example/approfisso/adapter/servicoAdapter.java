@@ -53,6 +53,13 @@ public class servicoAdapter extends RecyclerView.Adapter<servicoAdapter.Servicos
             public void onClick(View view) {
 
                 Intent it = new Intent(view.getContext(), cadastro_servico_editar.class);
+
+                it.putExtra("servicoid", servi.getId_servico());
+                it.putExtra("serviconome", servi.getNome_servico());
+                it.putExtra("servicoduracao", servi.getDuracao_servico());
+                it.putExtra("servicovalor", servi.getValor_servico());
+                it.putExtra("servicofuncao", servi.getFuncao_servico());
+
                 view.getContext().startActivity(it);
 
 

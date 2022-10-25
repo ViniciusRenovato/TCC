@@ -12,8 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Funcao;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,91 +32,35 @@ public class cadastro_funcao_editar extends AppCompatActivity {
 
     DatabaseReference databaseReference;
 
-    List<Funcao> dados;
-
-
-
-    private String funcaoID;
     private EditText nome_funcao;
 
-    private String funcao_editar;
+    private String funcao_editar_id;
+    private String funcao_editar_nome;
 
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore fstore;
-    private Funcao funcao;
 
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_funcao_popup);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Funcao");
-
-
-
-
-
-
-
         nome_funcao = findViewById(R.id.Editar_Nome_Funcao);
 
-        funcao_editar = getIntent().getStringExtra("funcaoid");
+        funcao_editar_id = getIntent().getStringExtra("funcaoid");
+        funcao_editar_nome = getIntent().getStringExtra("funcaonome");
 
+        nome_funcao.setText(funcao_editar_nome);
 
+        Button funcaoeditar = findViewById(R.id.botao_Confirmar_Editar_Funcao);
 
+        funcaoeditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        nome_funcao.setText(funcao_editar);
+                nome_funcao = findViewById(R.id.Editar_Nome_Funcao);
 
-
-
-
-
-
-
-        //        Intent id_funcao = getIntent();
-
-
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//
-//
-//                   nome_funcao.setText(snapshot.child("nome_funcao").getValue().toString());
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        FirebaseDatabase teste = FirebaseDatabase.getInstance().getReference().child("Funcao")
-//                .child();
-
-
-
-
-
-
-        nome_funcao=findViewById(R.id.Editar_Nome_Funcao);
-
-
-
-
-Button funcaoeditar = findViewById(R.id.botao_Confirmar_Editar_Funcao);
-
-       funcaoeditar.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-
-
-
-           }
-       });
-
+                updateData();
+            }
+        });
 
         Button funcaoeditarvoltar = findViewById(R.id.Voltar_cadastro_Editar_Funcao);
 
@@ -126,5 +72,26 @@ Button funcaoeditar = findViewById(R.id.botao_Confirmar_Editar_Funcao);
             }
         });
 
+    }
+
+    private void updateData(){
+
+        HashMap funcao = new HashMap();
+        funcao.put("nome_funcao",nome_funcao.getText().toString());
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Funcao");
+        databaseReference.child(funcao_editar_id).updateChildren(funcao).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if(task.isSuccessful()){
+
+                    Toast.makeText(cadastro_funcao_editar.this,"função editada.",Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+
+                }else{
+                    Toast.makeText(cadastro_funcao_editar.this,"falha na edição",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

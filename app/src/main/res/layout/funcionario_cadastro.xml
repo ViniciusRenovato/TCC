@@ -126,6 +126,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:hint=" 31/12/2022"
+        android:maxLength="5"
         android:fontFamily="monospace"
         android:gravity="center"
         android:inputType="date"

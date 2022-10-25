@@ -12,11 +12,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +32,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class cadastro_funcionario_editar extends AppCompatActivity {
@@ -62,10 +66,30 @@ public class cadastro_funcionario_editar extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
 
+    private String funcionario_editar_id;
+    private String funcionario_editar_nome;
+
+    private String funcionario_editar_funcao;
+    private String funcionario_editar_telefone;
+    private String funcionario_editar_aniversario;
+    private String funcionario_editar_email;
+
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_funcionario_popup);
+
+
+          funcionario_editar_id = getIntent().getStringExtra("funcionarioid");
+          funcionario_editar_nome = getIntent().getStringExtra("funcionarionome");
+          funcionario_editar_funcao = getIntent().getStringExtra("funcionariofuncao");
+          funcionario_editar_telefone = getIntent().getStringExtra("funcionariotelefone");
+          funcionario_editar_aniversario = getIntent().getStringExtra("funcionarioaniversario");
+          funcionario_editar_email = getIntent().getStringExtra("funcionarioemail");
+
+
+
+
 
         spinner_funcao_funcionario = findViewById(R.id.Spinner_Funcao_Funcionario_Editar);
 
@@ -86,6 +110,10 @@ public class cadastro_funcionario_editar extends AppCompatActivity {
         aniversario_funcionario=findViewById(R.id.Editar_Aniversario_Funcionario);
         email_funcionario=findViewById(R.id.Editar_Email_Funcionario);
 
+        nome_funcionario.setText(funcionario_editar_nome);
+        telefone_funcionario.setText(funcionario_editar_telefone);
+        aniversario_funcionario.setText(funcionario_editar_aniversario);
+        email_funcionario.setText(funcionario_editar_email);
 
 
 
@@ -103,7 +131,60 @@ public class cadastro_funcionario_editar extends AppCompatActivity {
         phone.addTextChangedListener(textWatcher_funcionario);
 
 
+        Button funcionarioeditar = findViewById(R.id.botao_Confirmar_Editar_Funcionario);
+
+        funcionarioeditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                nome_funcionario=findViewById(R.id.Editar_Nome_Funcionario);
+                telefone_funcionario=findViewById(R.id.Editar_Telefone_Funcionario);
+                aniversario_funcionario=findViewById(R.id.Editar_Aniversario_Funcionario);
+                email_funcionario=findViewById(R.id.Editar_Email_Funcionario);
+                spinner_funcao_funcionario = findViewById(R.id.Spinner_Funcao_Funcionario_Editar);
+
+                updateData();
+            }
+        });
+
+        Button funcionarioeditarvoltar = findViewById(R.id.Voltar_cadastro_Editar_Funcionario);
+
+        funcionarioeditarvoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
+
+    private void updateData(){
+
+        HashMap funcionario = new HashMap();
+        funcionario.put("nome_funcionario",nome_funcionario.getText().toString());
+        funcionario.put("telefone_funcionario",telefone_funcionario.getText().toString());
+        funcionario.put("aniversario_funcionario",aniversario_funcionario.getText().toString());
+        funcionario.put("email_funcionario",email_funcionario.getText().toString());
+        funcionario.put("funcao_funcionario",spinner_funcao_funcionario.getSelectedItem().toString());
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Funcionario");
+        databaseReference.child(funcionario_editar_id).updateChildren(funcionario).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if (task.isSuccessful()){
+
+                    Toast.makeText(cadastro_funcionario_editar.this,"funcionario editado com sucesso.",Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+
+                }else{
+                    Toast.makeText(cadastro_funcionario_editar.this,"falha na edição",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+    }
+
+
 
 
     TextWatcher textWatcher_funcionario = new TextWatcher() {

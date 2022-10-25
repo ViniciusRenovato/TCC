@@ -58,6 +58,17 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
             public void onClick(View view) {
 
                 Intent it = new Intent(view.getContext(), cadastro_funcionario_editar.class);
+
+                it.putExtra("",funcionario.getId_funcionario());
+
+                it.putExtra("funcionarioid",funcionario.getId_funcionario());
+                it.putExtra("funcionarionome",funcionario.getNome_funcionario());
+
+                it.putExtra("funcionariofuncao",funcionario.getFuncao_funcionario());
+                it.putExtra("funcionariotelefone",funcionario.getTelefone_funcionario());
+                it.putExtra("funcionarioaniversario",funcionario.getAniversario_funcionario());
+                it.putExtra("funcionarioemail",funcionario.getEmail_funcionario());
+
                 view.getContext().startActivity(it);
 
 
