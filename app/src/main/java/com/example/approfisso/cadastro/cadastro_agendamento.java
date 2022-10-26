@@ -48,6 +48,9 @@ public class cadastro_agendamento extends AppCompatActivity {
     private EditText hora;
     private EditText dia;
     private String nome_cliente;
+    private String login_cliente;
+    private String id_funcionario;
+
     private Agendamento Agendamentos;
 
     @Override
@@ -84,6 +87,7 @@ public class cadastro_agendamento extends AppCompatActivity {
                             for(DocumentSnapshot document : task.getResult()){
 
                                 nome_cliente = (String) document.get("nome");
+                                login_cliente = (String) document.get("id");
 
                             }
                         }
@@ -117,14 +121,26 @@ public class cadastro_agendamento extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     spinner_lista_agendamento_funcionario.clear();
-                    spinner_lista_agendamento_funcionario.add("---Selecione--");
+//                    spinner_lista_agendamento_funcionario.add("---Selecione--");
 
 
                     for (DataSnapshot item : snapshot.getChildren()) {
 
                         String nome_do_funcionario = item.child("nome_funcionario").getValue(String.class);
-                        if (item.child("funcao_funcionario").getValue(String.class).equals(collect.get(0).getFuncao_servico()))
-                            spinner_lista_agendamento_funcionario.add(nome_do_funcionario);
+                        String id_do_funcionario = item.child("id_funcionario").getValue(String.class);
+
+
+
+                            if (item.child("funcao_funcionario").getValue(String.class).equals(collect.get(0).getFuncao_servico())){
+
+                                spinner_lista_agendamento_funcionario.add(nome_do_funcionario);
+                                id_funcionario = id_do_funcionario;
+
+                            }
+
+
+
+
 
 //                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
                     }
@@ -172,10 +188,12 @@ List<Servicos> serviços;
     public void botao_Confirmar (View view){
         Agendamentos = new Agendamento();
         Agendamentos.setNome_cliente(nome_cliente);
+        Agendamentos.setLogin_cliente(login_cliente);
         Agendamentos.setHora_agendamento(hora.getText().toString());
         Agendamentos.setDia_agendamento(dia.getText().toString());
         Agendamentos.setFuncionario(spinner_funcao_agendamento_funcionario.getSelectedItem().toString());
         Agendamentos.setServicos(spinner_funcao_agendamento_servico.getSelectedItem().toString());
+        Agendamentos.setId_funcionario(id_funcionario);
         Agendamento.salvaAgendamento(Agendamentos);
         finish();
         onBackPressed();

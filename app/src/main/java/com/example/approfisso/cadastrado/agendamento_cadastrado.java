@@ -14,10 +14,13 @@ import com.example.approfisso.R;
 import com.example.approfisso.adapter.agendamentoAdapter;
 import com.example.approfisso.cadastro.cadastro_agendamento;
 import com.example.approfisso.entidades.Agendamento;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,11 +31,17 @@ public class agendamento_cadastrado extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
 
+    private String login_cliente;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agendamento_cadastrado);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String current = user.getUid();
+
+        login_cliente = current;
 
 //        lista= findViewById(R.id.lista_emprego_oferecido);
 
@@ -58,9 +67,14 @@ public class agendamento_cadastrado extends AppCompatActivity {
                 DataSnapshot dataSnapshot = snapshot.child("Agendamento");
                 Agendamento.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+
+
+
+                    if (postSnapshot.child("usuario").getValue(String.class).equals(login_cliente)){
+
                     Agendamento agendamento = postSnapshot.getValue(Agendamento.class);
                     Agendamento.add(agendamento);
-
+                    }
                 }
                 preenche_agendamento();
             }

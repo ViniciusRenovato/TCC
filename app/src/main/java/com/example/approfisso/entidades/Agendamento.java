@@ -13,8 +13,10 @@ public class Agendamento implements Serializable {
     private String hora_agendamento;
     private String dia_agendamento;
     private String funcionario;
+    private String id_funcionario;
     private String servicos;
     private String nome_cliente;
+    private String login_cliente;
     private Cliente cliente;
 
     private static void inicio(){
@@ -63,12 +65,28 @@ public class Agendamento implements Serializable {
         this.funcionario = funcionario;
     }
 
+    public String getId_funcionario() {
+        return id_funcionario;
+    }
+
+    public void setId_funcionario(String id_funcionario) {
+        this.id_funcionario = id_funcionario;
+    }
+
     public String getServicos() {
         return servicos;
     }
 
     public void setServicos(String servicos) {
         this.servicos = servicos;
+    }
+
+    public String getLogin_cliente() {
+        return login_cliente;
+    }
+
+    public void setLogin_cliente(String login_cliente) {
+        this.login_cliente = login_cliente;
     }
 
     public Cliente getCliente() {
@@ -113,7 +131,9 @@ public class Agendamento implements Serializable {
             databaseReference.child("Agendamento").child(id).child("hora_agendamento").setValue(a.getHora_agendamento());
             databaseReference.child("Agendamento").child(id).child("dia_agendamento").setValue(a.getDia_agendamento());
             databaseReference.child("Agendamento").child(id).child("funcionario").setValue(a.getFuncionario());
+            databaseReference.child("Agendamento").child(id).child("id_funcionario").setValue(a.getId_funcionario());
             databaseReference.child("Agendamento").child(id).child("servicos").setValue(a.getServicos());
+            databaseReference.child("Agendamento").child(id).child("usuario").setValue(a.getLogin_cliente());
 
         }
     }
