@@ -33,10 +33,17 @@ public class agendamento_cadastrado extends AppCompatActivity {
 
     private String login_cliente;
 
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agendamento_cadastrado);
+
+        login_cliente = getIntent().getStringExtra("logincliente");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String current = user.getUid();
@@ -70,7 +77,7 @@ public class agendamento_cadastrado extends AppCompatActivity {
 
 
 
-                    if (postSnapshot.child("usuario").getValue(String.class).equals(login_cliente)){
+                    if (login_cliente.equals(postSnapshot.child("usuario").getValue(String.class))){
 
                     Agendamento agendamento = postSnapshot.getValue(Agendamento.class);
                     Agendamento.add(agendamento);

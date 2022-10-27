@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
+import com.example.approfisso.cadastrado.agendamento_cadastrado;
 import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.Servicos;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +34,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class cadastro_agendamento extends AppCompatActivity {
+
     DatabaseReference databaseReference;
 
     Spinner spinner_funcao_agendamento_funcionario;
@@ -109,6 +112,24 @@ public class cadastro_agendamento extends AppCompatActivity {
 
             }
         });
+
+//        Button cadastrar_agendamento = findViewById(R.id.botao_Confirmar_Agendamento);
+//
+//        cadastrar_agendamento.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Agendamentos = new Agendamento();
+//                Agendamentos.setNome_cliente(nome_cliente);
+//                Agendamentos.setLogin_cliente(login_cliente);
+//                Agendamentos.setHora_agendamento(hora.getText().toString());
+//                Agendamentos.setDia_agendamento(dia.getText().toString());
+//                Agendamentos.setFuncionario(spinner_funcao_agendamento_funcionario.getSelectedItem().toString());
+//                Agendamentos.setServicos(spinner_funcao_agendamento_servico.getSelectedItem().toString());
+//                Agendamentos.setId_funcionario(id_funcionario);
+//                Agendamento.salvaAgendamento(Agendamentos);
+//                onBackPressed();
+//            }
+//        });
 
     }
 
@@ -195,8 +216,14 @@ List<Servicos> serviços;
         Agendamentos.setServicos(spinner_funcao_agendamento_servico.getSelectedItem().toString());
         Agendamentos.setId_funcionario(id_funcionario);
         Agendamento.salvaAgendamento(Agendamentos);
-        finish();
-        onBackPressed();
+
+
+//        Intent it = new Intent(this, agendamento_cadastrado.class);
+
+//        it.putExtra("logincliente",login_cliente);
+
+//        startActivity(it);
+      onBackPressed();
 
     }
 

@@ -53,6 +53,16 @@ public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.
             public void onClick(View view) {
 
                 Intent it = new Intent(view.getContext(), cadastro_agendamento_editar.class);
+
+                it.putExtra("idagendamento",agendamento.getId_agendamento());
+                it.putExtra("diaagendamento",agendamento.getDia_agendamento());
+                it.putExtra("horaagendamento",agendamento.getHora_agendamento());
+                it.putExtra("idfuncionario",agendamento.getId_funcionario());
+                it.putExtra("nomefuncionario",agendamento.getFuncionario());
+                it.putExtra("logincliente",agendamento.getLogin_cliente());
+                it.putExtra("nomecliente",agendamento.getNome_cliente());
+                it.putExtra("nomeservico",agendamento.getServicos());
+
                 view.getContext().startActivity(it);
 
 //                final DialogPlus dialogPlus = DialogPlus.newDialog(agendamentoViewHolder.agendamentohora.getContext())

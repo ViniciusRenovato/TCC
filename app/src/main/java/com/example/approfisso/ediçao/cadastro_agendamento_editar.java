@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,15 +16,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.approfisso.R;
 import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.Servicos;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,11 +49,25 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
     ArrayAdapter<String> adapter_agendamento_servico;
 
 
-
-    private String agendamentoID;
     private EditText hora_agendamento;
     private EditText dia_agendamento;
     private Agendamento Agendamentos;
+
+    private String nome_cliente;
+    private String login_cliente;
+    private String id_funcionario;
+
+
+
+    private String agendamento_editar_id_agendamento;
+    private String agendamento_editar_dia_agendamento;
+    private String agendamento_editar_hora_agendamento;
+    private String agendamento_editar_id_funcionario;
+    private String agendamento_editar_nome_funcionario;
+    private String agendamento_editar_login_cliente;
+    private String agendamento_editar_nome_cliente;
+    private String agendamento_editar_nome_servico;
+
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
@@ -55,6 +76,17 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_agendamento_popup);
+
+          agendamento_editar_id_agendamento = getIntent().getStringExtra("idagendamento");
+          agendamento_editar_dia_agendamento = getIntent().getStringExtra("diaagendamento");
+          agendamento_editar_hora_agendamento = getIntent().getStringExtra("horaagendamento");
+          agendamento_editar_id_funcionario = getIntent().getStringExtra("idfuncionario");
+          agendamento_editar_nome_funcionario = getIntent().getStringExtra("nomefuncionario");
+          agendamento_editar_login_cliente = getIntent().getStringExtra("logincliente");
+          agendamento_editar_nome_cliente = getIntent().getStringExtra("nomecliente");
+          agendamento_editar_nome_servico = getIntent().getStringExtra("nomeservico");
+
+
 
         spinner_funcao_agendamento_funcionario = findViewById(R.id.Editar_spinner_funcao_agendamento_funcionario);
         spinner_info_funcao_agendamento_funcionario = FirebaseDatabase.getInstance().getReference("Funcionario");
@@ -70,11 +102,34 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
         spinner_funcao_agendamento_servico.setAdapter(adapter_agendamento_servico);
         Showdata_Servico();
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String current = user.getUid();
+
+        db.collection("usuários")
+                .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for(DocumentSnapshot document : task.getResult()){
+
+                                nome_cliente = (String) document.get("nome");
+                                login_cliente = (String) document.get("id");
+
+                            }
+                        }
+                    }
+                });
+
 
         hora_agendamento=findViewById(R.id.Editar_Hora_Agendamento);
         dia_agendamento=findViewById(R.id.Editar_Dia_Agendamento);
 
-        Button funcao_editar = findViewById(R.id.botao_Confirmar_Editar_Agendamento);
+        hora_agendamento.setText(agendamento_editar_hora_agendamento);
+        dia_agendamento.setText(agendamento_editar_dia_agendamento);
+
 
         Intent i = getIntent();
         Agendamentos =(Agendamento) i.getSerializableExtra("Agendamento");
@@ -91,6 +146,74 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
         });
 
 
+        Button agendamento_editar = findViewById(R.id.botao_Confirmar_Editar_Agendamento);
+
+        agendamento_editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                hora_agendamento=findViewById(R.id.Editar_Hora_Agendamento);
+                dia_agendamento=findViewById(R.id.Editar_Dia_Agendamento);
+
+                spinner_funcao_agendamento_servico = findViewById(R.id.Editar_spinner_funcao_agendamento_servico);
+                spinner_funcao_agendamento_funcionario = findViewById(R.id.Editar_spinner_funcao_agendamento_funcionario);
+
+                updateData();
+
+            }
+        });
+
+        Button agendamento_voltar = findViewById(R.id.Voltar_cadastro_Editar_Agendamento);
+
+        agendamento_voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+    }
+
+    private void updateData() {
+
+        HashMap agendamento = new HashMap();
+
+
+        agendamento.put("nome_cliente",nome_cliente);
+        agendamento.put("usuario",login_cliente);
+        agendamento.put("hora_agendamento",hora_agendamento.getText().toString());
+        agendamento.put("dia_agendamento",dia_agendamento.getText().toString());
+        agendamento.put("servicos",spinner_funcao_agendamento_servico.getSelectedItem().toString());
+        agendamento.put("funcionario",spinner_funcao_agendamento_funcionario.getSelectedItem().toString());
+        agendamento.put("id_funcionario",id_funcionario);
+
+
+
+
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Agendamento");
+        databaseReference.child(agendamento_editar_id_agendamento).updateChildren(agendamento).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if (task.isSuccessful()){
+
+                    Toast.makeText(cadastro_agendamento_editar.this,"agendamento editado com sucesso.",Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+
+                }else{
+                    Toast.makeText(cadastro_agendamento_editar.this,"falha na edição",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
+
+
+
+
     }
 
 
@@ -103,14 +226,18 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     spinner_lista_agendamento_funcionario.clear();
-                    spinner_lista_agendamento_funcionario.add("---Selecione--");
+//                    spinner_lista_agendamento_funcionario.add("---Selecione--");
 
 
                     for (DataSnapshot item : snapshot.getChildren()) {
 
                         String nome_do_funcionario = item.child("nome_funcionario").getValue(String.class);
+                        String id_do_funcionario = item.child("id_funcionario").getValue(String.class);
+
+
                         if (item.child("funcao_funcionario").getValue(String.class).equals(collect.get(0).getFuncao_servico()))
                             spinner_lista_agendamento_funcionario.add(nome_do_funcionario);
+                            id_funcionario = id_do_funcionario;
 
 //                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
                     }
