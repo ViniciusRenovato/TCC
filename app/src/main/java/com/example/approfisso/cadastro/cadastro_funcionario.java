@@ -195,7 +195,6 @@ public class cadastro_funcionario extends AppCompatActivity {
         Funcionarios.setAniversario_funcionario(aniversario.getText().toString());
         Funcionarios.setEmail_funcionario(email.getText().toString());
         Funcionario.salvaFuncionario(Funcionarios);
-        finish();
         onBackPressed();
 
     }

@@ -134,6 +134,21 @@ public class cadastro_servico extends AppCompatActivity {
 
                 documentReference.set(cadastro_funcao);
 
+                servicos = new Servicos();
+
+                servicos.setNome_servico(nome_servico);
+                servicos.setValor_servico(valor_servico);
+                servicos.setDuracao_servico(duracao_servico);
+                servicos.setFuncao_servico(spinner_funcao_servico.getSelectedItem().toString());
+
+                Servicos.salvaServicos(servicos);
+                onBackPressed();
+
+
+
+
+
+
                 onBackPressed();
 
             }
@@ -231,28 +246,13 @@ public class cadastro_servico extends AppCompatActivity {
 //        servicos.setNome_servico(nome.getText().toString());
 //        servicos.setValor_servico(valor.getText().toString());
 //        servicos.setDuracao_servico(duracao.getText().toString());
-////        servicos.setFuncao_servico(funcao.getText().toString());
+//        servicos.setFuncao_servico(funcao.getText().toString());
 //        servicos.setFuncao_servico(spinner_funcao_servico.getSelectedItem().toString());
 //
 //        Servicos.salvaServicos(servicos);
-//        finish();
 //        onBackPressed();
 //
 //    }
 
-
- //   public void botao_Salvar (View view){
- //      Emprego = new empregos();
- //       Emprego.setEstado(Estado.getText().toString());
- //       Emprego.setCidade(Cidade.getText().toString());
- //       Emprego.setPeriodo(Periodo.getText().toString());
- //       Emprego.setArea_da_profissao(Profissao.getText().toString());
- //       Emprego.setSalario(Salario.getText().toString());
- //       Emprego.setEmail(Email.getText().toString());
- //       empregos.salvar(Emprego);
- //       onBackPressed();
-//
-//
- //   }
 
 }

@@ -70,4 +70,4 @@ public class cadastro_funcao extends AppCompatActivity {
 
     }
 
-    }
+}

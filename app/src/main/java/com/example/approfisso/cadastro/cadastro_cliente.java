@@ -152,7 +152,7 @@ public class cadastro_cliente extends AppCompatActivity {
         Clientes.setAniversario(aniversario.getText().toString());
         Clientes.setEmail(email.getText().toString());
         Pessoa.salvaPessoa(Clientes);
-        finish();
+
         onBackPressed();
 
     }
