@@ -1,11 +1,13 @@
 package com.example.approfisso.cadastro;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.approfisso.R;
 import com.example.approfisso.cadastrado.agendamento_cadastrado;
 import com.example.approfisso.entidades.Agendamento;
+import com.example.approfisso.entidades.Funcionario;
 import com.example.approfisso.entidades.Servicos;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,8 +32,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class cadastro_agendamento extends AppCompatActivity {
@@ -55,6 +61,20 @@ public class cadastro_agendamento extends AppCompatActivity {
     private String id_funcionario;
 
     private Agendamento Agendamentos;
+
+    Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+    };
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +121,19 @@ public class cadastro_agendamento extends AppCompatActivity {
         dia=findViewById(R.id.Dia_Agendamento);
         Intent i = getIntent();
         Agendamentos =(Agendamento) i.getSerializableExtra("Agendamento");
+
+        dia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(cadastro_agendamento.this, date, myCalendar.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
+
+
         spinner_funcao_agendamento_servico.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -133,8 +166,19 @@ public class cadastro_agendamento extends AppCompatActivity {
 
     }
 
-    private void Showdata_Funcionario(){
+    private void updateLabel() {
 
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt","BR"));
+
+        dia.setText(sdf.format(myCalendar.getTime()));
+
+    }
+
+
+List<Funcionario> func;
+    private void Showdata_Funcionario(){
+        func = new ArrayList();
         if(serviços!=null&&spinner_funcao_agendamento_servico.getSelectedItem()!=null) {
             List<Servicos> collect = serviços.stream().filter
                     (c -> c.getNome_servico().equals(spinner_funcao_agendamento_servico.getSelectedItem().toString())).collect(Collectors.toList());
@@ -142,7 +186,7 @@ public class cadastro_agendamento extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     spinner_lista_agendamento_funcionario.clear();
-//                    spinner_lista_agendamento_funcionario.add("---Selecione--");
+                    spinner_lista_agendamento_funcionario.add("--Selecione--");
 
 
                     for (DataSnapshot item : snapshot.getChildren()) {
@@ -152,10 +196,14 @@ public class cadastro_agendamento extends AppCompatActivity {
 
 
 
-                            if (item.child("funcao_funcionario").getValue(String.class).equals(collect.get(0).getFuncao_servico())){
+                            if (item.child("funcao_funcionario").getValue(String.class).equals(collect.get(0).getFuncao_servico()))
+                            {
+                                Funcionario f = new Funcionario();
+                                f.setNome_funcionario(nome_do_funcionario);
+                                f.setId_funcionario(id_do_funcionario);
+                                func.add(f);
+                                spinner_lista_agendamento_funcionario.add(func.size()-1,f.getNome_funcionario());
 
-                                spinner_lista_agendamento_funcionario.add(nome_do_funcionario);
-                                id_funcionario = id_do_funcionario;
 
                             }
 
@@ -214,7 +262,7 @@ List<Servicos> serviços;
         Agendamentos.setDia_agendamento(dia.getText().toString());
         Agendamentos.setFuncionario(spinner_funcao_agendamento_funcionario.getSelectedItem().toString());
         Agendamentos.setServicos(spinner_funcao_agendamento_servico.getSelectedItem().toString());
-        Agendamentos.setId_funcionario(id_funcionario);
+        Agendamentos.setId_funcionario(func.get(spinner_funcao_agendamento_funcionario.getSelectedItemPosition()).getId_funcionario());
         Agendamento.salvaAgendamento(Agendamentos);
 
 

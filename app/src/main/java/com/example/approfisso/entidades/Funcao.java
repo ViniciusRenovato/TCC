@@ -67,8 +67,9 @@ public class Funcao implements Serializable {
 
 
     public static void salvaFuncao(Funcao fun){
-        if(databaseReference==null){
+        if(databaseReference==null)
             inicio();
+
             String id=databaseReference.child("Funcao").push().getKey();
             List<Funcao> funcao = new ArrayList();
             fun.setId_funcao(id);
@@ -77,7 +78,7 @@ public class Funcao implements Serializable {
             databaseReference.child("Funcao").child(id).child("nome_funcao").setValue(fun.getNome_funcao());
 
 
-        }
+
     }
 
 

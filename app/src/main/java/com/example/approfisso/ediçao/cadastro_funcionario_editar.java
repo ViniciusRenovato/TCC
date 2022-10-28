@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -159,6 +161,88 @@ public class cadastro_funcionario_editar extends AppCompatActivity {
 
     private void updateData(){
 
+
+        String email_funcionario_edit = email_funcionario.getText().toString().trim();
+        String nome_funcionario_edit = nome_funcionario.getText().toString().trim();
+        String funcao_funcionario_edit = spinner_funcao_funcionario.getSelectedItem().toString().trim();
+        String aniversario_funcionario_edit = aniversario_funcionario.getText().toString().trim();
+        String telefone_funcionario_edit = telefone_funcionario.getText().toString().trim();
+
+        String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]+[a-zA-Z0-9]*[a-zA-Z.]+[a-zA-Z.]*?";
+        String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
+
+        if(TextUtils.isEmpty(nome_funcionario_edit)) {
+            nome_funcionario.setError("Insira um Nome");
+
+            return;
+        }else {
+            if (nome_funcionario_edit.matches(namePattern)) {
+
+            } else {
+                nome_funcionario.setError("Insira seu nome completo");
+                return;
+            }
+        }
+
+
+        if(TextUtils.isEmpty(email_funcionario_edit)) {
+            email_funcionario.setError("Insira um Email");
+            return;
+        }else{
+            if(email_funcionario_edit.matches(emailPattern)){
+
+            }else{
+                email_funcionario.setError("Insira um Email válido");
+                return;
+            }
+        }
+
+
+
+        if (funcao_funcionario_edit.matches("--Selecione--")){
+
+            TextView errorText = (TextView)spinner_funcao_funcionario.getSelectedView();
+            errorText.setError("Insira uma função valida");
+            return;
+
+        }
+
+
+
+        if(TextUtils.isEmpty(telefone_funcionario_edit)) {
+            telefone_funcionario.setError("Insira o numero do seu telefone ");
+            return;
+        }
+
+        if(telefone_funcionario_edit.length() <= 9){
+            telefone_funcionario.setError("Insira o numero válido");
+            return;
+        }
+
+        if(telefone_funcionario_edit.length() <= 10){
+            telefone_funcionario.setError("Insira o prefixo");
+            return;
+        }
+
+        if(telefone_funcionario_edit.length() <= 14){
+            telefone_funcionario.setError("Insira um prefixo válido");
+            return;
+        }
+
+        if(TextUtils.isEmpty(aniversario_funcionario_edit)) {
+            aniversario_funcionario.setError("Insira uma Data");
+            return;
+        }
+
+
+
+
+
+
+
+
+
+
         HashMap funcionario = new HashMap();
         funcionario.put("nome_funcionario",nome_funcionario.getText().toString());
         funcionario.put("telefone_funcionario",telefone_funcionario.getText().toString());
@@ -226,6 +310,10 @@ public class cadastro_funcionario_editar extends AppCompatActivity {
         spinner_info_funcao_funcionario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                spinner_lista_funcionario.clear();
+                spinner_lista_funcionario.add("--Selecione--");
+
 
                 for (DataSnapshot item : snapshot.getChildren()) {
 

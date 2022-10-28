@@ -100,10 +100,15 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
         android:ems="10"
-        android:hint="Dia"
+        android:hint="Data"
         android:gravity="center"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+
+        android:maxLength="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />

@@ -1,11 +1,13 @@
 package com.example.approfisso.ediçao;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,9 +31,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class cadastro_agendamento_editar extends AppCompatActivity {
@@ -67,6 +72,19 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
     private String agendamento_editar_login_cliente;
     private String agendamento_editar_nome_cliente;
     private String agendamento_editar_nome_servico;
+
+
+    Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+    };
+
 
 
     private FirebaseAuth mAuth;
@@ -129,6 +147,16 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
 
         hora_agendamento.setText(agendamento_editar_hora_agendamento);
         dia_agendamento.setText(agendamento_editar_dia_agendamento);
+
+        dia_agendamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(cadastro_agendamento_editar.this, date, myCalendar.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
 
 
         Intent i = getIntent();
@@ -278,5 +306,16 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
         });
 
     }
+
+
+    private void updateLabel(){
+
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt","BR"));
+
+        dia_agendamento.setText(sdf.format(myCalendar.getTime()));
+    }
+
+
 
 }
