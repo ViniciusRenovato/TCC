@@ -49,7 +49,7 @@ public class Pontos implements Serializable {
     }
 
     public static void salvaPontos(Pontos po){
-        if(databaseReference==null){
+        if(databaseReference==null)
             databaseReference.child("Pontos").child(po.getId_pontos().toString()
             ).setValue(po);
             databaseReference.child("Pontos").child(po.getPontos_cliente().toString()
@@ -58,7 +58,7 @@ public class Pontos implements Serializable {
             ).setValue(po);
             databaseReference.child("Pontos").child(po.getCliente().toString()
             ).setValue(po);
-        }
+
     }
     public static void excluirPontos(Pontos po){
         databaseReference.child("Pontos").child(po.getId_pontos()+"").removeValue();

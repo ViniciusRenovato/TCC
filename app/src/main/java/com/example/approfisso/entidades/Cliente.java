@@ -50,7 +50,7 @@ public class Cliente implements Serializable {
     private static DatabaseReference databaseReference;
 
     public static void salvaCliente(Cliente c){
-        if(databaseReference==null){
+        if(databaseReference==null)
             databaseReference.child("Cliente").child(c.getId_cliente().toString()
             ).setValue(c);
             databaseReference.child("Cliente").child(c.getPontos_cliente().toString()
@@ -58,7 +58,7 @@ public class Cliente implements Serializable {
             databaseReference.child("Cliente").child(c.getPessoa().toString()
             ).setValue(c);
 
-        }
+
     }
     public static void excluirCliente(Cliente c){
         databaseReference.child("Cliente").child(c.getId_cliente()+"").removeValue();

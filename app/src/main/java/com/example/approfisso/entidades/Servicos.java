@@ -119,7 +119,7 @@ public class Servicos implements Serializable {
 
 
     public static void salvaServicos(Servicos s){
-        if(databaseReference==null){
+        if(databaseReference==null)
             inicio();
             String id=databaseReference.child("Servicos").push().getKey();
             List<Servicos> servico = new ArrayList();
@@ -131,7 +131,7 @@ public class Servicos implements Serializable {
             databaseReference.child("Servicos").child(id).child("duracao_servico").setValue(s.getDuracao_servico());
             databaseReference.child("Servicos").child(id).child("valor_servico").setValue(s.getValor_servico());
             databaseReference.child("Servicos").child(id).child("funcao_servico").setValue(s.getFuncao_servico());
-        }
+
     }
     public static void excluirServicos(Servicos s){
         databaseReference.child("Servicos").child(s.getId_servico()+"").removeValue();

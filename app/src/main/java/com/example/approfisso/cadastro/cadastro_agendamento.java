@@ -53,8 +53,13 @@ public class cadastro_agendamento extends AppCompatActivity {
     ArrayList<String> spinner_lista_agendamento_servico;
     ArrayAdapter<String> adapter_agendamento_servico;
 
+    Spinner spinner_agendamento_horario;
+    DatabaseReference spinner_info_agendamento_horario;
+    ArrayList<String> spinner_lista_agendamento_horario;
+    ArrayAdapter<String> adapter_agendamento_horario;
 
-    private EditText hora;
+
+
     private EditText dia;
     private String nome_cliente;
     private String login_cliente;
@@ -95,6 +100,14 @@ public class cadastro_agendamento extends AppCompatActivity {
         spinner_funcao_agendamento_servico.setAdapter(adapter_agendamento_servico);
         Showdata_Servico();
 
+        spinner_agendamento_horario = findViewById(R.id.spinner_agendamento_horario);
+        spinner_info_agendamento_horario = FirebaseDatabase.getInstance().getReference("Horario");
+        spinner_lista_agendamento_horario = new ArrayList<>();
+        adapter_agendamento_horario = new ArrayAdapter<String>(cadastro_agendamento.this, android.R.layout.simple_spinner_dropdown_item, spinner_lista_agendamento_horario);
+        spinner_agendamento_horario.setAdapter(adapter_agendamento_horario);
+        Showdata_Horario();
+
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -117,7 +130,7 @@ public class cadastro_agendamento extends AppCompatActivity {
                     }
                 });
 
-        hora=findViewById(R.id.Hora_Agendamento);
+//        hora=findViewById(R.id.Hora_Agendamento);
         dia=findViewById(R.id.Dia_Agendamento);
         Intent i = getIntent();
         Agendamentos =(Agendamento) i.getSerializableExtra("Agendamento");
@@ -145,6 +158,20 @@ public class cadastro_agendamento extends AppCompatActivity {
 
             }
         });
+
+        spinner_agendamento_horario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Showdata_Horario();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
 
 //        Button cadastrar_agendamento = findViewById(R.id.botao_Confirmar_Agendamento);
 //
@@ -250,27 +277,49 @@ List<Servicos> serviços;
         });
 
     }
+    List<Agendamento> agendamento;
+    private void Showdata_Horario(){
+        agendamento= new ArrayList<>();
+        spinner_info_agendamento_horario.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    Agendamento agendar = new Agendamento();
 
+                    agendar.setHora_agendamento(item.getValue(String.class));
+
+                    spinner_lista_agendamento_horario.add(agendar.getHora_agendamento());
+                    agendamento.add(agendar);
+
+                }
+                adapter_agendamento_horario.notifyDataSetChanged();
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
 
     public void botao_Confirmar (View view){
         Agendamentos = new Agendamento();
         Agendamentos.setNome_cliente(nome_cliente);
         Agendamentos.setLogin_cliente(login_cliente);
-        Agendamentos.setHora_agendamento(hora.getText().toString());
+
+
+        Agendamentos.setHora_agendamento(spinner_agendamento_horario.getSelectedItem().toString());
+
+
         Agendamentos.setDia_agendamento(dia.getText().toString());
         Agendamentos.setFuncionario(spinner_funcao_agendamento_funcionario.getSelectedItem().toString());
         Agendamentos.setServicos(spinner_funcao_agendamento_servico.getSelectedItem().toString());
         Agendamentos.setId_funcionario(func.get(spinner_funcao_agendamento_funcionario.getSelectedItemPosition()).getId_funcionario());
         Agendamento.salvaAgendamento(Agendamentos);
 
-
-//        Intent it = new Intent(this, agendamento_cadastrado.class);
-
-//        it.putExtra("logincliente",login_cliente);
-
-//        startActivity(it);
       onBackPressed();
 
     }

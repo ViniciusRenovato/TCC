@@ -39,14 +39,14 @@ public class Produto implements Serializable {
         this.preco_produto = preco_produto;
     }
     public static void salvaProduto(Produto pr){
-        if(databaseReference==null){
+        if(databaseReference==null)
             databaseReference.child("Produto").child(pr.getId_produto().toString()
             ).setValue(pr);
             databaseReference.child("Produto").child(pr.getPreco_produto().toString()
             ).setValue(pr);
             databaseReference.child("Produto").child(pr.getConsumo_produto().toString()
             ).setValue(pr);
-        }
+
     }
     public static void excluirProduto(Produto pr){
         databaseReference.child("Produto").child(pr.getId_produto()+"").removeValue();

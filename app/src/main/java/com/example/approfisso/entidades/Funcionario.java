@@ -131,7 +131,7 @@ public class Funcionario implements Serializable {
 
 
     public static void salvaFuncionario(Funcionario funciona){
-        if(databaseReference==null){
+        if(databaseReference==null)
             inicio();
             String id=databaseReference.child("Funcionario").push().getKey();
             List<Funcionario> funcionario = new ArrayList();
@@ -147,7 +147,7 @@ public class Funcionario implements Serializable {
 
 
 
-        }
+
     }
     public static void excluirFuncionario(Funcionario funciona){
         databaseReference.child("Funcionario").child(funciona.getId_funcionario()+"").removeValue();

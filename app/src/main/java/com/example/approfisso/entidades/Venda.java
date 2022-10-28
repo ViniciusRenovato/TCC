@@ -48,7 +48,7 @@ public class Venda implements Serializable {
     }
 
     public static void salvaVenda(Venda v){
-        if(databaseReference==null){
+        if(databaseReference==null)
             databaseReference.child("Venda").child(v.getId_venda().toString()
             ).setValue(v);
             databaseReference.child("Venda").child(v.getAgendamento().toString()
@@ -57,7 +57,7 @@ public class Venda implements Serializable {
             ).setValue(v);
             databaseReference.child("Venda").child(v.getValor_total().toString()
             ).setValue(v);
-        }
+
     }
     public static void excluirVenda(Venda v){
         databaseReference.child("Venda").child(v.getId_venda()+"").removeValue();

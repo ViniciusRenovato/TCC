@@ -112,7 +112,7 @@ public class Pessoa implements Serializable {
 
 
     public static void salvaPessoa(Pessoa p){
-        if(databaseReference==null){
+        if(databaseReference==null)
             inicio();
             String id=databaseReference.child("Pessoa").push().getKey();
             List<Pessoa> pessoa = new ArrayList();
@@ -125,7 +125,7 @@ public class Pessoa implements Serializable {
             databaseReference.child("Pessoa").child(id).child("Aniversario").setValue(p.getAniversario());
             databaseReference.child("Pessoa").child(id).child("Email").setValue(p.getEmail());
 
-        }
+
     }
 
 

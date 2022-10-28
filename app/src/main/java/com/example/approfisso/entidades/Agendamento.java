@@ -119,7 +119,7 @@ public class Agendamento implements Serializable {
     private static DatabaseReference databaseReference;
 
     public static void salvaAgendamento(Agendamento a){
-        if(databaseReference==null){
+        if(databaseReference==null)
 
             inicio();
             String id=databaseReference.child("Agendamento").push().getKey();
@@ -135,7 +135,7 @@ public class Agendamento implements Serializable {
             databaseReference.child("Agendamento").child(id).child("servicos").setValue(a.getServicos());
             databaseReference.child("Agendamento").child(id).child("usuario").setValue(a.getLogin_cliente());
 
-        }
+
     }
     public static void excluirAgendamento(Agendamento a){
         databaseReference.child("Agendamento").child(a.getId_agendamento()+"").removeValue();

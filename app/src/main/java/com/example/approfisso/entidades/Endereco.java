@@ -79,7 +79,7 @@ public class Endereco implements Serializable {
     private static DatabaseReference databaseReference;
 
     public static void salvaEndereco(Endereco e){
-        if(databaseReference==null){
+        if(databaseReference==null)
             databaseReference.child("Endereco").child(e.getId_endereco().toString()
             ).setValue(e);
             databaseReference.child("Endereco").child(e.getRua().toString()
@@ -94,7 +94,7 @@ public class Endereco implements Serializable {
             ).setValue(e);
 
 
-        }
+
     }
     public static void excluirEndereco(Endereco e){
         databaseReference.child("Endereco").child(e.getId_endereco()+"").removeValue();
