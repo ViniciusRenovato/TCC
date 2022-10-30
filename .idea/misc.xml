@@ -14,8 +14,8 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_profile.xml" value="0.1956521739130435" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastrado.xml" value="0.26875" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastro.xml" value="0.1" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamentos_cliente.xml" value="0.14583333333333334" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastro.xml" value="0.33" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamentos_cliente.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/atendimentos_marcados.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/busca_menu.xml" value="0.26875" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/calendario_cliente.xml" value="0.14583333333333334" />
@@ -42,12 +42,12 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/principal.xml" value="0.18" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/recuperar_senha_email.xml" value="0.20416666666666666" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastrado.xml" value="0.25" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastro.xml" value="0.1" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastro.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_agendamento_popup.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_cliente_popup.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_funcao_popup.xml" value="0.26875" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_funcionario_popup.xml" value="0.25" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/update_servico_popup.xml" value="0.20416666666666666" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/update_servico_popup.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/uptade_funcao_popup.xml" value="0.15217391304347827" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/uptade_popup.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/uptade_servico_popup.xml" value="0.15217391304347827" />

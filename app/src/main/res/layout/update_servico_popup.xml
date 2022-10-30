@@ -58,8 +58,9 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
         android:ems="10"
+        android:gravity="center"
+        android:hint="Nome Serviço"
         android:minHeight="48dp"
-        android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -95,22 +96,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Editar_Nome_Servico" />
 
-    <EditText
-        android:id="@+id/Editar_Dureacao_Servico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Spinner
+        android:id="@+id/Editar_Duracao_Servico"
+        android:layout_width="212dp"
+        android:layout_height="44dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
-        android:ems="10"
-        android:hint=""
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:gravity="center"
+        android:hint="Duração de serviço"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -124,7 +122,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Editar_Dureacao_Servico" />
+        app:layout_constraintTop_toBottomOf="@+id/Editar_Duracao_Servico" />
 
     <TextView
         android:id="@+id/textView17"
@@ -147,6 +145,8 @@
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:hint="Valor do Serviço"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
         app:layout_constraintEnd_toEndOf="parent"
@@ -160,6 +160,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:background="@drawable/rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

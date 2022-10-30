@@ -43,7 +43,7 @@ public class agendamento_cadastrado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agendamento_cadastrado);
 
-        login_cliente = getIntent().getStringExtra("logincliente");
+//        login_cliente = getIntent().getStringExtra("logincliente");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String current = user.getUid();

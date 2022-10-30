@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
+import com.example.approfisso.entidades.Agendamento;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class cadastro_servico_editar extends AppCompatActivity {
 
@@ -51,6 +53,12 @@ public class cadastro_servico_editar extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
 
+    Spinner spinner_agendamento_horario;
+    DatabaseReference spinner_info_agendamento_horario;
+    ArrayList<String> spinner_lista_agendamento_horario;
+    ArrayAdapter<String> adapter_agendamento_horario;
+
+
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,24 +73,27 @@ public class cadastro_servico_editar extends AppCompatActivity {
 
 
         spinner_editar_funcao_servico = findViewById(R.id.Spinner_Editar_Funcao_Servico);
-
         spinner_info_funcao_servico = FirebaseDatabase.getInstance().getReference("Funcao");
-
         spinner_lista_servico = new ArrayList<>();
         adapter = new ArrayAdapter<String>(cadastro_servico_editar.this, android.R.layout.simple_spinner_dropdown_item, spinner_lista_servico);
-
         spinner_editar_funcao_servico.setAdapter(adapter);
         Showdata();
 
 
         nome_servico=findViewById(R.id.Editar_Nome_Servico);
-        duracao_servico=findViewById(R.id.Editar_Dureacao_Servico);
         valor_servico=findViewById(R.id.Editar_Valor_Servico);
 
 
         nome_servico.setText(servico_editar_nome);
-        duracao_servico.setText(servico_editar_duracao);
+
         valor_servico.setText(servico_editar_valor);
+
+        spinner_agendamento_horario = findViewById(R.id.Editar_Duracao_Servico);
+        spinner_info_agendamento_horario = FirebaseDatabase.getInstance().getReference("Duracao");
+        spinner_lista_agendamento_horario = new ArrayList<>();
+        adapter_agendamento_horario = new ArrayAdapter<String>(cadastro_servico_editar.this, android.R.layout.simple_spinner_dropdown_item, spinner_lista_agendamento_horario);
+        spinner_agendamento_horario.setAdapter(adapter_agendamento_horario);
+        Showdata_Horario();
 
 
 
@@ -93,7 +104,6 @@ public class cadastro_servico_editar extends AppCompatActivity {
             public void onClick(View view) {
 
                 nome_servico=findViewById(R.id.Editar_Nome_Servico);
-                duracao_servico=findViewById(R.id.Editar_Dureacao_Servico);
                 valor_servico=findViewById(R.id.Editar_Valor_Servico);
                 spinner_editar_funcao_servico = findViewById(R.id.Spinner_Editar_Funcao_Servico);
 
@@ -115,7 +125,7 @@ public class cadastro_servico_editar extends AppCompatActivity {
 
         HashMap servico = new HashMap();
         servico.put("nome_servico",nome_servico.getText().toString());
-        servico.put("duracao_servico",duracao_servico.getText().toString());
+        servico.put("duracao_servico",spinner_agendamento_horario.getSelectedItem().toString());
         servico.put("valor_servico",valor_servico.getText().toString());
         servico.put("funcao_servico",spinner_editar_funcao_servico.getSelectedItem().toString());
 
@@ -141,7 +151,32 @@ public class cadastro_servico_editar extends AppCompatActivity {
 
 
     }
+    List<Agendamento> agendamento;
+    private void Showdata_Horario(){
+        agendamento= new ArrayList<>();
+        spinner_info_agendamento_horario.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    Agendamento agendar = new Agendamento();
+
+                    agendar.setHora_agendamento(item.getValue(String.class));
+
+                    spinner_lista_agendamento_horario.add(agendar.getHora_agendamento());
+                    agendamento.add(agendar);
+
+                }
+                adapter_agendamento_horario.notifyDataSetChanged();
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
     private void Showdata(){
 

@@ -118,24 +118,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-    <EditText
+    <Spinner
         android:id="@+id/Duracao_Servico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="212dp"
+        android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
-        android:ems="10"
-        android:fontFamily="monospace"
-        android:hint="Duração do Serviço"
         android:gravity="center"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
+        android:hint="Duração de serviço"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -175,6 +170,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
         android:fontFamily="monospace"
+        android:hint="Função"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />

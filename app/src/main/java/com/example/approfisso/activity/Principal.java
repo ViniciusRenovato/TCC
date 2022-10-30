@@ -84,7 +84,6 @@ public class Principal extends AppCompatActivity {
 
     public void botao_cadastro_servico(View view){
         Intent it = new Intent(this, servico_cadastrado.class);
-
         startActivity(it);
     }
 

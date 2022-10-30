@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
 import com.example.approfisso.cadastrado.cliente_cadastrado;
+import com.example.approfisso.ediçao.cadastro_servico_editar;
+import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.Servicos;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -40,9 +43,13 @@ public class cadastro_servico extends AppCompatActivity {
     ArrayList<String> spinner_lista_servico;
     ArrayAdapter<String> adapter;
 
+    Spinner spinner_agendamento_horario;
+    DatabaseReference spinner_info_agendamento_horario;
+    ArrayList<String> spinner_lista_agendamento_horario;
+    ArrayAdapter<String> adapter_agendamento_horario;
 
     private EditText nome;
-    private EditText duracao;
+
     private EditText valor;
     private EditText funcao;
     private Servicos servicos;
@@ -64,20 +71,16 @@ public class cadastro_servico extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
 
         spinner_funcao_servico = findViewById(R.id.spinner_funcao_servico);
-
         spinner_info_funcao_servico = FirebaseDatabase.getInstance().getReference("Funcao");
-
         spinner_lista_servico = new ArrayList<>();
         adapter = new ArrayAdapter<String>(cadastro_servico.this, android.R.layout.simple_spinner_dropdown_item, spinner_lista_servico);
-
-
         spinner_funcao_servico.setAdapter(adapter);
         Showdata();
 
 
 
         nome=findViewById(R.id.Nome_Servico);
-        duracao=findViewById(R.id.Duracao_Servico);
+
         valor=findViewById(R.id.Preco_Servico);
 
         confirmar_servico = findViewById(R.id.botao_Confirmar_Servico);
@@ -86,24 +89,24 @@ public class cadastro_servico extends AppCompatActivity {
         Intent i = getIntent();
         servicos =(Servicos) i.getSerializableExtra("Servicos");
 
-
+        spinner_agendamento_horario = findViewById(R.id.Duracao_Servico);
+        spinner_info_agendamento_horario = FirebaseDatabase.getInstance().getReference("Duracao");
+        spinner_lista_agendamento_horario = new ArrayList<>();
+        adapter_agendamento_horario = new ArrayAdapter<String>(cadastro_servico.this, android.R.layout.simple_spinner_dropdown_item, spinner_lista_agendamento_horario);
+        spinner_agendamento_horario.setAdapter(adapter_agendamento_horario);
+        Showdata_Horario();
 
         confirmar_servico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String nome_servico = nome.getText().toString().trim();
-                String duracao_servico = duracao.getText().toString().trim();
+
                 String valor_servico = valor.getText().toString().trim();
 
 
                 if(TextUtils.isEmpty(nome_servico)) {
                     nome.setError("Insira o nome do serviço.");
-                    return;
-                }
-
-                if(TextUtils.isEmpty(duracao_servico)) {
-                    duracao.setError("Insira a duração do serviço.");
                     return;
                 }
 
@@ -128,7 +131,7 @@ public class cadastro_servico extends AppCompatActivity {
                 cadastro_funcao.put("id_cadastro",userID);
                 cadastro_funcao.put("id_serviço",documentReference.get().toString() );
                 cadastro_funcao.put("nome",nome_servico);
-                cadastro_funcao.put("duração",duracao_servico);
+                cadastro_funcao.put("duração",spinner_agendamento_horario.getSelectedItem().toString());
                 cadastro_funcao.put("preço",valor_servico);
                 cadastro_funcao.put("função,", spinner_funcao_servico.getSelectedItem().toString());
 
@@ -138,7 +141,7 @@ public class cadastro_servico extends AppCompatActivity {
 
                 servicos.setNome_servico(nome_servico);
                 servicos.setValor_servico(valor_servico);
-                servicos.setDuracao_servico(duracao_servico);
+                servicos.setDuracao_servico(spinner_agendamento_horario.getSelectedItem().toString());
                 servicos.setFuncao_servico(spinner_funcao_servico.getSelectedItem().toString());
 
                 Servicos.salvaServicos(servicos);
@@ -178,20 +181,32 @@ public class cadastro_servico extends AppCompatActivity {
 //        }
 //    });
 
+    List<Agendamento> agendamento;
+    private void Showdata_Horario(){
+        agendamento= new ArrayList<>();
+        spinner_info_agendamento_horario.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                for (DataSnapshot item : snapshot.getChildren()) {
+                    Agendamento agendar = new Agendamento();
 
+                    agendar.setHora_agendamento(item.getValue(String.class));
 
+                    spinner_lista_agendamento_horario.add(agendar.getHora_agendamento());
+                    agendamento.add(agendar);
 
+                }
+                adapter_agendamento_horario.notifyDataSetChanged();
 
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
 
-
-
-
-
-
-
-
+    }
 
 
     private void Showdata(){
