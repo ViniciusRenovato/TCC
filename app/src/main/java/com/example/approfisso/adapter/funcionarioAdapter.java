@@ -47,7 +47,6 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
     public void onBindViewHolder(@NonNull FuncionarioHolder funcionarioViewHolder, int i ) {
         Funcionario funcionario = dados.get(i);
         funcionarioViewHolder.funcionarionome.setText(funcionario.getNome_funcionario());
-        funcionarioViewHolder.funcionariosobrenome.setText(funcionario.getSobrenome_funcionario());
         funcionarioViewHolder.funcionariofuncao.setText(funcionario.getFuncao_funcionario());
         funcionarioViewHolder.funcionariotelefone.setText(funcionario.getTelefone_funcionario());
         funcionarioViewHolder.funcionarioaniversario.setText(funcionario.getAniversario_funcionario());
@@ -63,7 +62,6 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
 
                 it.putExtra("funcionarioid",funcionario.getId_funcionario());
                 it.putExtra("funcionarionome",funcionario.getNome_funcionario());
-
                 it.putExtra("funcionariofuncao",funcionario.getFuncao_funcionario());
                 it.putExtra("funcionariotelefone",funcionario.getTelefone_funcionario());
                 it.putExtra("funcionarioaniversario",funcionario.getAniversario_funcionario());
@@ -160,7 +158,7 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
     }
     public class FuncionarioHolder extends RecyclerView.ViewHolder {
         private TextView funcionarionome;
-        private TextView funcionariosobrenome;
+
         private TextView funcionariofuncao;
         private TextView funcionariotelefone;
         private TextView funcionarioaniversario;
@@ -172,7 +170,7 @@ public class funcionarioAdapter extends RecyclerView.Adapter<funcionarioAdapter.
         public FuncionarioHolder(@NonNull View itemView) {
             super(itemView);
             funcionarionome=itemView.findViewById(R.id.item_funcionario_nome);
-            funcionariosobrenome=itemView.findViewById(R.id.item_funcionario_sobrenome);
+
             funcionariofuncao=itemView.findViewById(R.id.item_funcionario_funcao);
             funcionariotelefone=itemView.findViewById(R.id.item_funcionario_telefone);
             funcionarioaniversario=itemView.findViewById(R.id.item_funcionario_aniversario);

@@ -1,11 +1,13 @@
 package com.example.approfisso.ediçao;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,13 +44,15 @@ public class cadastro_servico_editar extends AppCompatActivity {
     private String servico_editar_duracao;
     private String servico_editar_valor;
     private String servico_editar_funcao;
-
+    private Integer pontos_servico;
+    private double resultado;
 
     private String funcaoID;
     private EditText nome_servico;
     private EditText duracao_servico;
     private EditText valor_servico;
     private EditText funcao_servico;
+
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
@@ -105,7 +109,48 @@ public class cadastro_servico_editar extends AppCompatActivity {
 
                 nome_servico=findViewById(R.id.Editar_Nome_Servico);
                 valor_servico=findViewById(R.id.Editar_Valor_Servico);
-                spinner_editar_funcao_servico = findViewById(R.id.Spinner_Editar_Funcao_Servico);
+//                Integer pontos = Integer.valueOf(valor_servico.getText().toString()) /5;
+//                pontos_servico = pontos;
+
+                String nome_servico_editar = nome_servico.getText().toString().trim();
+                String valor_servico_editar = valor_servico.getText().toString().trim();
+                String horario_servico = spinner_agendamento_horario.getSelectedItem().toString().trim();
+                String funcao_servico = spinner_editar_funcao_servico.getSelectedItem().toString().trim();
+
+                double valores = Double.parseDouble(valor_servico_editar);
+                double base_pontos = 5;
+                resultado = valores/base_pontos;
+
+//                spinner_editar_funcao_servico = findViewById(R.id.Spinner_Editar_Funcao_Servico);
+
+                if(TextUtils.isEmpty(nome_servico_editar)) {
+                    nome_servico.setError("Insira o nome do serviço.");
+                    return;
+                }
+
+                if (horario_servico.matches("--Selecione--")){
+
+                    TextView errorText = (TextView)spinner_agendamento_horario.getSelectedView();
+                    errorText.setError("Insira uma função valida");
+                    return;
+
+                }
+
+                if(TextUtils.isEmpty(valor_servico_editar)) {
+                    valor_servico.setError("Insira o valor do serviço.");
+                    return;
+                }
+
+                if (funcao_servico.matches("--Selecione--")){
+
+                    TextView errorText = (TextView)spinner_editar_funcao_servico.getSelectedView();
+                    errorText.setError("Insira uma função valida");
+                    return;
+
+                }
+
+
+
 
                 updateData();
             }
@@ -123,12 +168,14 @@ public class cadastro_servico_editar extends AppCompatActivity {
 
     private void updateData(){
 
+
+
         HashMap servico = new HashMap();
         servico.put("nome_servico",nome_servico.getText().toString());
         servico.put("duracao_servico",spinner_agendamento_horario.getSelectedItem().toString());
         servico.put("valor_servico",valor_servico.getText().toString());
         servico.put("funcao_servico",spinner_editar_funcao_servico.getSelectedItem().toString());
-
+        servico.put("pontos_servico",resultado);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Servicos");
         databaseReference.child(servico_editar_id).updateChildren(servico).addOnCompleteListener(new OnCompleteListener() {
@@ -158,6 +205,9 @@ public class cadastro_servico_editar extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                spinner_lista_agendamento_horario.clear();
+                spinner_lista_agendamento_horario.add("--Selecione--");
+
                 for (DataSnapshot item : snapshot.getChildren()) {
                     Agendamento agendar = new Agendamento();
 
@@ -183,6 +233,9 @@ public class cadastro_servico_editar extends AppCompatActivity {
         spinner_info_funcao_servico.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                spinner_lista_servico.clear();
+                spinner_lista_servico.add("--Selecione--");
 
                 for (DataSnapshot item : snapshot.getChildren()) {
 

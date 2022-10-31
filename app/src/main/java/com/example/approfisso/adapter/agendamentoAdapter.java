@@ -22,13 +22,6 @@ import java.util.List;
 
 public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.AgendamentoHolder> {
 
-
-
-
-
-
-
-
     List<Agendamento> dados;
     public agendamentoAdapter(List<Agendamento> agendamento) {
         this.dados=agendamento;
@@ -65,58 +58,6 @@ public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.
 
                 view.getContext().startActivity(it);
 
-//                final DialogPlus dialogPlus = DialogPlus.newDialog(agendamentoViewHolder.agendamentohora.getContext())
-//                        .setContentHolder(new ViewHolder(R.layout.update_agendamento_popup))
-//                        .setExpanded(true,1500)
-//                        .create();
-//
-//
-////                View view1 = dialogPlus.getHolderView();
-////                EditText hora = view1.findViewById(R.id.txthora_agendamento);
-////                EditText dia = view1.findViewById(R.id.txtdia_agendamento);
-////                EditText funcionario = view1.findViewById(R.id.txtfuncionario_agendamento);
-////                EditText servico = view1.findViewById(R.id.txtservico_agendamento);
-//////                EditText email = view1.findViewById(R.id.txtemail_funcionario);
-////
-////                dialogPlus.show();
-////
-////                Button agendamentoeditar = view1.findViewById(R.id.btneditar_agendamento);
-//
-//                hora.setText(agendamento.getHora_agendamento());
-//                dia.setText(agendamento.getDia_agendamento());
-//                funcionario.setText(agendamento.getFuncionario());
-//                servico.setText(agendamento.getServicos());
-//                //email.setText(funcionario.getEmail_funcionario());
-//
-//                dialogPlus.show();
-//
-//                agendamentoeditar.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Map<String,Object> map = new HashMap<>();
-//                        map.put("hora_agendamento",hora.getText().toString());
-//                        map.put("dia_agendamento",dia.getText().toString());
-//                        map.put("funcionario",funcionario.getText().toString());
-//                        map.put("servicos",servico.getText().toString());
-//                        //map.put("email_funcionario",email.getText().toString());
-//
-//                        FirebaseDatabase.getInstance().getReference().child("Agendamento")
-//                                .child(agendamento.getId_agendamento()).updateChildren(map)
-//                                .addOnSuccessListener(new OnSuccessListener<Void>(){
-//                                    @Override
-//                                    public void onSuccess(Void unused){
-//                                        Toast.makeText(agendamentoViewHolder.agendamentohora.getContext(),"Edição Concluida", Toast.LENGTH_SHORT).show();
-//                                        dialogPlus.dismiss();
-//                                    }
-//                                })
-//                                .addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        Toast.makeText(agendamentoViewHolder.agendamentohora.getContext(),"Erro na Edição", Toast.LENGTH_SHORT).show();
-//                                    }
-//                                });
-//                    }
-//                });
             }
         });
 

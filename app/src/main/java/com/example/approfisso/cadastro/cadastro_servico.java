@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
 import com.example.approfisso.cadastrado.cliente_cadastrado;
-import com.example.approfisso.ediçao.cadastro_servico_editar;
 import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.Servicos;
 import com.google.firebase.auth.FirebaseAuth;
@@ -101,19 +101,49 @@ public class cadastro_servico extends AppCompatActivity {
             public void onClick(View view) {
 
                 String nome_servico = nome.getText().toString().trim();
-
                 String valor_servico = valor.getText().toString().trim();
+                String horario_servico = spinner_agendamento_horario.getSelectedItem().toString().trim();
+                String funcao_servico = spinner_funcao_servico.getSelectedItem().toString().trim();
 
+
+                double valores = Double.parseDouble(valor_servico);
+                double base_pontos = 5;
+                double resultado = valores/base_pontos;
+
+
+//                Integer pontos = Integer.parseInt(valor_servico);
+//
+//                Integer resultado = pontos /5;
 
                 if(TextUtils.isEmpty(nome_servico)) {
                     nome.setError("Insira o nome do serviço.");
                     return;
                 }
 
+                if (horario_servico.matches("--Selecione--")){
+
+                    TextView errorText = (TextView)spinner_agendamento_horario.getSelectedView();
+                    errorText.setError("Insira uma função valida");
+                    return;
+
+                }
+
+
                 if(TextUtils.isEmpty(valor_servico)) {
                     valor.setError("Insira o valor do serviço.");
                     return;
                 }
+
+
+
+                if (funcao_servico.matches("--Selecione--")){
+
+                    TextView errorText = (TextView)spinner_funcao_servico.getSelectedView();
+                    errorText.setError("Insira uma função valida");
+                    return;
+
+                }
+
 
 
                 //registrando no firebase
@@ -143,6 +173,7 @@ public class cadastro_servico extends AppCompatActivity {
                 servicos.setValor_servico(valor_servico);
                 servicos.setDuracao_servico(spinner_agendamento_horario.getSelectedItem().toString());
                 servicos.setFuncao_servico(spinner_funcao_servico.getSelectedItem().toString());
+                servicos.setPontos_servico((int) resultado);
 
                 Servicos.salvaServicos(servicos);
                 onBackPressed();
@@ -187,7 +218,8 @@ public class cadastro_servico extends AppCompatActivity {
         spinner_info_agendamento_horario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                spinner_lista_agendamento_horario.clear();
+                spinner_lista_agendamento_horario.add("--Selecione--");
                 for (DataSnapshot item : snapshot.getChildren()) {
                     Agendamento agendar = new Agendamento();
 
@@ -214,7 +246,8 @@ public class cadastro_servico extends AppCompatActivity {
         spinner_info_funcao_servico.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                spinner_lista_servico.clear();
+                spinner_lista_servico.add("--Selecione--");
                 for (DataSnapshot item : snapshot.getChildren()) {
 
                     String teste = item.child("nome_funcao").getValue(String.class);

@@ -17,6 +17,7 @@ public class Servicos implements Serializable {
     private Funcionario funcionario;
     private Agendamento agendamento;
     private Produto produto;
+    private Integer pontos_servico;
 
     private static FirebaseDatabase firebaseDatabase;
     private static DatabaseReference databaseReference;
@@ -27,6 +28,13 @@ public class Servicos implements Serializable {
         databaseReference= firebaseDatabase.getReference();
     }
 
+    public Integer getPontos_servico() {
+        return pontos_servico;
+    }
+
+    public void setPontos_servico(Integer pontos_servico) {
+        this.pontos_servico = pontos_servico;
+    }
 
     public String getNome_servico() {
         return nome_servico;
@@ -131,6 +139,7 @@ public class Servicos implements Serializable {
             databaseReference.child("Servicos").child(id).child("duracao_servico").setValue(s.getDuracao_servico());
             databaseReference.child("Servicos").child(id).child("valor_servico").setValue(s.getValor_servico());
             databaseReference.child("Servicos").child(id).child("funcao_servico").setValue(s.getFuncao_servico());
+            databaseReference.child("Servicos").child(id).child("pontos_servico").setValue(s.getPontos_servico());
 
     }
     public static void excluirServicos(Servicos s){

@@ -139,8 +139,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Editar_Valor_Servico"/>
 
-    <EditText
+    <me.abhinay.input.CurrencyEditText
         android:id="@+id/Editar_Valor_Servico"
+        android:inputType="number"
         android:layout_width="212dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"

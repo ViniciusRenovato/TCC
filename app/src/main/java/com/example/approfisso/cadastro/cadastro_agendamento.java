@@ -63,6 +63,7 @@ public class cadastro_agendamento extends AppCompatActivity {
     private EditText dia;
     private String nome_cliente;
     private String login_cliente;
+    private double pontos_cliente;
     private String id_funcionario;
 
     private Agendamento Agendamentos;
@@ -107,6 +108,34 @@ public class cadastro_agendamento extends AppCompatActivity {
         spinner_agendamento_horario.setAdapter(adapter_agendamento_horario);
         Showdata_Horario();
 
+//         it.putExtra("logincliente",agendamento.getLogin_cliente());
+//          e receber via
+//        String id_cliente_usuario = getIntent().getStringExtra("logincliente");
+//
+//
+//
+//        receber do adapter via
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+//        db.collection("usuários")
+//                .whereEqualTo("id",id_cliente_usuario).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//
+//
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()){
+//                            for(DocumentSnapshot document : task.getResult()){
+//
+//                                pontos_cliente = (double) document.get("pontos");
+//                                pontos_cliente = pontos_cliente + ponto_serviço;
+//
+//                            }
+//                        }
+//                    }
+//                });
+
+
+
 
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -124,6 +153,7 @@ public class cadastro_agendamento extends AppCompatActivity {
 
                                 nome_cliente = (String) document.get("nome");
                                 login_cliente = (String) document.get("id");
+
 
                             }
                         }

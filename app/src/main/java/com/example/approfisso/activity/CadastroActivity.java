@@ -168,6 +168,8 @@ public void checkEmail(View view)
         String telefone = etTelefone.getText().toString();
         String tipo_login = sEstabelecimento.toString();
 
+        double pontos = 0;
+
         String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]+[a-zA-Z0-9]*[a-zA-Z.]+[a-zA-Z.]*?";
         String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
 //        String datePattern = "[01-31]+[/]+[01-12]*";
@@ -303,6 +305,7 @@ public void checkEmail(View view)
                             usuario_cadastro.put("telefone",telefone);
                             usuario_cadastro.put("aniversario",aniversario);
                             usuario_cadastro.put("tipo+login",tipo_login);
+                            usuario_cadastro.put("pontos",pontos);
 
                             documentReference.set(usuario_cadastro).addOnSuccessListener((OnSuccessListener) (aVoid) -> {
                                 Log.d(TAG,"onSuccess: Perfil de usuário criado para "+userID);

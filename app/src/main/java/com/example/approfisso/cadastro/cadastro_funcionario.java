@@ -86,7 +86,7 @@ public class cadastro_funcionario extends AppCompatActivity {
 
 
         nome=findViewById(R.id.Nome_Funcionario);
-        sobrenome=findViewById(R.id.Sobrenome_Funcionario);
+
 
         telefone=findViewById(R.id.Telefone_Funcionario);
         aniversario=findViewById(R.id.Aniversario_Funcionario);
