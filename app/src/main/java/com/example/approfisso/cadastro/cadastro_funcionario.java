@@ -217,6 +217,35 @@ public class cadastro_funcionario extends AppCompatActivity {
         }
 
 
+
+        if(TextUtils.isEmpty(telefone_funcionario)) {
+            telefone.setError("Insira o numero do seu telefone ");
+            return;
+        }
+
+        if(telefone_funcionario.length() <= 9){
+            telefone.setError("Insira o numero válido");
+            return;
+        }
+
+        if(telefone_funcionario.length() <= 10){
+            telefone.setError("Insira o prefixo");
+            return;
+        }
+
+        if(telefone_funcionario.length() <= 14){
+            telefone.setError("Insira um prefixo válido");
+            return;
+        }
+
+
+        if(TextUtils.isEmpty(aniversario_funcionario)) {
+            aniversario.setError("Insira uma Data");
+            return;
+        }
+
+
+
         if(TextUtils.isEmpty(email_funcionario)) {
             email.setError("Insira um Email");
             return;
@@ -241,37 +270,15 @@ public class cadastro_funcionario extends AppCompatActivity {
 
 
 
-        if(TextUtils.isEmpty(telefone_funcionario)) {
-            telefone.setError("Insira o numero do seu telefone ");
-            return;
-        }
 
-        if(telefone_funcionario.length() <= 9){
-            telefone.setError("Insira o numero válido");
-            return;
-        }
 
-        if(telefone_funcionario.length() <= 10){
-            telefone.setError("Insira o prefixo");
-            return;
-        }
 
-        if(telefone_funcionario.length() <= 14){
-            telefone.setError("Insira um prefixo válido");
-            return;
-        }
-
-        if(TextUtils.isEmpty(aniversario_funcionario)) {
-            aniversario.setError("Insira uma Data");
-            return;
-        }
 
 
 
 
         Funcionarios = new Funcionario();
         Funcionarios.setNome_funcionario(nome.getText().toString());
-        Funcionarios.setSobrenome_funcionario(sobrenome.getText().toString());
         Funcionarios.setFuncao_funcionario(spinner_funcao_funcionario.getSelectedItem().toString());
         Funcionarios.setTelefone_funcionario(telefone.getText().toString());
         Funcionarios.setAniversario_funcionario(aniversario.getText().toString());

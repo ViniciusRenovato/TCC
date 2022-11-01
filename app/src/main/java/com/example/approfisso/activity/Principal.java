@@ -7,6 +7,7 @@ import com.example.approfisso.R;
 import com.example.approfisso.cadastrado.agendamento_cadastrado;
 import com.example.approfisso.cadastrado.cliente_cadastrado;
 import com.example.approfisso.cadastrado.funcao_cadastrado;
+import com.example.approfisso.cadastrado.funcionario_agendamento_cadastrado;
 import com.example.approfisso.cadastrado.funcionario_cadastrado;
 import com.example.approfisso.cadastrado.servico_cadastrado;
 import com.example.approfisso.ediçao.cadastro_cliente_editar;
@@ -25,6 +26,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -38,6 +40,7 @@ public class Principal extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseFirestore db;
     private TextView mTVEmail;
+    private Button estabelecimento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +49,19 @@ public class Principal extends AppCompatActivity {
 
         mTVEmail = findViewById(R.id.User_Email);
         mFirebaseAuth = FirebaseAuth.getInstance();
-
+        estabelecimento = findViewById(R.id.salao);
 
 
         mTVEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Principal.this, cadastro_cliente_editar.class));
+            }
+        });
+        estabelecimento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Principal.this, funcionario_agendamento_cadastrado.class));
             }
         });
     }

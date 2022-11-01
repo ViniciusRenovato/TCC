@@ -2,6 +2,7 @@ package com.example.approfisso.ediçao;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,6 +58,13 @@ public class cadastro_funcao_editar extends AppCompatActivity {
             public void onClick(View view) {
 
                 nome_funcao = findViewById(R.id.Editar_Nome_Funcao);
+                String nomefuncao = nome_funcao.getText().toString().trim();
+
+
+                if(TextUtils.isEmpty(nomefuncao)) {
+                    nome_funcao.setError("Insira um Nome");
+                    return;
+                }
 
                 updateData();
             }

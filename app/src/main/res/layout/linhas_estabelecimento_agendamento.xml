@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/item_agendamento_dia_estabelecimento"
@@ -26,16 +26,6 @@
         app:layout_constraintTop_toBottomOf="@+id/item_agendamento_dia_estabelecimento" />
 
     <TextView
-        android:id="@+id/item_agendamento_funcionario_estabelecimento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="monospace"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/item_agendamento_hora_estabelecimento" />
-
-    <TextView
         android:id="@+id/item_agendamento_servico_estabelecimento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +33,17 @@
         android:fontFamily="monospace"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/item_agendamento_funcionario_estabelecimento" />
+        app:layout_constraintTop_toBottomOf="@+id/item_agendamento_hora_estabelecimento" />
+
+    <TextView
+        android:id="@+id/item_agendamento_cliente_estabelecimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="monospace"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/item_agendamento_servico_estabelecimento" />
 
     <TextView
         android:id="@+id/textView4"
@@ -69,17 +69,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:fontFamily="monospace"
-        android:text="Funcionario:"
-        android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,30 +77,39 @@
         android:text="Serviço:"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="monospace"
+        android:text="Cliente:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <Button
-        android:id="@+id/button_remover_agendamento_estabelecimento"
+        android:id="@+id/button_faltou_agendamento_estabelecimento"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="monospace"
         android:onClick="botao_Remover_agendamento"
         android:text="Faltou"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_editar_agendamento"
+        android:id="@+id/button_concluir_agendamento"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="32dp"
         android:onClick="botao_editar_agendamento"
         android:text="Concluido"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,23 +118,26 @@
         android:layout_height="wrap_content"
         app:barrierDirection="top"
         tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="98dp" />
+        tools:layout_editor_absoluteY="592dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="156dp" />
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="409dp"
         android:layout_height="1dp"
+        android:layout_marginTop="8dp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="@color/purple_500"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="151dp" />
+        app:layout_constraintTop_toBottomOf="@+id/button_faltou_agendamento_estabelecimento"
+        tools:layout_editor_absoluteX="2dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

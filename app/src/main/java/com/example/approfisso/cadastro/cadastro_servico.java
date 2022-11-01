@@ -106,9 +106,7 @@ public class cadastro_servico extends AppCompatActivity {
                 String funcao_servico = spinner_funcao_servico.getSelectedItem().toString().trim();
 
 
-                double valores = Double.parseDouble(valor_servico);
-                double base_pontos = 5;
-                double resultado = valores/base_pontos;
+
 
 
 //                Integer pontos = Integer.parseInt(valor_servico);
@@ -144,7 +142,9 @@ public class cadastro_servico extends AppCompatActivity {
 
                 }
 
-
+                double valores = Double.parseDouble(valor_servico);
+                double base_pontos = 5;
+                double resultado = valores/base_pontos;
 
                 //registrando no firebase
 

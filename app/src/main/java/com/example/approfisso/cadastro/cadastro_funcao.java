@@ -53,6 +53,20 @@ public class cadastro_funcao extends AppCompatActivity {
         btCadastrarFuncao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                etNome_Funcao = findViewById(R.id.Nome_Funcao_Cadastro);
+                String nomefuncao = etNome_Funcao.getText().toString().trim();
+
+
+                if(TextUtils.isEmpty(nomefuncao)) {
+                    etNome_Funcao.setError("Insira um Nome");
+                    return;
+                }
+
+
+
+
                 Funcoes = new Funcao();
                 Funcoes.setNome_funcao(etNome_Funcao.getText().toString());
                 Funcao.salvaFuncao(Funcoes);

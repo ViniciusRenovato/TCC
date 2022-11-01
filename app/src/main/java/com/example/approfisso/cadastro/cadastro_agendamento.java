@@ -3,6 +3,7 @@ package com.example.approfisso.cadastro;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -287,6 +289,8 @@ List<Servicos> serviços;
         spinner_info_funcao_agendamento_servico.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                spinner_lista_agendamento_servico.clear();
+//                spinner_lista_agendamento_servico.add("--Selecione--");
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                         Servicos serv= new Servicos();
@@ -313,6 +317,9 @@ List<Servicos> serviços;
         spinner_info_agendamento_horario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    spinner_lista_agendamento_horario.clear();
+                    spinner_lista_agendamento_horario.add("--Selecione--");
+
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     Agendamento agendar = new Agendamento();
@@ -336,6 +343,52 @@ List<Servicos> serviços;
 
 
     public void botao_Confirmar (View view){
+
+        String data_agendamento = dia.getText().toString().trim();
+        String horario_agendamento = spinner_agendamento_horario.getSelectedItem().toString().trim();
+        String servico_agendamento = spinner_funcao_agendamento_servico.getSelectedItem().toString().trim();
+        String funcionario_agendamento = spinner_funcao_agendamento_funcionario.getSelectedItem().toString().trim();
+
+
+        if(TextUtils.isEmpty(data_agendamento)) {
+            dia.setError("Insira a data do agendamento.");
+            return;
+        }
+
+        if (horario_agendamento.matches("--Selecione--")){
+
+            TextView errorText = (TextView)spinner_agendamento_horario.getSelectedView();
+            errorText.setError("Insira uma função valida");
+            return;
+
+        }
+
+
+        if (servico_agendamento.matches("--Selecione--")){
+
+            TextView errorText = (TextView)spinner_funcao_agendamento_servico.getSelectedView();
+            errorText.setError("Insira uma função valida");
+            return;
+
+        }
+
+        if (funcionario_agendamento.matches("--Selecione--")){
+
+            TextView errorText = (TextView)spinner_funcao_agendamento_funcionario.getSelectedView();
+            errorText.setError("Insira uma função valida");
+            return;
+
+        }
+
+
+
+
+
+
+
+
+
+
         Agendamentos = new Agendamento();
         Agendamentos.setNome_cliente(nome_cliente);
         Agendamentos.setLogin_cliente(login_cliente);

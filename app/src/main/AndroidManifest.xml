@@ -24,7 +24,9 @@
         <activity android:name=".cadastrado.cliente_cadastrado" />
         <activity android:name=".cadastrado.servico_cadastrado" />
         <activity android:name=".cadastrado.funcionario_cadastrado" />
+        <activity android:name=".cadastrado.funcionario_agendamento_cadastrado" />
         <activity android:name=".cadastrado.agendamento_cadastrado" />
+        <activity android:name=".cadastrado.agendamento_cadastrado_estabelecimento" />
         <activity android:name=".cadastrado.funcao_cadastrado" />
         <activity android:name=".cadastro.cadastro_servico" />
         <activity android:name=".cadastro.cadastro_agendamento" />
