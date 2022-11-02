@@ -264,7 +264,7 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
 
 
         agendamento.put("nome_cliente",nome_cliente);
-        agendamento.put("usuario",login_cliente);
+        agendamento.put("login_cliente",login_cliente);
         agendamento.put("hora_agendamento",spinner_agendamento_horario.getSelectedItem().toString());
         agendamento.put("dia_agendamento",dia_agendamento.getText().toString());
         agendamento.put("servicos",spinner_funcao_agendamento_servico.getSelectedItem().toString());

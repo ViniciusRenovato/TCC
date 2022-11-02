@@ -142,7 +142,7 @@ public class Agendamento implements Serializable {
             databaseReference.child("Agendamento").child(id).child("funcionario").setValue(a.getFuncionario());
             databaseReference.child("Agendamento").child(id).child("id_funcionario").setValue(a.getId_funcionario());
             databaseReference.child("Agendamento").child(id).child("servicos").setValue(a.getServicos());
-            databaseReference.child("Agendamento").child(id).child("usuario").setValue(a.getLogin_cliente());
+            databaseReference.child("Agendamento").child(id).child("login_cliente").setValue(a.getLogin_cliente());
             databaseReference.child("Agendamento").child(id).child("ponto_agendamento").setValue(a.getPonto_agendamento());
 
 

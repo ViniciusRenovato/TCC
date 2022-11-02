@@ -77,7 +77,7 @@ public class agendamento_cadastrado extends AppCompatActivity {
 
 
 
-                    if (login_cliente.equals(postSnapshot.child("usuario").getValue(String.class))){
+                    if (login_cliente.equals(postSnapshot.child("login_cliente").getValue(String.class))){
 
                     Agendamento agendamento = postSnapshot.getValue(Agendamento.class);
                     Agendamento.add(agendamento);

@@ -67,8 +67,10 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+                String current = agendamento.getLogin_cliente();
+
                 db.collection("usuários")
-                        .whereEqualTo("id",agendamento.getLogin_cliente()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 
 
                             @Override
@@ -76,21 +78,23 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                                 if (task.isSuccessful()){
                                     for(DocumentSnapshot document : task.getResult()){
 
+//                                        pontuacao.setText((CharSequence) document.get("nome"));
+//                                        Integer pontuacao = (Integer) document.get("pontos");
+                                        Long ponto = (Long) document.get("pontos");
 
+                                        Double pontuacao = ponto.doubleValue();
 
-                                        double ponto = (double) document.get("pontos");
-
-                                        ponto = ponto + agendamento.getPonto_agendamento();
+                                        Double resultado = pontuacao + agendamento.getPonto_agendamento();
 
 
                                         Map<String,Object> map = new HashMap<>();
-                                        map.put("pontos",ponto);
+                                        map.put("pontos",resultado);
 
                                         db.collection("usuários")
                                                 .document(agendamento.getLogin_cliente()).set(map, SetOptions.merge());
 
-                                        FirebaseDatabase.getInstance().getReference().child("Agendamento").child(agendamento.getId_agendamento()).removeValue();
 
+                                        FirebaseDatabase.getInstance().getReference().child("Agendamento").child(agendamento.getId_agendamento()).removeValue();
 
 
 
@@ -101,19 +105,19 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
 
 
 
-
-                Intent it = new Intent(view.getContext(), cadastro_agendamento_editar.class);
-
-                it.putExtra("idagendamento",agendamento.getId_agendamento());
-                it.putExtra("diaagendamento",agendamento.getDia_agendamento());
-                it.putExtra("horaagendamento",agendamento.getHora_agendamento());
-                it.putExtra("idfuncionario",agendamento.getId_funcionario());
-                it.putExtra("nomefuncionario",agendamento.getFuncionario());
-                it.putExtra("logincliente",agendamento.getLogin_cliente());
-                it.putExtra("nomecliente",agendamento.getNome_cliente());
-                it.putExtra("nomeservico",agendamento.getServicos());
-
-                view.getContext().startActivity(it);
+//
+//                Intent it = new Intent(view.getContext(), cadastro_agendamento_editar.class);
+//
+//                it.putExtra("idagendamento",agendamento.getId_agendamento());
+//                it.putExtra("diaagendamento",agendamento.getDia_agendamento());
+//                it.putExtra("horaagendamento",agendamento.getHora_agendamento());
+//                it.putExtra("idfuncionario",agendamento.getId_funcionario());
+//                it.putExtra("nomefuncionario",agendamento.getFuncionario());
+//                it.putExtra("logincliente",agendamento.getLogin_cliente());
+//                it.putExtra("nomecliente",agendamento.getNome_cliente());
+//                it.putExtra("nomeservico",agendamento.getServicos());
+//
+//                view.getContext().startActivity(it);
 
             }
         });

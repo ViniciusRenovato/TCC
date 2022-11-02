@@ -296,8 +296,19 @@ List<Servicos> serviços;
                         Servicos serv= new Servicos();
                     serv.setNome_servico(item.child("nome_servico").getValue(String.class));
                     serv.setFuncao_servico(item.child("funcao_servico").getValue(String.class));
-                    spinner_lista_agendamento_servico.add(serv.getNome_servico());
+                    serv.setPontos_servico(item.child("pontos_servico").getValue(Integer.class));
                     serviços.add(serv);
+                    spinner_lista_agendamento_servico.add(serv.getNome_servico());
+
+
+
+//                    Funcionario f = new Funcionario();
+//                    f.setNome_funcionario(nome_do_funcionario);
+//                    f.setId_funcionario(id_do_funcionario);
+//                    func.add(f);
+//                    spinner_lista_agendamento_funcionario.add(func.size()-1,f.getNome_funcionario());
+
+
 
 //                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
                 }
@@ -396,6 +407,7 @@ List<Servicos> serviços;
 
         Agendamentos.setHora_agendamento(spinner_agendamento_horario.getSelectedItem().toString());
 
+        Agendamentos.setPonto_agendamento(serviços.get(spinner_funcao_agendamento_servico.getSelectedItemPosition()).getPontos_servico());
 
         Agendamentos.setDia_agendamento(dia.getText().toString());
         Agendamentos.setFuncionario(spinner_funcao_agendamento_funcionario.getSelectedItem().toString());
