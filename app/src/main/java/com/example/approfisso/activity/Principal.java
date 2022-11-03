@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 
 
 public class Principal extends AppCompatActivity {
@@ -40,6 +41,7 @@ public class Principal extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseFirestore db;
     private TextView mTVEmail;
+    private TextView pnt_cliente;
     private Button estabelecimento;
 
     @Override
@@ -48,6 +50,7 @@ public class Principal extends AppCompatActivity {
         setContentView(R.layout.principal);
 
         mTVEmail = findViewById(R.id.User_Email);
+        pnt_cliente = findViewById(R.id.pontos_cliente);
         mFirebaseAuth = FirebaseAuth.getInstance();
         estabelecimento = findViewById(R.id.salao);
 
@@ -80,6 +83,8 @@ public class Principal extends AppCompatActivity {
                         if (task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult()){
                                 mTVEmail.setText((CharSequence) document.get("nome")) ;
+                                pnt_cliente.setText((CharSequence) document.get("pontos").toString());
+
                             }
                         }
                     }

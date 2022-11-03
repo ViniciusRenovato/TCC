@@ -80,9 +80,10 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
 
 //                                        pontuacao.setText((CharSequence) document.get("nome"));
 //                                        Integer pontuacao = (Integer) document.get("pontos");
-                                        Long ponto = (Long) document.get("pontos");
+                                        Double ponto = Double.parseDouble(document.get("pontos").toString()) ;
 
-                                        Double pontuacao = ponto.doubleValue();
+                                        Double pontuacao = Double.parseDouble(ponto.toString()) ;
+//                                        ponto.doubleValue();
 
                                         Double resultado = pontuacao + agendamento.getPonto_agendamento();
 

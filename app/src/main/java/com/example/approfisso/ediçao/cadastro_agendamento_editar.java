@@ -34,9 +34,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -97,12 +99,29 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
 
+
+    Calendar meucalendario;
+    SimpleDateFormat formatodata;
+    SimpleDateFormat formatohora;
+    String Datahoje;
+    String Horahoje;
+
+
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_agendamento_popup);
 
-          agendamento_editar_id_agendamento = getIntent().getStringExtra("idagendamento");
+
+        meucalendario = Calendar.getInstance();
+        formatodata = new SimpleDateFormat("dd/MM/yyyy");
+        formatohora = new SimpleDateFormat("HH:mm");
+        Datahoje=formatodata.format(meucalendario.getTime());
+        Horahoje=formatohora.format(meucalendario.getTime());
+
+
+
+        agendamento_editar_id_agendamento = getIntent().getStringExtra("idagendamento");
           agendamento_editar_dia_agendamento = getIntent().getStringExtra("diaagendamento");
           agendamento_editar_hora_agendamento = getIntent().getStringExtra("horaagendamento");
           agendamento_editar_id_funcionario = getIntent().getStringExtra("idfuncionario");
@@ -215,6 +234,31 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
                     return;
                 }
 
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Date strDate = null;
+                try {
+                    strDate = sdf.parse(Datahoje);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Date data_escolhida = null;
+                try {
+                    data_escolhida = sdf.parse(data_agendamento);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if (data_escolhida.before(strDate)){
+
+                    dia_agendamento.setError("insira uma data após o dia atual");
+                    return;
+                }
+
+
+
+
+
+
+
                 if (horario_agendamento.matches("--Selecione--")){
 
                     TextView errorText = (TextView)spinner_agendamento_horario.getSelectedView();
@@ -223,6 +267,29 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
 
                 }
 
+
+                SimpleDateFormat sdf_hour = new SimpleDateFormat("HH:mm");
+                Date strHour = null;
+                try {
+                    strHour = sdf_hour.parse(Horahoje);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Date horario_escolhido = null;
+                try {
+                    horario_escolhido = sdf_hour.parse(horario_agendamento);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if (data_escolhida.equals(strDate)) {
+
+                    if (horario_escolhido.before(strHour)) {
+
+                        TextView errorText = (TextView) spinner_agendamento_horario.getSelectedView();
+                        errorText.setError("Insira um horário após o atual");
+                        return;
+                    }
+                }
 
                 if (servico_agendamento.matches("--Selecione--")){
 
