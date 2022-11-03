@@ -161,9 +161,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="5dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/Button_Deslogar" />
+        app:layout_constraintTop_toBottomOf="@+id/User_Email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
