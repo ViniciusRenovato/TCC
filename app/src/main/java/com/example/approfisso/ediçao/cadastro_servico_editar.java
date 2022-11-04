@@ -38,13 +38,13 @@ public class cadastro_servico_editar extends AppCompatActivity {
     ArrayList<String> spinner_lista_servico;
     ArrayAdapter<String> adapter;
 
-
     private String servico_editar_id;
-    private String servico_editar_nome;
     private String servico_editar_duracao;
     private String servico_editar_valor;
     private String servico_editar_funcao;
+    private String servico_editar_nome;
     private Integer pontos_servico;
+
     private double resultado;
 
     private String funcaoID;
@@ -53,7 +53,6 @@ public class cadastro_servico_editar extends AppCompatActivity {
     private EditText valor_servico;
     private EditText funcao_servico;
 
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
 
@@ -61,7 +60,6 @@ public class cadastro_servico_editar extends AppCompatActivity {
     DatabaseReference spinner_info_agendamento_horario;
     ArrayList<String> spinner_lista_agendamento_horario;
     ArrayAdapter<String> adapter_agendamento_horario;
-
 
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
@@ -74,8 +72,6 @@ public class cadastro_servico_editar extends AppCompatActivity {
         servico_editar_valor = getIntent().getStringExtra("servicovalor");
         servico_editar_funcao = getIntent().getStringExtra("servicofuncao");
 
-
-
         spinner_editar_funcao_servico = findViewById(R.id.Spinner_Editar_Funcao_Servico);
         spinner_info_funcao_servico = FirebaseDatabase.getInstance().getReference("Funcao");
         spinner_lista_servico = new ArrayList<>();
@@ -83,13 +79,10 @@ public class cadastro_servico_editar extends AppCompatActivity {
         spinner_editar_funcao_servico.setAdapter(adapter);
         Showdata();
 
-
         nome_servico=findViewById(R.id.Editar_Nome_Servico);
         valor_servico=findViewById(R.id.Editar_Valor_Servico);
 
-
         nome_servico.setText(servico_editar_nome);
-
         valor_servico.setText(servico_editar_valor);
 
         spinner_agendamento_horario = findViewById(R.id.Editar_Duracao_Servico);
@@ -98,8 +91,6 @@ public class cadastro_servico_editar extends AppCompatActivity {
         adapter_agendamento_horario = new ArrayAdapter<String>(cadastro_servico_editar.this, android.R.layout.simple_spinner_dropdown_item, spinner_lista_agendamento_horario);
         spinner_agendamento_horario.setAdapter(adapter_agendamento_horario);
         Showdata_Horario();
-
-
 
         Button funcao_editar = findViewById(R.id.botao_Confirmar_Editar_Funcionario);
 
@@ -118,8 +109,8 @@ public class cadastro_servico_editar extends AppCompatActivity {
                 String funcao_servico = spinner_editar_funcao_servico.getSelectedItem().toString().trim();
 
                 double valores = Double.parseDouble(valor_servico_editar);
-                double base_pontos = 5;
-                resultado = valores/base_pontos;
+//                double base_pontos = 5;
+                resultado = valores/5;
 
 //                spinner_editar_funcao_servico = findViewById(R.id.Spinner_Editar_Funcao_Servico);
 

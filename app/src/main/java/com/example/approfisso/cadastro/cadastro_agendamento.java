@@ -2,6 +2,7 @@ package com.example.approfisso.cadastro;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,8 +13,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
@@ -36,9 +39,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -56,7 +62,7 @@ public class cadastro_agendamento extends AppCompatActivity {
     DatabaseReference spinner_info_funcao_agendamento_servico;
     ArrayList<String> spinner_lista_agendamento_servico;
     ArrayAdapter<String> adapter_agendamento_servico;
-
+    DatabaseReference spinner_info_agendados;
     Spinner spinner_agendamento_horario;
     DatabaseReference spinner_info_agendamento_horario;
     ArrayList<String> spinner_lista_agendamento_horario;
@@ -84,6 +90,7 @@ public class cadastro_agendamento extends AppCompatActivity {
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel();
+
         }
     };
 
@@ -110,7 +117,7 @@ public class cadastro_agendamento extends AppCompatActivity {
 
 
 
-
+        spinner_info_agendados= FirebaseDatabase.getInstance().getReference("Agendamento");
 
         spinner_funcao_agendamento_funcionario = findViewById(R.id.spinner_funcao_agendamento_funcionario);
         spinner_info_funcao_agendamento_funcionario = FirebaseDatabase.getInstance().getReference("Funcionario");
@@ -131,7 +138,7 @@ public class cadastro_agendamento extends AppCompatActivity {
         spinner_lista_agendamento_horario = new ArrayList<>();
         adapter_agendamento_horario = new ArrayAdapter<String>(cadastro_agendamento.this, android.R.layout.simple_spinner_dropdown_item, spinner_lista_agendamento_horario);
         spinner_agendamento_horario.setAdapter(adapter_agendamento_horario);
-        Showdata_Horario();
+
 
 //         it.putExtra("logincliente",agendamento.getLogin_cliente());
 //          e receber via
@@ -217,7 +224,7 @@ public class cadastro_agendamento extends AppCompatActivity {
         spinner_agendamento_horario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Showdata_Horario();
+//                Showdata_Horario();
             }
 
             @Override
@@ -248,12 +255,51 @@ public class cadastro_agendamento extends AppCompatActivity {
 
     }
 
+
     private void updateLabel() {
 
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt","BR"));
 
         dia.setText(sdf.format(myCalendar.getTime()));
+
+
+        List<String> horarios= new LinkedList();
+
+    //    String texto ="07:00";
+//        int hora=Integer.parseInt(texto.substring(0,1));
+//        int min=Integer.parseInt(texto.substring(3,4));
+//
+//
+        LocalTime primeiro = LocalTime.of(hora, min); // 12:00
+        LocalTime segundo  = LocalTime.of(0, 30); //  5:45
+//
+//        LocalTime total = primeiro.plusHours(segundo.getHour())
+//                .plusMinutes(segundo.getMinute());
+//
+
+        spinner_info_agendados.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dados:
+                snapshot.getChildren() ) {
+                    horarios.add(dados.child("hora_agendamento").getValue().toString());
+                    //calculo
+                }
+                Showdata_Horario(horarios);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        Showdata_Horario(horarios);
+
 
     }
 
@@ -346,7 +392,7 @@ List<Servicos> serviços;
 
     }
     List<Agendamento> agendamento;
-    private void Showdata_Horario(){
+    private void Showdata_Horario(List ocupados){
         agendamento= new ArrayList<>();
         spinner_info_agendamento_horario.addValueEventListener(new ValueEventListener() {
             @Override
@@ -359,8 +405,9 @@ List<Servicos> serviços;
                     Agendamento agendar = new Agendamento();
 
                     agendar.setHora_agendamento(item.getValue(String.class));
-
-                    spinner_lista_agendamento_horario.add(agendar.getHora_agendamento());
+                    String hora_agendamento = agendar.getHora_agendamento();
+                    if(!ocupados.contains(hora_agendamento))
+                            spinner_lista_agendamento_horario.add(hora_agendamento);
                     agendamento.add(agendar);
 
                 }
