@@ -222,9 +222,11 @@ public class cadastro_agendamento extends AppCompatActivity {
         });
 
         spinner_agendamento_horario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            List<String> horarios= new LinkedList();
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                Showdata_Horario();
+//                Showdata_Horario(horarios);
             }
 
             @Override
@@ -266,26 +268,82 @@ public class cadastro_agendamento extends AppCompatActivity {
 
         List<String> horarios= new LinkedList();
 
-    //    String texto ="07:00";
+
+
+
+
+
+        spinner_info_agendados.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+
+                for (DataSnapshot dados : snapshot.getChildren() ) {
+
+                    if (dia.getText().toString().trim().equals(dados.child("dia_agendamento").getValue(String.class))){
+
+                    horarios.add(dados.child("hora_agendamento").getValue(String.class));
+                    //calculo
+
+
+                    String inicio_serv = (dados.child("hora_agendamento").getValue(String.class));
+
+                    String duracao_serv = (dados.child("duracao_agendamento").getValue(String.class));
+
+                    int hora_inicio = Integer.parseInt(inicio_serv.substring(0,2));
+                    int min_inicio = Integer.parseInt(inicio_serv.substring(3,5));
+
+
+                    int hora_duracao = Integer.parseInt(duracao_serv.substring(0,2));
+                    int min_duracao = Integer.parseInt(duracao_serv.substring(3,5));
+
+                    int base_hora_duracao = hora_duracao*60;
+                    int base_hora_total = base_hora_duracao + min_duracao;
+
+                    int base_calculo = base_hora_total / 30;
+
+
+//                    LocalTime inicio = LocalTime.of(hora_inicio,min_inicio);
+//                    LocalTime duracaoo = LocalTime.of(hora_duracao,min_duracao);
+                    LocalTime inicio = LocalTime.of(hora_inicio,min_inicio);
+                    String resposta;
+
+//                    if (hora_duracao != null)
+
+                    for (int i=0;i < base_calculo;i=i+1){
+
+                        int min_duracao_calculado = 30;
+
+
+                        LocalTime duracaoo = LocalTime.of(0,min_duracao_calculado);
+                        LocalTime total = inicio.plusHours(duracaoo.getHour()).plusMinutes(duracaoo.getMinute());
+                         resposta = total.toString();
+
+                         inicio = total;
+
+                        horarios.add(resposta);
+                    }
+                    }
+
+
+
+
+
+                    //    String texto ="07:00";
 //        int hora=Integer.parseInt(texto.substring(0,1));
 //        int min=Integer.parseInt(texto.substring(3,4));
 //
 //
-        LocalTime primeiro = LocalTime.of(hora, min); // 12:00
-        LocalTime segundo  = LocalTime.of(0, 30); //  5:45
+//        LocalTime primeiro = LocalTime.of(hora, min); // 12:00
+//        LocalTime segundo  = LocalTime.of(0, 30); //  5:45
 //
 //        LocalTime total = primeiro.plusHours(segundo.getHour())
 //                .plusMinutes(segundo.getMinute());
 //
 
-        spinner_info_agendados.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot dados:
-                snapshot.getChildren() ) {
-                    horarios.add(dados.child("hora_agendamento").getValue().toString());
-                    //calculo
                 }
                 Showdata_Horario(horarios);
             }
@@ -366,20 +424,13 @@ List<Servicos> serviços;
                     serv.setNome_servico(item.child("nome_servico").getValue(String.class));
                     serv.setFuncao_servico(item.child("funcao_servico").getValue(String.class));
                     serv.setPontos_servico(item.child("pontos_servico").getValue(Integer.class));
+                    serv.setDuracao_servico(item.child("duracao_servico").getValue(String.class));
                     serviços.add(serv);
-                    spinner_lista_agendamento_servico.add(serv.getNome_servico());
+                    spinner_lista_agendamento_servico.add(
+//                            serviços.size()-1,
+                            serv.getNome_servico());
 
 
-
-//                    Funcionario f = new Funcionario();
-//                    f.setNome_funcionario(nome_do_funcionario);
-//                    f.setId_funcionario(id_do_funcionario);
-//                    func.add(f);
-//                    spinner_lista_agendamento_funcionario.add(func.size()-1,f.getNome_funcionario());
-
-
-
-//                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
                 }
                 adapter_agendamento_servico.notifyDataSetChanged();
 
@@ -499,16 +550,14 @@ List<Servicos> serviços;
         Agendamentos = new Agendamento();
         Agendamentos.setNome_cliente(nome_cliente);
         Agendamentos.setLogin_cliente(login_cliente);
-
-
         Agendamentos.setHora_agendamento(spinner_agendamento_horario.getSelectedItem().toString());
-
         Agendamentos.setPonto_agendamento(serviços.get(spinner_funcao_agendamento_servico.getSelectedItemPosition()).getPontos_servico());
-
         Agendamentos.setDia_agendamento(dia.getText().toString());
         Agendamentos.setFuncionario(spinner_funcao_agendamento_funcionario.getSelectedItem().toString());
         Agendamentos.setServicos(spinner_funcao_agendamento_servico.getSelectedItem().toString());
         Agendamentos.setId_funcionario(func.get(spinner_funcao_agendamento_funcionario.getSelectedItemPosition()).getId_funcionario());
+
+        Agendamentos.setDuracao_agendamento(serviços.get(spinner_funcao_agendamento_servico.getSelectedItemPosition()).getDuracao_servico());
         Agendamento.salvaAgendamento(Agendamentos);
 
       onBackPressed();

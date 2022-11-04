@@ -19,6 +19,7 @@ public class Agendamento implements Serializable {
     private String login_cliente;
     private Integer ponto_agendamento;
     private Cliente cliente;
+    private String duracao_agendamento;
 
     private static void inicio(){
         firebaseDatabase= FirebaseDatabase.getInstance();
@@ -56,6 +57,14 @@ public class Agendamento implements Serializable {
 
     public void setHora_agendamento(String hora_agendamento) {
         this.hora_agendamento = hora_agendamento;
+    }
+
+    public String getDuracao_agendamento() {
+        return duracao_agendamento;
+    }
+
+    public void setDuracao_agendamento(String duracao_agendamento) {
+        this.duracao_agendamento = duracao_agendamento;
     }
 
     public String getDia_agendamento() {
@@ -143,8 +152,8 @@ public class Agendamento implements Serializable {
             databaseReference.child("Agendamento").child(id).child("id_funcionario").setValue(a.getId_funcionario());
             databaseReference.child("Agendamento").child(id).child("servicos").setValue(a.getServicos());
             databaseReference.child("Agendamento").child(id).child("login_cliente").setValue(a.getLogin_cliente());
+            databaseReference.child("Agendamento").child(id).child("duracao_agendamento").setValue(a.getDuracao_agendamento());
             databaseReference.child("Agendamento").child(id).child("ponto_agendamento").setValue(a.getPonto_agendamento());
-
 
     }
     public static void excluirAgendamento(Agendamento a){
