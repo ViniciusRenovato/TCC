@@ -4,22 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="#F4E3AE"
+    android:foregroundGravity="center"
     tools:context=".MainActivity">
 
-<!--    <Button-->
-<!--        android:id="@+id/button_cliente"-->
-<!--        android:layout_width="152dp"-->
-<!--        android:layout_height="47dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:fontFamily="monospace"-->
-<!--        android:onClick="botao_cadastro_cliente"-->
-<!--        android:text="Cliente"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/button_cliente"-->
+    <!--        android:layout_width="152dp"-->
+    <!--        android:layout_height="47dp"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginEnd="8dp"-->
+    <!--        android:fontFamily="monospace"-->
+    <!--        android:onClick="botao_cadastro_cliente"-->
+    <!--        android:text="Cliente"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
 
     <Button
         android:id="@+id/button_servico"
@@ -136,11 +138,12 @@
 
     <Button
         android:id="@+id/salao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:text="Salao"
+        app:icon="@android:drawable/ic_menu_agenda"
+        app:iconGravity="textTop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

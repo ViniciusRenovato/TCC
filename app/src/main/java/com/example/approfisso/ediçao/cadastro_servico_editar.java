@@ -28,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class cadastro_servico_editar extends AppCompatActivity {
 
@@ -108,7 +110,17 @@ public class cadastro_servico_editar extends AppCompatActivity {
                 String horario_servico = spinner_agendamento_horario.getSelectedItem().toString().trim();
                 String funcao_servico = spinner_editar_funcao_servico.getSelectedItem().toString().trim();
 
-                double valores = Double.parseDouble(valor_servico_editar);
+                String valor_servico_tratado;
+
+                Pattern intsOnly =Pattern.compile("\\d+");
+                Matcher makeMatch = intsOnly.matcher(valor_servico_editar);
+                makeMatch.find();
+
+                valor_servico_tratado = makeMatch.group();
+                Integer valor_servico_tratado_calculo = Integer.parseInt(valor_servico_tratado);
+
+
+                double valores = Double.parseDouble(valor_servico_tratado_calculo.toString());
 //                double base_pontos = 5;
                 resultado = valores/5;
 
@@ -166,7 +178,7 @@ public class cadastro_servico_editar extends AppCompatActivity {
         servico.put("duracao_servico",spinner_agendamento_horario.getSelectedItem().toString());
         servico.put("valor_servico",valor_servico.getText().toString());
         servico.put("funcao_servico",spinner_editar_funcao_servico.getSelectedItem().toString());
-        servico.put("pontos_servico",resultado);
+        servico.put("pontos_servico",(int) resultado);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Servicos");
         databaseReference.child(servico_editar_id).updateChildren(servico).addOnCompleteListener(new OnCompleteListener() {

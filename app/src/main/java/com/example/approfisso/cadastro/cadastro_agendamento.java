@@ -404,13 +404,7 @@ List<Funcionario> func;
                                 func.add(f);
                                 spinner_lista_agendamento_funcionario.add(func.size()-1,f.getNome_funcionario());
 
-
                             }
-
-
-
-
-
 //                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
                     }
                     adapter_agendamento_funcionario.notifyDataSetChanged();
@@ -553,9 +547,6 @@ List<Servicos> serviços;
             return;
 
         }
-
-
-
 
 
 
