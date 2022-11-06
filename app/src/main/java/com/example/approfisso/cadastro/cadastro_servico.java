@@ -26,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class cadastro_servico extends AppCompatActivity {
 
@@ -106,7 +108,17 @@ public class cadastro_servico extends AppCompatActivity {
                 return;
             }
 
-            double valores = Double.parseDouble(valor_servico);
+            String valor_servico_tratado;
+
+            Pattern intsOnly =Pattern.compile("\\d+");
+            Matcher makeMatch = intsOnly.matcher(valor_servico);
+            makeMatch.find();
+
+            valor_servico_tratado = makeMatch.group();
+            Integer valor_servico_tratado_calculo = Integer.parseInt(valor_servico_tratado);
+
+
+            double valores = Double.parseDouble(valor_servico_tratado_calculo.toString());
 //                double base_pontos = 5;
             double resultado = valores/5;
 

@@ -289,41 +289,51 @@ public class cadastro_agendamento extends AppCompatActivity {
 
 
                     String inicio_serv = (dados.child("hora_agendamento").getValue(String.class));
-
                     String duracao_serv = (dados.child("duracao_agendamento").getValue(String.class));
 
-                    int hora_inicio = Integer.parseInt(inicio_serv.substring(0,2));
-                    int min_inicio = Integer.parseInt(inicio_serv.substring(3,5));
+                    if (duracao_serv != null){
+
+                        int hora_inicio = Integer.parseInt(inicio_serv.substring(0,2));
+                        int min_inicio = Integer.parseInt(inicio_serv.substring(3,5));
 
 
-                    int hora_duracao = Integer.parseInt(duracao_serv.substring(0,2));
-                    int min_duracao = Integer.parseInt(duracao_serv.substring(3,5));
 
-                    int base_hora_duracao = hora_duracao*60;
-                    int base_hora_total = base_hora_duracao + min_duracao;
 
-                    int base_calculo = base_hora_total / 30;
+                        int hora_duracao = Integer.parseInt(duracao_serv.substring(0,2));
+                        int min_duracao = Integer.parseInt(duracao_serv.substring(3,5));
+
+                        int base_hora_duracao = hora_duracao*60;
+                        int base_hora_total = base_hora_duracao + min_duracao;
+
+                        int base_calculo = base_hora_total / 30;
 
 
 //                    LocalTime inicio = LocalTime.of(hora_inicio,min_inicio);
 //                    LocalTime duracaoo = LocalTime.of(hora_duracao,min_duracao);
-                    LocalTime inicio = LocalTime.of(hora_inicio,min_inicio);
-                    String resposta;
+                        LocalTime inicio = LocalTime.of(hora_inicio,min_inicio);
+                        String resposta;
 
 //                    if (hora_duracao != null)
 
-                    for (int i=0;i < base_calculo;i=i+1){
+                        for (int i=1;i < base_calculo;i=i+1){
 
-                        int min_duracao_calculado = 30;
+                            int min_duracao_calculado = 30;
 
 
-                        LocalTime duracaoo = LocalTime.of(0,min_duracao_calculado);
-                        LocalTime total = inicio.plusHours(duracaoo.getHour()).plusMinutes(duracaoo.getMinute());
-                         resposta = total.toString();
+                            LocalTime duracaoo = LocalTime.of(0,min_duracao_calculado);
+                            LocalTime total = inicio.plusHours(duracaoo.getHour()).plusMinutes(duracaoo.getMinute());
+                            resposta = total.toString();
 
-                         inicio = total;
+                            inicio = total;
 
-                        horarios.add(resposta);
+                            horarios.add(resposta);
+
+                    }
+
+
+
+
+
                     }
                     }
 
