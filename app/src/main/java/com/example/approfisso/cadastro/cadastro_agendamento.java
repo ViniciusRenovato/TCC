@@ -448,7 +448,7 @@ List<Servicos> serviços;
 
                 }
                 adapter_agendamento_servico.notifyDataSetChanged();
-                updateLabel();
+
 
             }
             @Override
