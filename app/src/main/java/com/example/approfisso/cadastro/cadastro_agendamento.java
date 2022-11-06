@@ -282,6 +282,10 @@ public class cadastro_agendamento extends AppCompatActivity {
 
                 for (DataSnapshot dados : snapshot.getChildren() ) {
 
+
+                    if (spinner_funcao_agendamento_funcionario.getSelectedItem().toString().trim().equals(dados.child("funcionario").getValue(String.class))){
+
+
                     if (dia.getText().toString().trim().equals(dados.child("dia_agendamento").getValue(String.class))){
 
                     horarios.add(dados.child("hora_agendamento").getValue(String.class));
@@ -336,7 +340,7 @@ public class cadastro_agendamento extends AppCompatActivity {
 
                     }
                     }
-
+                    }
 
 
 
@@ -410,6 +414,7 @@ List<Funcionario> func;
 //                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
                     }
                     adapter_agendamento_funcionario.notifyDataSetChanged();
+                    updateLabel();
                 }
 
                 @Override
