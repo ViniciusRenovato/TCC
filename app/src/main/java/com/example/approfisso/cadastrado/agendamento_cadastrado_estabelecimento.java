@@ -1,8 +1,11 @@
 package com.example.approfisso.cadastrado;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +25,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class agendamento_cadastrado_estabelecimento extends AppCompatActivity {
@@ -35,6 +42,20 @@ public class agendamento_cadastrado_estabelecimento extends AppCompatActivity {
     private String ID_funcionario;
 
 
+    String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+    private EditText data_funcionario;
+
+    Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+
+        }
+    };
 
 
 
@@ -42,6 +63,17 @@ public class agendamento_cadastrado_estabelecimento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agendamento_cadastrado_estabelecimento);
+
+        data_funcionario = findViewById(R.id.data_agendamento_funcionario);
+        data_funcionario.setText(currentDate);
+
+        data_funcionario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(agendamento_cadastrado_estabelecimento.this, date, myCalendar.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
 //        login_cliente = getIntent().getStringExtra("logincliente");
 
@@ -78,7 +110,7 @@ public class agendamento_cadastrado_estabelecimento extends AppCompatActivity {
 
 
 
-                    if (ID_funcionario.equals(postSnapshot.child("id_funcionario").getValue(String.class))){
+                    if (ID_funcionario.equals(postSnapshot.child("id_funcionario").getValue(String.class))&&(data_funcionario.getText().toString().trim().equals((postSnapshot.child("dia_agendamento").getValue(String.class))))){
 
                     Agendamento agendamento = postSnapshot.getValue(Agendamento.class);
                     Agendamento.add(agendamento);
@@ -105,5 +137,15 @@ public class agendamento_cadastrado_estabelecimento extends AppCompatActivity {
     public void botao_retornar_busca (View view){
         finish();
 
+    }
+
+    private void updateLabel() {
+
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt","BR"));
+
+        data_funcionario.setText(sdf.format(myCalendar.getTime()));
+
+        listar_agendamento();
     }
 }
