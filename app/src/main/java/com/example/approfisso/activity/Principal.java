@@ -43,11 +43,14 @@ public class Principal extends AppCompatActivity {
     private TextView mTVEmail;
     private TextView pnt_cliente;
     private Button estabelecimento;
+    public ProgressBar progressBarprincipal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.principal);
+        progressBarprincipal = findViewById(R.id.progressbarPrincipal);
+        progressBarprincipal.setVisibility(View.INVISIBLE);
 
         mTVEmail = findViewById(R.id.User_Email);
         pnt_cliente = findViewById(R.id.pontos_cliente);
@@ -93,26 +96,36 @@ public class Principal extends AppCompatActivity {
 
     public void botao_cadastro_cliente(View view){
         Intent it = new Intent(this, cliente_cadastrado.class);
+        progressBarprincipal.setVisibility(View.GONE);
+        progressBarprincipal.setVisibility(View.VISIBLE);
         startActivity(it);
     }
 
     public void botao_cadastro_servico(View view){
         Intent it = new Intent(this, servico_cadastrado.class);
+        progressBarprincipal.setVisibility(View.GONE);
+        progressBarprincipal.setVisibility(View.VISIBLE);
         startActivity(it);
     }
 
     public void botao_cadastro_funcionario(View view){
         Intent it = new Intent(this, funcionario_cadastrado.class);
+        progressBarprincipal.setVisibility(View.GONE);
+        progressBarprincipal.setVisibility(View.VISIBLE);
         startActivity(it);
     }
 
     public void botao_cadastro_funcao(View view){
         Intent it = new Intent(this, funcao_cadastrado.class);
+        progressBarprincipal.setVisibility(View.GONE);
+        progressBarprincipal.setVisibility(View.VISIBLE);
         startActivity(it);
     }
 
     public void botao_cadastro_agendamento(View view){
         Intent it = new Intent(this, agendamento_cadastrado.class);
+        progressBarprincipal.setVisibility(View.GONE);
+        progressBarprincipal.setVisibility(View.VISIBLE);
         startActivity(it);
     }
 

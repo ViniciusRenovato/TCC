@@ -17,6 +17,7 @@ import com.example.approfisso.R;
 import com.example.approfisso.ediçao.cadastro_agendamento_editar;
 import com.example.approfisso.entidades.Agendamento;
 import com.google.firebase.database.FirebaseDatabase;
+import com.example.approfisso.cadastrado.agendamento_cadastrado;
 
 import java.util.List;
 
@@ -46,6 +47,8 @@ public class agendamentoAdapter extends RecyclerView.Adapter<agendamentoAdapter.
             public void onClick(View view) {
 
                 Intent it = new Intent(view.getContext(), cadastro_agendamento_editar.class);
+//                progressBarAgendamento = findViewById(R.id.progressbarPrincipal);
+//                progressBarAgendamento.setVisibility(View.INVISIBLE);
 
                 it.putExtra("idagendamento",agendamento.getId_agendamento());
                 it.putExtra("diaagendamento",agendamento.getDia_agendamento());

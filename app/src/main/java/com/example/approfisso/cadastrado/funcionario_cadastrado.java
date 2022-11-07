@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
+import com.example.approfisso.activity.Principal;
 import com.example.approfisso.adapter.funcionarioAdapter;
 import com.example.approfisso.cadastro.cadastro_funcionario;
 import com.example.approfisso.entidades.Funcionario;
@@ -94,8 +95,9 @@ public class funcionario_cadastrado extends AppCompatActivity {
 
 
     public void botao_retornar_busca (View view){
-        finish();
-
+        //finish();
+        Intent it = new Intent(this, Principal.class);
+        startActivity(it);
     }
 
 }
