@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
+import com.example.approfisso.activity.LoginActivity;
+import com.example.approfisso.activity.Principal;
 import com.example.approfisso.adapter.servicoAdapter;
 import com.example.approfisso.cadastro.cadastro_servico;
 import com.example.approfisso.entidades.Servicos;
@@ -99,8 +101,9 @@ public class servico_cadastrado extends AppCompatActivity {
 
 
     public void botao_retornar_busca (View view){
-        finish();
-
+        Intent it = new Intent(this, Principal.class);
+        startActivity(it);
+        //finish();
     }
 
 }

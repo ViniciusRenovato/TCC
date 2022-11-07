@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="monospace"
         android:text="Informe a duracao"
@@ -102,7 +102,9 @@
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/rounded"
+        android:background="@drawable/spinner"
+        android:popupBackground="@drawable/rounded"
+        android:dropDownVerticalOffset="40dp"
         android:gravity="center"
         android:hint="Duração de serviço"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +116,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="monospace"
         android:text="Valor"
@@ -129,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="monospace"
         android:text="Funcao"
@@ -139,7 +141,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Editar_Valor_Servico"/>
 
-    <me.abhinay.input.CurrencyEditText
+    <EditText
         android:id="@+id/Editar_Valor_Servico"
         android:inputType="number"
         android:layout_width="212dp"
@@ -161,8 +163,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/spinner"
+        android:popupBackground="@drawable/rounded"
+        android:dropDownVerticalOffset="40dp"
         android:gravity="center"
-        android:background="@drawable/rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />

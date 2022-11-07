@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Nome_Servico" />
 
-    <me.abhinay.input.CurrencyEditText
+    <EditText
         android:id="@+id/Preco_Servico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -124,7 +124,9 @@
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/rounded"
+        android:background="@drawable/spinner"
+        android:popupBackground="@drawable/rounded"
+        android:dropDownVerticalOffset="40dp"
         android:gravity="center"
         android:hint="Duração de serviço"
         app:layout_constraintEnd_toEndOf="parent"
@@ -168,7 +170,10 @@
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/rounded"
+        android:background="@drawable/spinner"
+        android:popupBackground="@drawable/rounded"
+        android:dropDownVerticalOffset="40dp"
+        android:gravity="center"
         android:fontFamily="monospace"
         android:hint="Função"
         app:layout_constraintEnd_toEndOf="parent"

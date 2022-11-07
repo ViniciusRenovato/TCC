@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
+import com.example.approfisso.activity.Principal;
 import com.example.approfisso.cadastrado.agendamento_cadastrado;
 import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.Funcionario;
@@ -165,10 +166,7 @@ public class cadastro_agendamento extends AppCompatActivity {
 //                        }
 //                    }
 //                });
-
-
-
-
+//                });
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -205,10 +203,6 @@ public class cadastro_agendamento extends AppCompatActivity {
             }
         });
 
-
-
-
-
         spinner_funcao_agendamento_servico.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -235,8 +229,6 @@ public class cadastro_agendamento extends AppCompatActivity {
             }
         });
 
-
-
 //        Button cadastrar_agendamento = findViewById(R.id.botao_Confirmar_Agendamento);
 //
 //        cadastrar_agendamento.setOnClickListener(new View.OnClickListener() {
@@ -257,7 +249,6 @@ public class cadastro_agendamento extends AppCompatActivity {
 
     }
 
-
     private void updateLabel() {
 
         String myFormat = "dd/MM/yyyy";
@@ -267,11 +258,6 @@ public class cadastro_agendamento extends AppCompatActivity {
 
 
         List<String> horarios= new LinkedList();
-
-
-
-
-
 
         spinner_info_agendados.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -332,19 +318,10 @@ public class cadastro_agendamento extends AppCompatActivity {
 
                             horarios.add(resposta);
 
+                                 }
+                            }
+                        }
                     }
-
-
-
-
-
-                    }
-                    }
-                    }
-
-
-
-
                     //    String texto ="07:00";
 //        int hora=Integer.parseInt(texto.substring(0,1));
 //        int min=Integer.parseInt(texto.substring(3,4));
@@ -356,8 +333,6 @@ public class cadastro_agendamento extends AppCompatActivity {
 //        LocalTime total = primeiro.plusHours(segundo.getHour())
 //                .plusMinutes(segundo.getMinute());
 //
-
-
                 }
                 Showdata_Horario(horarios);
             }
@@ -368,13 +343,9 @@ public class cadastro_agendamento extends AppCompatActivity {
             }
         });
 
-
-
         Showdata_Horario(horarios);
 
-
     }
-
 
 List<Funcionario> func;
     private void Showdata_Funcionario(){
@@ -439,7 +410,6 @@ List<Servicos> serviços;
 //                            serviços.size()-1,
                             serv.getNome_servico());
 
-
                 }
                 adapter_agendamento_servico.notifyDataSetChanged();
 
@@ -483,7 +453,6 @@ List<Servicos> serviços;
 
     }
 
-
     public void botao_Confirmar (View view) throws ParseException {
 
         String data_agendamento = dia.getText().toString().trim();
@@ -507,8 +476,6 @@ List<Servicos> serviços;
         }
 
 
-
-
         if (horario_agendamento.matches("--Selecione--")){
 
             TextView errorText = (TextView)spinner_agendamento_horario.getSelectedView();
@@ -530,8 +497,6 @@ List<Servicos> serviços;
             }
         }
 
-
-
         if (servico_agendamento.matches("--Selecione--")){
 
             TextView errorText = (TextView)spinner_funcao_agendamento_servico.getSelectedView();
@@ -547,12 +512,6 @@ List<Servicos> serviços;
             return;
 
         }
-
-
-
-
-
-
 
         Agendamentos = new Agendamento();
         Agendamentos.setNome_cliente(nome_cliente);
@@ -572,8 +531,10 @@ List<Servicos> serviços;
     }
 
     public void Botao_Cancelar_Agendamento (View view){
-        super.onBackPressed();
-        finish();
+//        super.onBackPressed();
+//        finish();
+        Intent it = new Intent(this, agendamento_cadastrado.class);
+        startActivity(it);
     }
 
 }

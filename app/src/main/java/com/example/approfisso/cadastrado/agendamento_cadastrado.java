@@ -3,6 +3,7 @@ package com.example.approfisso.cadastrado;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
+import com.example.approfisso.activity.Principal;
 import com.example.approfisso.adapter.agendamentoAdapter;
 import com.example.approfisso.cadastro.cadastro_agendamento;
 import com.example.approfisso.entidades.Agendamento;
@@ -34,7 +36,7 @@ public class agendamento_cadastrado extends AppCompatActivity {
     private String login_cliente;
 
 
-
+    public ProgressBar progressBarAgendamento;
 
 
 
@@ -42,7 +44,8 @@ public class agendamento_cadastrado extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agendamento_cadastrado);
-
+        progressBarAgendamento = findViewById(R.id.progressbarAgendamento);
+        progressBarAgendamento.setVisibility(View.INVISIBLE);
 //        login_cliente = getIntent().getStringExtra("logincliente");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -98,11 +101,14 @@ public class agendamento_cadastrado extends AppCompatActivity {
     }
     public void botao_cadastrar_agendamento(View view){
         Intent it = new Intent(this, cadastro_agendamento.class);
+        progressBarAgendamento.setVisibility(View.GONE);
+        progressBarAgendamento.setVisibility(View.VISIBLE);
         startActivity(it);
     }
 
     public void botao_retornar_busca (View view){
-        finish();
-
+        //finish();
+        Intent it = new Intent(this, Principal.class);
+        startActivity(it);
     }
 }
