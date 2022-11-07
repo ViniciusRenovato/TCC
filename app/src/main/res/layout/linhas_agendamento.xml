@@ -48,6 +48,16 @@
         app:layout_constraintTop_toBottomOf="@+id/item_agendamento_funcionario" />
 
     <TextView
+        android:id="@+id/item_agendamento_valor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="monospace"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/item_agendamento_servico" />
+
+    <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,6 +102,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="monospace"
+        android:text="Valor:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
     <Button
         android:id="@+id/button_remover_agendamento"
         android:layout_width="65dp"
@@ -124,12 +145,14 @@
         app:barrierDirection="top"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="98dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="145dp" />
+        app:layout_constraintGuide_begin="158dp" />
+
     <View
         android:id="@+id/divider"
         android:layout_width="409dp"
@@ -137,6 +160,6 @@
         android:background="?android:attr/listDivider"
         android:backgroundTint="@color/purple_500"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="140dp" />
+        tools:layout_editor_absoluteY="153dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

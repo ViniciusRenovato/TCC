@@ -403,12 +403,15 @@ List<Servicos> serviços;
                         Servicos serv= new Servicos();
                     serv.setNome_servico(item.child("nome_servico").getValue(String.class));
                     serv.setFuncao_servico(item.child("funcao_servico").getValue(String.class));
+                    serv.setValor_servico(item.child("valor_servico").getValue(String.class));
                     serv.setPontos_servico(item.child("pontos_servico").getValue(Integer.class));
                     serv.setDuracao_servico(item.child("duracao_servico").getValue(String.class));
                     serviços.add(serv);
                     spinner_lista_agendamento_servico.add(
 //                            serviços.size()-1,
-                            serv.getNome_servico());
+                            serv.getNome_servico()
+//                                    +" ("+serv.getValor_servico()+")"
+                    );
 
                 }
                 adapter_agendamento_servico.notifyDataSetChanged();
@@ -518,6 +521,7 @@ List<Servicos> serviços;
         Agendamentos.setLogin_cliente(login_cliente);
         Agendamentos.setHora_agendamento(spinner_agendamento_horario.getSelectedItem().toString());
         Agendamentos.setPonto_agendamento(serviços.get(spinner_funcao_agendamento_servico.getSelectedItemPosition()).getPontos_servico());
+        Agendamentos.setValor_servico(serviços.get(spinner_funcao_agendamento_servico.getSelectedItemPosition()).getValor_servico());
         Agendamentos.setDia_agendamento(dia.getText().toString());
         Agendamentos.setFuncionario(spinner_funcao_agendamento_funcionario.getSelectedItem().toString());
         Agendamentos.setServicos(spinner_funcao_agendamento_servico.getSelectedItem().toString());
@@ -526,7 +530,8 @@ List<Servicos> serviços;
         Agendamentos.setDuracao_agendamento(serviços.get(spinner_funcao_agendamento_servico.getSelectedItemPosition()).getDuracao_servico());
         Agendamento.salvaAgendamento(Agendamentos);
 
-      onBackPressed();
+        Intent it = new Intent(this, agendamento_cadastrado.class);
+        startActivity(it);
 
     }
 

@@ -56,7 +56,7 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
 
         agendamentoViewHolder.agendamentohora.setText(agendamento.getHora_agendamento());
         agendamentoViewHolder.agendamentodia.setText(agendamento.getDia_agendamento());
-
+        agendamentoViewHolder.agendamentovalor.setText(agendamento.getValor_servico());
         agendamentoViewHolder.agendamentoservico.setText(agendamento.getServicos());
         agendamentoViewHolder.agendamentoclientenome.setText(agendamento.getNome_cliente());
 
@@ -156,7 +156,7 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
     public class AgendamentoHolder extends RecyclerView.ViewHolder {
         private TextView agendamentohora;
         private TextView agendamentodia;
-        private TextView agendamentofuncionario;
+        private TextView agendamentovalor;
         private TextView agendamentoservico;
         private TextView agendamentoclientenome;
         private String agendamentoclienteid;
@@ -171,6 +171,7 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
             agendamentodia=itemView.findViewById(R.id.item_agendamento_dia_estabelecimento);
             agendamentoservico=itemView.findViewById(R.id.item_agendamento_servico_estabelecimento);
             agendamentoclientenome=itemView.findViewById(R.id.item_agendamento_cliente_estabelecimento);
+            agendamentovalor=itemView.findViewById(R.id.item_agendamento_valor_estabelecimento);
             agendamentofaltou =(Button)itemView.findViewById(R.id.button_faltou_agendamento_estabelecimento);
             agendamentoconcluir =(Button)itemView.findViewById(R.id.button_concluir_agendamento);
         }

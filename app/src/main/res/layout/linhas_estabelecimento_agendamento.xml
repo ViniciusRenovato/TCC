@@ -46,6 +46,16 @@
         app:layout_constraintTop_toBottomOf="@+id/item_agendamento_servico_estabelecimento" />
 
     <TextView
+        android:id="@+id/item_agendamento_valor_estabelecimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="monospace"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/item_agendamento_cliente_estabelecimento" />
+
+    <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,12 +100,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="monospace"
+        android:text="Cliente:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="monospace"
+        android:text="Valor:"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
     <Button
         android:id="@+id/button_faltou_agendamento_estabelecimento"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="monospace"
         android:onClick="botao_Remover_agendamento"
         android:text="Faltou"
@@ -106,7 +138,7 @@
         android:id="@+id/button_concluir_agendamento"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
         android:onClick="botao_editar_agendamento"
         android:text="Concluido"
