@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
+import com.example.approfisso.classes.Usuario;
 import com.example.approfisso.entidades.Pessoa;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,7 +27,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -47,6 +52,10 @@ public class cadastro_cliente_editar extends AppCompatActivity {
     private EditText nome;
     private EditText telefone;
     private EditText aniversario;
+
+    private String telefone_usuario;
+    private String nome_usuario;
+    private String aniversario_usuario;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore fStore;
@@ -71,9 +80,6 @@ public class cadastro_cliente_editar extends AppCompatActivity {
         setContentView(R.layout.cliente_cadastro_editar);
 
 
-
-
-
         nome=findViewById(R.id.Nome_Cliente_Editar);
         telefone=findViewById(R.id.Telefone_Cliente_Editar);
         aniversario=findViewById(R.id.Aniversario_Cliente_Editar);
@@ -82,26 +88,60 @@ public class cadastro_cliente_editar extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String current = user.getUid();
 
-        db.collection("usuários")
-                .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                    Usuario usuario = snapshot.getValue(Usuario.class);
+                    String UID_usuario = usuario_info.child("UID_usuario").getValue().toString();
+
+                    if (current.equals(UID_usuario)) {
 
 
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            for(DocumentSnapshot document : task.getResult()){
+                        nome_usuario = usuario_info.child("nome_usuario").getValue().toString();
+                        telefone_usuario = usuario_info.child("telefone_usuario").getValue().toString();
+                        aniversario_usuario = usuario_info.child("aniversario_usuario").getValue().toString();
 
 
-                                nome.setText((CharSequence) document.get("nome"));
-                                telefone.setText((CharSequence) document.get("telefone"));
-                                aniversario.setText((CharSequence) document.get("aniversario"));
+                        nome.setText(nome_usuario);
+                        telefone.setText(telefone_usuario);
+                        aniversario.setText(aniversario_usuario);
 
-
-
-                            }
-                        }
                     }
-                });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+//        db.collection("usuários")
+//                .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//
+//
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()){
+//                            for(DocumentSnapshot document : task.getResult()){
+//
+//
+//                                nome.setText((CharSequence) document.get("nome"));
+//                                telefone.setText((CharSequence) document.get("telefone"));
+//                                aniversario.setText((CharSequence) document.get("aniversario"));
+//
+//
+//
+//                            }
+//                        }
+//                    }
+//                });
 
 
 
@@ -171,31 +211,100 @@ public class cadastro_cliente_editar extends AppCompatActivity {
                 Clientes =(Pessoa) i.getSerializableExtra("Clientes");
 
 
-
-                Map<String,Object> map = new HashMap<>();
-                map.put("nome",nome.getText().toString());
-                map.put("telefone",telefone.getText().toString());
-                map.put("aniversario",aniversario.getText().toString());
-
-
+//
+//                Map<String,Object> map = new HashMap<>();
+//                map.put("nome",nome.getText().toString());
+//                map.put("telefone",telefone.getText().toString());
+//                map.put("aniversario",aniversario.getText().toString());
 
 
-                db.collection("usuários")
-                                .document(current).set(map, SetOptions.merge())
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(clienteeditar.getContext(), "Dados Atualizados", Toast.LENGTH_SHORT).show();
-                                onBackPressed();
+                        for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                            Usuario usuario = snapshot.getValue(Usuario.class);
+                            String UID_usuario = usuario_info.child("UID_usuario").getValue().toString();
+
+                            if (current.equals(UID_usuario)) {
+
+                                String id_usuario_agendamento = usuario_info.child("id_usuario").getValue().toString();
+
+
+
+
+//                                Integer pontos_usuario = Integer.parseInt(usuario_info.child("pontos_usuario").getValue().toString());
+//
+//
+//                                Double ponto = Double.parseDouble(pontos_usuario.toString()) ;
+//
+//                                Double pontuacao = Double.parseDouble(ponto.toString()) ;
+////                                        ponto.doubleValue();
+//
+//                                Double resultado = pontuacao + agendamento.getPonto_agendamento();
+
+
+                                Map<String,Object> map = new HashMap<>();
+                                map.put("nome_usuario",nome.getText().toString());
+                                map.put("telefone_usuario",telefone.getText().toString());
+                                map.put("aniversario_usuario",aniversario.getText().toString());
+
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("usuários");
+                                databaseReference.child(id_usuario_agendamento).updateChildren(map).addOnCompleteListener(new OnCompleteListener() {
+                                    @Override
+                                    public void onComplete(@NonNull Task task) {
+                                        if (task.isSuccessful()){
+
+                                            Toast.makeText(view.getContext(),"Perfil editado com sucesso.",Toast.LENGTH_SHORT).show();
+                                            onBackPressed();
+
+                                        }else{
+                                            Toast.makeText(view.getContext(),"falha na edição",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                                });
+
+
+
                             }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(clienteeditar.getContext(), "Algo de errado aconteceu", Toast.LENGTH_SHORT).show();
 
-                            }
-                        });
+
+
+
+                        }
+
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+//                db.collection("usuários")
+//                                .document(current).set(map, SetOptions.merge())
+//                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//
+//                            @Override
+//                            public void onSuccess(Void unused) {
+//                                Toast.makeText(clienteeditar.getContext(), "Dados Atualizados", Toast.LENGTH_SHORT).show();
+//                                onBackPressed();
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Toast.makeText(clienteeditar.getContext(), "Algo de errado aconteceu", Toast.LENGTH_SHORT).show();
+//
+//                            }
+//                        });
 
 
 

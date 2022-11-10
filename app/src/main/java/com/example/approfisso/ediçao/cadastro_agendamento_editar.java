@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
 import com.example.approfisso.cadastro.cadastro_agendamento;
+import com.example.approfisso.classes.Usuario;
 import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.Funcionario;
 import com.example.approfisso.entidades.Servicos;
@@ -77,7 +78,7 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
     private String nome_cliente;
     private String login_cliente;
     private String id_funcionario;
-
+    private String id_usuario_agendamento;
 
 
     private String agendamento_editar_id_agendamento;
@@ -184,18 +185,75 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
                 });
 
 
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                    Usuario usuario = snapshot.getValue(Usuario.class);
+                    String UID_usuario = usuario_info.child("UID_usuario").getValue().toString();
+
+                    if (current.equals(UID_usuario)) {
+
+                        id_usuario_agendamento = usuario_info.child("id_usuario").getValue().toString();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
 
         dia_agendamento=findViewById(R.id.Editar_Dia_Agendamento);
+
+//        dia_agendamento.setText(agendamento_editar_dia_agendamento);
+
+
+
+
+
+
+
+
+
 
         dia_agendamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new DatePickerDialog(cadastro_agendamento_editar.this, date, myCalendar.get(Calendar.YEAR),
                         myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+
             }
         });
 
+        spinner_funcao_agendamento_funcionario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                updateLabel();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         Intent i = getIntent();
@@ -350,7 +408,7 @@ public class cadastro_agendamento_editar extends AppCompatActivity {
 
 
         agendamento.put("nome_cliente",nome_cliente);
-        agendamento.put("login_cliente",login_cliente);
+        agendamento.put("login_cliente",id_usuario_agendamento);
         agendamento.put("hora_agendamento",spinner_agendamento_horario.getSelectedItem().toString());
         agendamento.put("ponto_agendamento",serviços.get(spinner_funcao_agendamento_servico.getSelectedItemPosition()).getPontos_servico());
         agendamento.put("dia_agendamento",dia_agendamento.getText().toString());

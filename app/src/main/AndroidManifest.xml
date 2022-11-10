@@ -32,6 +32,7 @@
         <activity android:name=".cadastro.cadastro_agendamento" />
         <activity android:name=".cadastro.cadastro_funcionario" />
         <activity android:name=".activity.Update_agendamento" />
+        <activity android:name=".activity.Pontos_clientes" />
         <activity android:name=".ediçao.cadastro_cliente_editar" />
         <activity android:name=".ediçao.cadastro_funcao_editar" />
         <activity android:name=".ediçao.cadastro_servico_editar" />

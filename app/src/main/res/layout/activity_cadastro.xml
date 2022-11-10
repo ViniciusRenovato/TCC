@@ -59,16 +59,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AniverrsárioCadastro" />
 
-    <Switch
-        android:id="@+id/sEstabelecimento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="Salão"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RepetirSenhaCadastro" />
-
     <Button
         android:id="@+id/btCadastrarCadastro"
         android:layout_width="0dp"
@@ -80,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sEstabelecimento" />
+        app:layout_constraintTop_toBottomOf="@+id/RepetirSenhaCadastro" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/TelefoneCadastro"

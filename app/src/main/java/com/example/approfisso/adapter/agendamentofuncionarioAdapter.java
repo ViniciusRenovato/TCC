@@ -14,13 +14,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.R;
+import com.example.approfisso.classes.Usuario;
 import com.example.approfisso.ediçao.cadastro_agendamento_editar;
+import com.example.approfisso.ediçao.cadastro_funcionario_editar;
 import com.example.approfisso.entidades.Agendamento;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -65,45 +71,118 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
             @Override
             public void onClick(View view) {
 
+
+
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                 String current = agendamento.getLogin_cliente();
 
-                db.collection("usuários")
-                        .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                            Usuario usuario = snapshot.getValue(Usuario.class);
+                            String UID_usuario = usuario_info.child("id_usuario").getValue().toString();
+
+                            if (current.equals(UID_usuario)) {
 
 
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()){
-                                    for(DocumentSnapshot document : task.getResult()){
 
-//                                        pontuacao.setText((CharSequence) document.get("nome"));
-//                                        Integer pontuacao = (Integer) document.get("pontos");
-                                        Double ponto = Double.parseDouble(document.get("pontos").toString()) ;
+                                String id_usuario_agendamento = usuario_info.child("id_usuario").getValue().toString();
+                                Integer pontos_usuario = Integer.parseInt(usuario_info.child("pontos_usuario").getValue().toString());
 
-                                        Double pontuacao = Double.parseDouble(ponto.toString()) ;
+
+                                Double ponto = Double.parseDouble(pontos_usuario.toString()) ;
+
+                                Double pontuacao = Double.parseDouble(ponto.toString()) ;
 //                                        ponto.doubleValue();
 
-                                        Double resultado = pontuacao + agendamento.getPonto_agendamento();
+                                Double resultado = pontuacao + agendamento.getPonto_agendamento();
 
 
-                                        Map<String,Object> map = new HashMap<>();
-                                        map.put("pontos",resultado);
+                                HashMap ponto_cliente = new HashMap();
 
-                                        db.collection("usuários")
-                                                .document(agendamento.getLogin_cliente()).set(map, SetOptions.merge());
+                                ponto_cliente.put("pontos_usuario",resultado);
 
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("usuários");
+                                databaseReference.child(id_usuario_agendamento).updateChildren(ponto_cliente).addOnCompleteListener(new OnCompleteListener() {
+                                    @Override
+                                    public void onComplete(@NonNull Task task) {
+                                        if (task.isSuccessful()){
 
-                                        FirebaseDatabase.getInstance().getReference().child("Agendamento").child(agendamento.getId_agendamento()).removeValue();
+                                            Toast.makeText(view.getContext(),"Serviço fechado.",Toast.LENGTH_SHORT).show();
+                                            FirebaseDatabase.getInstance().getReference().child("Agendamento").child(agendamento.getId_agendamento()).removeValue();
 
+                                        }else{
+                                            Toast.makeText(view.getContext(),"falha na edição",Toast.LENGTH_SHORT).show();
 
-
+                                        }
                                     }
-                                }
-                            }
-                        });
+                                });
 
+
+
+                            }
+
+
+
+
+                        }
+
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
+//                db.collection("usuários")
+//                        .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//
+//
+//                            @Override
+//                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                                if (task.isSuccessful()){
+//                                    for(DocumentSnapshot document : task.getResult()){
+//
+////                                        pontuacao.setText((CharSequence) document.get("nome"));
+////                                        Integer pontuacao = (Integer) document.get("pontos");
+//                                        Double ponto = Double.parseDouble(document.get("pontos").toString()) ;
+//
+//                                        Double pontuacao = Double.parseDouble(ponto.toString()) ;
+////                                        ponto.doubleValue();
+//
+//                                        Double resultado = pontuacao + agendamento.getPonto_agendamento();
+//
+//
+//                                        Map<String,Object> map = new HashMap<>();
+//                                        map.put("pontos",resultado);
+//
+//                                        db.collection("usuários")
+//                                                .document(agendamento.getLogin_cliente()).set(map, SetOptions.merge());
+//
+//
+//                                        FirebaseDatabase.getInstance().getReference().child("Agendamento").child(agendamento.getId_agendamento()).removeValue();
+//
+//
+//
+//                                    }
+//                                }
+//                            }
+//                        });
+//
 
 
 //

@@ -3,6 +3,7 @@ package com.example.approfisso.cadastrado;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
+import com.example.approfisso.activity.Pontos_clientes;
 import com.example.approfisso.adapter.funcionarioAdapter;
 import com.example.approfisso.adapter.funcionarioagendamentoAdapter;
 import com.example.approfisso.cadastro.cadastro_funcionario;
@@ -30,7 +32,7 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
 
-
+    private Button pontos;
 
 
 
@@ -41,7 +43,7 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.funcionario_cadastrado_agendamento);
 
-
+        pontos = findViewById(R.id.button_pontos_clientes);
 //        lista= findViewById(R.id.lista_emprego_oferecido);
 
         //recycle view
@@ -56,6 +58,13 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
         Funcionario= new LinkedList<>();
         //chamada firebase
         listar_funcionario();
+
+//        pontos.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(funcionario_agendamento_cadastrado.this, Pontos_clientes.class));
+//            }
+//        });
 
     }
 

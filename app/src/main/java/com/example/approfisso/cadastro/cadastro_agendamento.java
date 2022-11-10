@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.approfisso.R;
 import com.example.approfisso.activity.Principal;
 import com.example.approfisso.cadastrado.agendamento_cadastrado;
+import com.example.approfisso.classes.Usuario;
 import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.Funcionario;
 import com.example.approfisso.entidades.Servicos;
@@ -70,7 +71,7 @@ public class cadastro_agendamento extends AppCompatActivity {
     ArrayAdapter<String> adapter_agendamento_horario;
 
 
-
+    private String id_usuario_agendamento;
     private EditText dia;
     private String nome_cliente;
     private String login_cliente;
@@ -190,6 +191,35 @@ public class cadastro_agendamento extends AppCompatActivity {
                     }
                 });
 
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                    Usuario usuario = snapshot.getValue(Usuario.class);
+                    String UID_usuario = usuario_info.child("UID_usuario").getValue().toString();
+
+                    if (current.equals(UID_usuario)) {
+
+                        id_usuario_agendamento = usuario_info.child("id_usuario").getValue().toString();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
 //        hora=findViewById(R.id.Hora_Agendamento);
         dia=findViewById(R.id.Dia_Agendamento);
         Intent i = getIntent();
@@ -203,10 +233,23 @@ public class cadastro_agendamento extends AppCompatActivity {
             }
         });
 
+        spinner_funcao_agendamento_funcionario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                updateLabel();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         spinner_funcao_agendamento_servico.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Showdata_Funcionario();
+
             }
 
             @Override
@@ -228,6 +271,8 @@ public class cadastro_agendamento extends AppCompatActivity {
 
             }
         });
+
+
 
 //        Button cadastrar_agendamento = findViewById(R.id.botao_Confirmar_Agendamento);
 //
@@ -349,6 +394,7 @@ public class cadastro_agendamento extends AppCompatActivity {
 
 List<Funcionario> func;
     private void Showdata_Funcionario(){
+
         func = new ArrayList();
         if(serviços!=null&&spinner_funcao_agendamento_servico.getSelectedItem()!=null) {
             List<Servicos> collect = serviços.stream().filter
@@ -376,8 +422,10 @@ List<Funcionario> func;
                                 spinner_lista_agendamento_funcionario.add(func.size()-1,f.getNome_funcionario());
 
                             }
+
 //                    spinner_lista_agendamento_funcionario.add(item.getValue().toString());
                     }
+
                     adapter_agendamento_funcionario.notifyDataSetChanged();
                     updateLabel();
                 }
@@ -386,8 +434,11 @@ List<Funcionario> func;
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
+
             });
+
         }
+
     }
 
 List<Servicos> serviços;
@@ -518,7 +569,7 @@ List<Servicos> serviços;
 
         Agendamentos = new Agendamento();
         Agendamentos.setNome_cliente(nome_cliente);
-        Agendamentos.setLogin_cliente(login_cliente);
+        Agendamentos.setLogin_cliente(id_usuario_agendamento);
         Agendamentos.setHora_agendamento(spinner_agendamento_horario.getSelectedItem().toString());
         Agendamentos.setPonto_agendamento(serviços.get(spinner_funcao_agendamento_servico.getSelectedItemPosition()).getPontos_servico());
         Agendamentos.setValor_servico(serviços.get(spinner_funcao_agendamento_servico.getSelectedItemPosition()).getValor_servico());

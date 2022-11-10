@@ -10,13 +10,17 @@ import com.example.approfisso.cadastrado.funcao_cadastrado;
 import com.example.approfisso.cadastrado.funcionario_agendamento_cadastrado;
 import com.example.approfisso.cadastrado.funcionario_cadastrado;
 import com.example.approfisso.cadastrado.servico_cadastrado;
+import com.example.approfisso.classes.Usuario;
 import com.example.approfisso.ediçao.cadastro_cliente_editar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -37,6 +41,9 @@ public class Principal extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    private String pontos_usuario;
+    private String nome_usuario;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseFirestore db;
@@ -79,19 +86,63 @@ public class Principal extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String current = user.getUid();
 
-        db.collection("usuários")
-                .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            for(DocumentSnapshot document : task.getResult()){
-                                mTVEmail.setText((CharSequence) document.get("nome")) ;
-                                pnt_cliente.setText((CharSequence) document.get("pontos").toString());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            }
-                        }
+                for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                    Usuario usuario = snapshot.getValue(Usuario.class);
+                    String UID_usuario = usuario_info.child("UID_usuario").getValue().toString();
+
+                    if (current.equals(UID_usuario)) {
+
+
+                        nome_usuario = usuario_info.child("nome_usuario").getValue().toString();
+                        pontos_usuario = usuario_info.child("pontos_usuario").getValue().toString();
+
+
+                        mTVEmail.setText(nome_usuario);
+                        pnt_cliente.setText(pontos_usuario);
+
                     }
-                });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        db.collection("usuários")
+//                .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()){
+//                            for(DocumentSnapshot document : task.getResult()){
+//                                mTVEmail.setText((CharSequence) document.get("nome")) ;
+//                                pnt_cliente.setText((CharSequence) document.get("pontos").toString());
+//
+//                            }
+//                        }
+//                    }
+//                });
     }
 
     public void botao_cadastro_cliente(View view){

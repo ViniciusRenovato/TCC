@@ -46,6 +46,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     private EditText etNome;
     private EditText etAniversario;
+    private Usuario Usuarios;
 
     Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -90,8 +91,11 @@ public class CadastroActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.EmailCadastro);
         etSenha = findViewById(R.id.SenhaCadastro);
         etRepetirSenha = findViewById(R.id.RepetirSenhaCadastro);
-        sEstabelecimento = findViewById(R.id.sEstabelecimento);
+
         btCadastrarCadastro = findViewById(R.id.btCadastrarCadastro);
+
+        Intent i = getIntent();
+        Usuarios = (Usuario) i.getSerializableExtra("usuários");
 
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -166,9 +170,9 @@ public void checkEmail(View view)
 
         String aniversario = etAniversario.getText().toString();
         String telefone = etTelefone.getText().toString();
-        String tipo_login = sEstabelecimento.toString();
 
-        double pontos = 0;
+
+        Integer pontos = 0;
 
         String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]+[a-zA-Z0-9]*[a-zA-Z.]+[a-zA-Z.]*?";
         String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
@@ -293,10 +297,11 @@ public void checkEmail(View view)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
+
                             Toast.makeText(CadastroActivity.this, "Usuário Criado", Toast.LENGTH_SHORT).show();
                             userID = mAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("usuários").document(userID);
-
 
                             Map<String,Object> usuario_cadastro = new HashMap<>();
                             usuario_cadastro.put("id",userID);
@@ -304,8 +309,20 @@ public void checkEmail(View view)
                             usuario_cadastro.put("email",email);
                             usuario_cadastro.put("telefone",telefone);
                             usuario_cadastro.put("aniversario",aniversario);
-                            usuario_cadastro.put("tipo+login",tipo_login);
                             usuario_cadastro.put("pontos",pontos);
+
+                            Usuarios = new Usuario();
+
+                            Usuarios.setUID_usuario(userID);
+                            Usuarios.setNome_usuario(nome);
+                            Usuarios.setEmail_usuario(email);
+                            Usuarios.setTelefone_usuario(telefone);
+                            Usuarios.setAniversario_usuario(aniversario);
+                            Usuarios.setPontos_usuario(pontos);
+                            Usuario.salvaUsuario(Usuarios);
+
+
+
 
                             documentReference.set(usuario_cadastro).addOnSuccessListener((OnSuccessListener) (aVoid) -> {
                                 Log.d(TAG,"onSuccess: Perfil de usuário criado para "+userID);
@@ -325,6 +342,8 @@ public void checkEmail(View view)
                             retrieveAndStoreToken();
 
                             startActivity(new Intent(CadastroActivity.this,Principal.class));
+
+
                         }else{
                             Toast.makeText(CadastroActivity.this,"Erro ao criar um login.",
                                     Toast.LENGTH_SHORT).show();
@@ -413,7 +432,7 @@ public void checkEmail(View view)
         u.setNome_usuario(etNome.getText().toString());
         u.setEmail_usuario(etEmail.getText().toString());
         u.setSenha_usuario(etSenha.getText().toString());
-        u.setSalao(sEstabelecimento.getShowText());
+
         }
 
 
