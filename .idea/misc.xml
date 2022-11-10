@@ -3,19 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/TCC/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.133" />
+        <entry key="..\:/Android/TCC/app/src/main/res/drawable/calendario.xml" value="0.2595" />
+        <entry key="..\:/Android/TCC/app/src/main/res/drawable/ic_arrow.xml" value="0.133" />
+        <entry key="..\:/Android/TCC/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.2595" />
+        <entry key="..\:/Android/TCC/app/src/main/res/drawable/ic_launcher_background.xml" value="0.133" />
         <entry key="..\:/Android/TCC/app/src/main/res/drawable/lista.xml" value="0.1525" />
         <entry key="..\:/Android/TCC/app/src/main/res/drawable/login.xml" value="0.1235" />
         <entry key="..\:/Android/TCC/app/src/main/res/drawable/rounded.xml" value="0.175" />
+        <entry key="..\:/Android/TCC/app/src/main/res/drawable/spinner.xml" value="0.2595" />
+        <entry key="..\:/Android/TCC/app/src/main/res/drawable/toggle_pass.xml" value="0.203" />
         <entry key="..\:/Android/TCC/app/src/main/res/font/aldrich.xml" value="0.17552083333333332" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_cadastro.xml" value="0.22" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_cadastro.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_cadastro_cliente.xml" value="0.14583333333333334" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_login.xml" value="0.5" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_login2.xml" value="0.1956521739130435" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/activity_profile.xml" value="0.1956521739130435" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastrado.xml" value="0.26875" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastrado_estabelecimento.xml" value="0.1" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastro.xml" value="0.25" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastrado_estabelecimento.xml" value="0.18478260869565216" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamento_cadastro.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/agendamentos_cliente.xml" value="0.14583333333333334" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/atendimentos_marcados.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/busca_menu.xml" value="0.26875" />
@@ -25,6 +32,7 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro_editar.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/content_main.xml" value="0.14583333333333334" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/crud.xml" value="0.1" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/detalhes_agendamento.xml" value="0.26875" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/emprego_oferecido.xml" value="0.1" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/empresa_oferece.xml" value="0.19882246376811594" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/fragment_first.xml" value="0.14583333333333334" />
@@ -33,7 +41,7 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/funcao_cadastro.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/funcionario_cadastrado.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/funcionario_cadastrado_agendamento.xml" value="0.18478260869565216" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/funcionario_cadastro.xml" value="0.1" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/funcionario_cadastro.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas.xml" value="0.75" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_agendamento.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_cliente.xml" value="0.5" />
@@ -43,10 +51,10 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_funcionario_agendamento.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_servico.xml" value="0.67" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/pedido_realizado.xml" value="0.1" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/principal.xml" value="0.33" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/principal.xml" value="0.22" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/recuperar_senha_email.xml" value="0.20416666666666666" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastrado.xml" value="0.25" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastro.xml" value="0.1" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/servico_cadastro.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_agendamento_popup.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_cliente_popup.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/update_funcao_popup.xml" value="0.26875" />
@@ -94,12 +102,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.20416666666666666" />
-      </ProjectState>
-    </option>
   </component>
 </project>
