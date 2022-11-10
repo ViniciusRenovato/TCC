@@ -59,12 +59,12 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
         //chamada firebase
         listar_funcionario();
 
-//        pontos.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(funcionario_agendamento_cadastrado.this, Pontos_clientes.class));
-//            }
-//        });
+        pontos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(funcionario_agendamento_cadastrado.this, Pontos_clientes.class));
+            }
+        });
 
     }
 

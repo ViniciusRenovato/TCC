@@ -34,6 +34,7 @@ import java.util.Locale;
 
 
 public class agendamento_cadastrado_estabelecimento extends AppCompatActivity {
+
     DatabaseReference databaseReference;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;

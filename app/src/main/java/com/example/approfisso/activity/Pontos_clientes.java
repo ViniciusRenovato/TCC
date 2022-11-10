@@ -4,15 +4,25 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
+import com.example.approfisso.adapter.agendamentofuncionarioAdapter;
 import com.example.approfisso.adapter.pontosclientesAdapter;
 import com.example.approfisso.classes.Usuario;
+import com.example.approfisso.entidades.Agendamento;
 import com.example.approfisso.entidades.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,146 +36,71 @@ import java.util.List;
 
 public class Pontos_clientes extends AppCompatActivity {
 
-
-
-     RecyclerView recycleView;
-     ArrayList<User> userArrayList;
-     pontosclientesAdapter myAdapter;
-     FirebaseFirestore db;
-     ProgressDialog progressDialog;
-
-
-
+    DatabaseReference databaseReference;
+    private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
+
+    private String login_cliente;
+    private String ID_funcionario;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clientes_pontuados);
 
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Recebendo informações...");
-        progressDialog.show();
 
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String current = user.getUid();
 
-        recycleView = findViewById(R.id.lista_pontos_clientes);
-        recycleView.setHasFixedSize(true);
-        recycleView.setLayoutManager(new LinearLayoutManager(this));
+        login_cliente = current;
+        ID_funcionario = getIntent().getStringExtra("funcionarioid");
 
-        db = FirebaseFirestore.getInstance();
-        userArrayList = new ArrayList<User>();
-        myAdapter = new pontosclientesAdapter(Pontos_clientes.this,userArrayList);
+        //        lista= findViewById(R.id.lista_emprego_oferecido);
 
-        recycleView.setAdapter(myAdapter);
+        //recycle view
+        recyclerView=findViewById(R.id.lista_pontos_clientes);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        //fim recycle view
 
-        EventChangeListener();
+        //firebase
+        databaseReference= DataFirebase.getDatabaseReference();
 
-//        dados = new ArrayList<>();
-//        usersListAdapter = new pontosclientesAdapter(, dados);
-//
-//        recycleView = findViewById(R.id.lista_pontos_clientes);
-//        linearLayoutManager = new LinearLayoutManager(this);
-//        recycleView.setLayoutManager(linearLayoutManager);
-//
-//
-//        mFirestore = FirebaseFirestore.getInstance();
-//
-//        Usuarios = new LinkedList<>();
-//
-//        listar_pontos();
-//
-//
-//
-//
-//
-//
-//
-//
-//    }
-//
-//    List<Usuario> Usuarios;
-//    public  void  listar_pontos(){
-//        mFirestore.collection("usuários").addSnapshotListener(new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                if (error != null){
-//                    Log.d(TAG,"erro:"+ error.getMessage());
-//                }
-//
-//                for (DocumentChange doc: value.getDocumentChanges()){
-//
-//
-//                    Usuario usuario = doc.getDocument().toObject(Usuario.class);
-//                    Usuarios.add(usuario);
-//
-//
-////                    if(doc.getType()== DocumentChange.Type.ADDED){
-////
-////                        Usuario usuario = doc.getDocument().toObject(Usuario.class);
-////                        dados.add(usuario);
-////
-////                        usersListAdapter.notifyDataSetChanged();
-////
-//////                        String nome = doc.getDocument().getString("nome");
-//////                        String pontos = doc.getDocument().getString("pontos");
-//////
-//////                        Log.d(TAG,"nome:"+ nome);
-//////                        Log.d(TAG,"pontos:"+ pontos);
-////                  }
-//                }
-//                preenche_usuario();
-//            }
-//        });
-//    }
-//
-//    pontosclientesAdapter PontosClientesAdapter;
-//    private void preenche_usuario(){
-//        PontosClientesAdapter = new pontosclientesAdapter(, Usuarios);
-//        recycleView.setAdapter(PontosClientesAdapter);
-//
-//    }
-//
-//
-////    funcaoAdapter FuncaoAdapter;
-////    private void preenche_funcao() {
-////        FuncaoAdapter= new funcaoAdapter(Funcoes);
-////        recyclerView.setAdapter(FuncaoAdapter);
-////
-
-
-
+        Usuario = new LinkedList<>();
+        //chamada firebase
+        listar_ponto_usuario();
 
    }
 
-    private void EventChangeListener() {
+    List<Usuario> Usuario;
+    public void listar_ponto_usuario()
+    {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                DataSnapshot dataSnapshot = snapshot.child("usuários");
+                Usuario.clear();
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
 
-        db.collection("usuários").orderBy("nome", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                    Usuario usuario = postSnapshot.getValue(Usuario.class);
+                    Usuario.add(usuario);
 
-                        if (error != null){
+                }
+                preenche_lista_ponto();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                            if (progressDialog.isShowing())
-                                progressDialog.dismiss();
-
-
-                            Log.e("Firestore error",error.getMessage());
-                            return;
-                        }
-
-                        for (DocumentChange dc: value.getDocumentChanges()){
-
-                            if (dc.getType() == DocumentChange.Type.ADDED){
-                                userArrayList.add(dc.getDocument().toObject(User.class));
-                            }
-
-                            myAdapter.notifyDataSetChanged();
-                        }
-
-                    }
-                });
+            }
+        });
     }
+    pontosclientesAdapter PontosclienteAdapter;
+    private void preenche_lista_ponto() {
+        PontosclienteAdapter= new pontosclientesAdapter(Usuario);
+        recyclerView.setAdapter(PontosclienteAdapter);
+    }
+
+
 }
