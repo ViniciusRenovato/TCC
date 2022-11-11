@@ -85,7 +85,15 @@ public class Pontos_clientes extends AppCompatActivity {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
 
                     Usuario usuario = postSnapshot.getValue(Usuario.class);
-                    Usuario.add(usuario);
+                    Integer pontos_do_cliente = Integer.parseInt(postSnapshot.child("pontos_usuario").getValue().toString());
+
+                    if (pontos_do_cliente >= 20){
+
+                        Usuario.add(usuario);
+
+                    }
+
+
 
                 }
                 preenche_lista_ponto();
