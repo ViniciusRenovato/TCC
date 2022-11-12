@@ -173,6 +173,7 @@ public void checkEmail(View view)
 
 
         Integer pontos = 0;
+        Integer faltas = 0;
 
         String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]+[a-zA-Z0-9]*[a-zA-Z.]+[a-zA-Z.]*?";
         String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
@@ -310,6 +311,7 @@ public void checkEmail(View view)
                             usuario_cadastro.put("telefone",telefone);
                             usuario_cadastro.put("aniversario",aniversario);
                             usuario_cadastro.put("pontos",pontos);
+                            usuario_cadastro.put("faltas",faltas);
 
                             Usuarios = new Usuario();
 
@@ -319,6 +321,7 @@ public void checkEmail(View view)
                             Usuarios.setTelefone_usuario(telefone);
                             Usuarios.setAniversario_usuario(aniversario);
                             Usuarios.setPontos_usuario(pontos);
+                            Usuarios.setFaltas_usuario(faltas);
                             Usuario.salvaUsuario(Usuarios);
 
 

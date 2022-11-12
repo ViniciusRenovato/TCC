@@ -47,16 +47,13 @@ import java.util.Map;
 public class cadastro_cliente_editar extends AppCompatActivity {
 
     DatabaseReference databaseReference;
-
     private String userID;
     private EditText nome;
     private EditText telefone;
     private EditText aniversario;
-
     private String telefone_usuario;
     private String nome_usuario;
     private String aniversario_usuario;
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore fStore;
 
@@ -79,7 +76,6 @@ public class cadastro_cliente_editar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cliente_cadastro_editar);
 
-
         nome=findViewById(R.id.Nome_Cliente_Editar);
         telefone=findViewById(R.id.Telefone_Cliente_Editar);
         aniversario=findViewById(R.id.Aniversario_Cliente_Editar);
@@ -100,11 +96,9 @@ public class cadastro_cliente_editar extends AppCompatActivity {
 
                     if (current.equals(UID_usuario)) {
 
-
                         nome_usuario = usuario_info.child("nome_usuario").getValue().toString();
                         telefone_usuario = usuario_info.child("telefone_usuario").getValue().toString();
                         aniversario_usuario = usuario_info.child("aniversario_usuario").getValue().toString();
-
 
                         nome.setText(nome_usuario);
                         telefone.setText(telefone_usuario);
@@ -119,31 +113,6 @@ public class cadastro_cliente_editar extends AppCompatActivity {
 
             }
         });
-
-
-
-//        db.collection("usuários")
-//                .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//
-//
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()){
-//                            for(DocumentSnapshot document : task.getResult()){
-//
-//
-//                                nome.setText((CharSequence) document.get("nome"));
-//                                telefone.setText((CharSequence) document.get("telefone"));
-//                                aniversario.setText((CharSequence) document.get("aniversario"));
-//
-//
-//
-//                            }
-//                        }
-//                    }
-//                });
-
-
 
         Button clienteeditar = findViewById(R.id.botao_Confirmar_Editar_Cliente);
 
@@ -167,7 +136,6 @@ public class cadastro_cliente_editar extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 final String current = user.getUid();
 
-
                 String nome_editar = nome.getText().toString().trim();
                 String telefone_editar = telefone.getText().toString().trim();
 
@@ -184,7 +152,6 @@ public class cadastro_cliente_editar extends AppCompatActivity {
                         return;
                     }
                 }
-
 
                 if(TextUtils.isEmpty(telefone_editar)) {
                     telefone.setError("Insira o numero do seu telefone ");
@@ -210,14 +177,6 @@ public class cadastro_cliente_editar extends AppCompatActivity {
                 Intent i = getIntent();
                 Clientes =(Pessoa) i.getSerializableExtra("Clientes");
 
-
-//
-//                Map<String,Object> map = new HashMap<>();
-//                map.put("nome",nome.getText().toString());
-//                map.put("telefone",telefone.getText().toString());
-//                map.put("aniversario",aniversario.getText().toString());
-
-
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -231,19 +190,6 @@ public class cadastro_cliente_editar extends AppCompatActivity {
                             if (current.equals(UID_usuario)) {
 
                                 String id_usuario_agendamento = usuario_info.child("id_usuario").getValue().toString();
-
-
-
-
-//                                Integer pontos_usuario = Integer.parseInt(usuario_info.child("pontos_usuario").getValue().toString());
-//
-//
-//                                Double ponto = Double.parseDouble(pontos_usuario.toString()) ;
-//
-//                                Double pontuacao = Double.parseDouble(ponto.toString()) ;
-////                                        ponto.doubleValue();
-//
-//                                Double resultado = pontuacao + agendamento.getPonto_agendamento();
 
 
                                 Map<String,Object> map = new HashMap<>();
@@ -267,19 +213,9 @@ public class cadastro_cliente_editar extends AppCompatActivity {
                                     }
                                 });
 
-
-
                             }
 
-
-
-
                         }
-
-
-
-
-
 
                     }
 
@@ -288,33 +224,8 @@ public class cadastro_cliente_editar extends AppCompatActivity {
 
                     }
                 });
-
-//                db.collection("usuários")
-//                                .document(current).set(map, SetOptions.merge())
-//                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                Toast.makeText(clienteeditar.getContext(), "Dados Atualizados", Toast.LENGTH_SHORT).show();
-//                                onBackPressed();
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(clienteeditar.getContext(), "Algo de errado aconteceu", Toast.LENGTH_SHORT).show();
-//
-//                            }
-//                        });
-
-
-
-
-
-
             }
         });
-
-
     }
 
 
@@ -332,7 +243,6 @@ public class cadastro_cliente_editar extends AppCompatActivity {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             //nothing to do here...
             mAfter  =   after; // flag to detect backspace..
-
         }
 
         @Override
@@ -351,13 +261,11 @@ public class cadastro_cliente_editar extends AppCompatActivity {
                         s.append(data);
                         Log.i("Number", data);//8 (999) 123-45-67 or +7 999 123-45-67
                     }
-
                 }
                 mFormatting = false;
             }
         }
     };
-
 
     public void Botao_Cancelar_Cliente (View view){
         super.onBackPressed();

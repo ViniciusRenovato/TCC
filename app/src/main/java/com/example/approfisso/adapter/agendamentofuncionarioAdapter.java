@@ -18,6 +18,7 @@ import com.example.approfisso.classes.Usuario;
 import com.example.approfisso.ediçao.cadastro_agendamento_editar;
 import com.example.approfisso.ediçao.cadastro_funcionario_editar;
 import com.example.approfisso.entidades.Agendamento;
+import com.example.approfisso.entidades.Agendamento_Encerrado;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -59,6 +60,7 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
         agendamentoViewHolder.agendamentofuncionarioid = agendamento.getId_funcionario();
         agendamentoViewHolder.agendamentoclienteid = agendamento.getLogin_cliente();
         agendamentoViewHolder.agendamentoponto = agendamento.getPonto_agendamento();
+        agendamentoViewHolder.agendamentonomefuncionario = agendamento.getFuncionario();
 
         agendamentoViewHolder.agendamentohora.setText(agendamento.getHora_agendamento());
         agendamentoViewHolder.agendamentodia.setText(agendamento.getDia_agendamento());
@@ -71,11 +73,75 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
             @Override
             public void onClick(View view) {
 
-
-
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                 String current = agendamento.getLogin_cliente();
+
+
+                String id_funcionario_agendamento_ganho = agendamento.getId_funcionario();
+                String mes_ano_listagem =agendamento.getDia_agendamento().substring(3,10);
+                String ano_ganho_listagem =agendamento.getDia_agendamento().substring(6,10);
+                String mes_ganho_listagem = agendamento.getDia_agendamento().substring(3,5);
+
+                DatabaseReference databaseReference_funcionario_listagem = FirebaseDatabase.getInstance().getReference("Agendamento_Encerrado").child(ano_ganho_listagem).child(mes_ganho_listagem);
+                databaseReference_funcionario_listagem.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if (snapshot.exists()){
+
+                            for (DataSnapshot calculo_mensal : snapshot.getChildren()){
+
+                                Agendamento_Encerrado agendamento_encerrado = snapshot.getValue(Agendamento_Encerrado.class);
+                                double ganho_soma_mensal = Double.parseDouble(calculo_mensal.child("ganho_funcionario").getValue().toString());
+                                double valor_servico_ganho = Double.parseDouble(agendamento.getValor_servico());
+                                double ganho_funcionario = (valor_servico_ganho/100.0f) *50;
+                                double ganho_estabelecimento = (valor_servico_ganho/100.0f) *50;
+                                double resultado_ganho = ganho_funcionario + ganho_soma_mensal;
+
+                                String ano_ganho =agendamento.getDia_agendamento().substring(6,10);
+                                String mes_ganho = agendamento.getDia_agendamento().substring(3,5);
+                                String mes_ano =agendamento.getDia_agendamento().substring(3,10);
+                                HashMap ganho_funcionario_map = new HashMap();
+                                ganho_funcionario_map.put("nome_funcionario",agendamento.getFuncionario());
+                                ganho_funcionario_map.put("ganho_funcionario",resultado_ganho);
+                                DatabaseReference databaseReference_funcionario = FirebaseDatabase.getInstance().getReference("Agendamento_Encerrado");
+                                databaseReference_funcionario.child(ano_ganho).child(mes_ganho).child(id_funcionario_agendamento_ganho).updateChildren(ganho_funcionario_map).addOnCompleteListener(new OnCompleteListener() {
+                                    @Override
+                                    public void onComplete(@NonNull Task task) {
+
+                                    }
+                                });
+
+                            }
+
+                        }else{
+                            String mes_ganho =agendamento.getDia_agendamento().substring(6,10);
+                            String ano_ganho = agendamento.getDia_agendamento().substring(3,5);
+                            double valor_servico_ganho = Double.parseDouble(agendamento.getValor_servico());
+                            double ganho_funcionario = (valor_servico_ganho/100.0f) *50;
+
+
+                            Agendamento_Encerrado agendamentos_encerrados_salvar;
+
+                            agendamentos_encerrados_salvar = new Agendamento_Encerrado();
+                            agendamentos_encerrados_salvar.setId_funcionario(agendamento.getId_funcionario());
+                            agendamentos_encerrados_salvar.setNome_funcionario(agendamento.getFuncionario());
+                            agendamentos_encerrados_salvar.setGanho_funcionario(String.valueOf(ganho_funcionario));
+                            agendamentos_encerrados_salvar.setAno_agendamento_encerrado(mes_ganho);
+                            agendamentos_encerrados_salvar.setMes_agendamento_encerrado(ano_ganho);
+                            Agendamento_Encerrado.salvaAgendamentoEncerrado(agendamentos_encerrados_salvar);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
 
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -90,21 +156,20 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                             if (current.equals(UID_usuario)) {
 
 
-
                                 String id_usuario_agendamento = usuario_info.child("id_usuario").getValue().toString();
                                 Integer pontos_usuario = Integer.parseInt(usuario_info.child("pontos_usuario").getValue().toString());
 
 
+
+
+                                DatabaseReference databaseReference_estabelecimento = FirebaseDatabase.getInstance().getReference("Agendamento_Encerrado");
+
+
                                 Double ponto = Double.parseDouble(pontos_usuario.toString()) ;
-
                                 Double pontuacao = Double.parseDouble(ponto.toString()) ;
-//                                        ponto.doubleValue();
-
                                 Double resultado = pontuacao + agendamento.getPonto_agendamento();
 
-
                                 HashMap ponto_cliente = new HashMap();
-
                                 ponto_cliente.put("pontos_usuario",resultado);
 
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("usuários");
@@ -117,7 +182,7 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                                             FirebaseDatabase.getInstance().getReference().child("Agendamento").child(agendamento.getId_agendamento()).removeValue();
 
                                         }else{
-                                            Toast.makeText(view.getContext(),"falha na edição",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(view.getContext(),"falha na adição de pontos",Toast.LENGTH_SHORT).show();
 
                                         }
                                     }
@@ -238,6 +303,7 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
         private TextView agendamentovalor;
         private TextView agendamentoservico;
         private TextView agendamentoclientenome;
+        private String agendamentonomefuncionario;
         private String agendamentoclienteid;
         private String agendamentofuncionarioid;
         private Integer agendamentoponto;
