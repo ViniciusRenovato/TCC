@@ -12,6 +12,7 @@ public class Agendamento_Encerrado implements Serializable {
 
     private String id_funcionario;
     private String nome_funcionario;
+    private String nome_estabelecimento;
     private String id_ganho;
     private String ganho_funcionario;
     private String ganho_estabelecimento;
@@ -82,6 +83,14 @@ public class Agendamento_Encerrado implements Serializable {
         this.nome_funcionario = nome_funcionario;
     }
 
+    public String getNome_estabelecimento() {
+        return nome_estabelecimento;
+    }
+
+    public void setNome_estabelecimento(String nome_estabelecimento) {
+        this.nome_estabelecimento = nome_estabelecimento;
+    }
+
     @Override
     public String toString() {
         return  ", id_funcionario='" + id_funcionario + '\'' +
@@ -108,14 +117,29 @@ public class Agendamento_Encerrado implements Serializable {
             List<Agendamento_Encerrado> agendamento = new ArrayList();
             a.setId_ganho(id);
 
-            databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("id_ganho").setValue(id);
+//            databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("id_ganho").setValue(id);
             databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("id_funcionario").setValue(a.getId_funcionario());
             databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("nome_funcionario").setValue(a.getNome_funcionario());
-            databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("ganho_funcionario").setValue(a.getGanho_funcionario());
+            databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("ganho_funcionario"+" "+a.getId_funcionario()).setValue(a.getGanho_funcionario());
+
+//
+//            databaseReference.child("Agendamento_Encerrado_Estabelecimento").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child("Estabelecimento").child("ganho_estabelecimento").setValue(a.getGanho_estabelecimento());
+//            databaseReference.child("Agendamento_Encerrado_Estabelecimento").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child("Estabelecimento").child("nome_estabelecimento").setValue(a.getNome_estabelecimento());
+    }
+
+    public static void salvaAgendamentoEncerradoEstabelecimento(Agendamento_Encerrado b){
+        if(databaseReference==null)
+
+            inicio();
+        String id=databaseReference.child("Agendamento_Encerrado").push().getKey();
+        List<Agendamento_Encerrado> agendamento = new ArrayList();
+        b.setId_ganho(id);
+
+//            databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("id_ganho").setValue(id);
 
 
-            databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child("Estabelecimento").child("ganho_estabelecimento").setValue(a.getGanho_estabelecimento());
-
+        databaseReference.child("Agendamento_Encerrado_Estabelecimento").child(b.getAno_agendamento_encerrado()).child(b.getMes_agendamento_encerrado()).child("Estabelecimento").child("ganho_estabelecimento").setValue(b.getGanho_estabelecimento());
+        databaseReference.child("Agendamento_Encerrado_Estabelecimento").child(b.getAno_agendamento_encerrado()).child(b.getMes_agendamento_encerrado()).child("Estabelecimento").child("nome_estabelecimento").setValue(b.getNome_estabelecimento());
     }
 
 }

@@ -88,25 +88,132 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                        if (snapshot.exists()) {
+
+                        for (DataSnapshot filtra_ususario : snapshot.getChildren()){
+
+
+
+                                if (filtra_ususario.child("id_funcionario").getValue().toString().equals(agendamento.getId_funcionario())) {
+
+
+                                    if (snapshot.exists()) {
+
+                                        for (DataSnapshot calculo_mensal : snapshot.getChildren()) {
+
+                                            Agendamento_Encerrado agendamento_encerrado = snapshot.getValue(Agendamento_Encerrado.class);
+
+//                                if (agendamento.getId_funcionario().equals(calculo_mensal.child("id_funcionario").getValue().toString())){
+
+                                            if ( calculo_mensal.child("id_funcionario").getValue().toString().equals(agendamento.getId_funcionario())) {
+
+                                                double ganho_soma_mensal = Double.parseDouble(calculo_mensal.child("ganho_funcionario" + " " + agendamento.getId_funcionario()).getValue().toString());
+                                                double valor_servico_ganho = Double.parseDouble(agendamento.getValor_servico());
+                                                double ganho_funcionario = (valor_servico_ganho / 100.0f) * 50;
+//                                    double ganho_estabelecimento = (valor_servico_ganho / 100.0f) * 50;
+                                                double resultado_ganho = ganho_funcionario + ganho_soma_mensal;
+
+                                                String ano_ganho = agendamento.getDia_agendamento().substring(6, 10);
+                                                String mes_ganho = agendamento.getDia_agendamento().substring(3, 5);
+//                                    String mes_ano = agendamento.getDia_agendamento().substring(3, 10);
+                                                HashMap ganho_funcionario_map = new HashMap();
+                                                ganho_funcionario_map.put("nome_funcionario", agendamento.getFuncionario());
+                                                ganho_funcionario_map.put("ganho_funcionario" + " " + agendamento.getId_funcionario(), resultado_ganho);
+                                                DatabaseReference databaseReference_funcionario = FirebaseDatabase.getInstance().getReference("Agendamento_Encerrado");
+                                                databaseReference_funcionario.child(ano_ganho).child(mes_ganho).child(id_funcionario_agendamento_ganho).updateChildren(ganho_funcionario_map).addOnCompleteListener(new OnCompleteListener() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task task) {
+
+                                                    }
+                                                });
+
+
+//
+
+
+                                            }
+                                        }
+                                    }
+//                                    else {}
+                                }else {
+
+                                    if (filtra_ususario.child("id_funcionario").getValue().toString().equals(agendamento.getId_funcionario())) {
+
+
+                                    String mes_ganho = agendamento.getDia_agendamento().substring(6, 10);
+                                    String ano_ganho = agendamento.getDia_agendamento().substring(3, 5);
+                                    double valor_servico_ganho = Double.parseDouble(agendamento.getValor_servico());
+                                    double ganho_funcionario = (valor_servico_ganho / 100.0f) * 50;
+
+
+                                    Agendamento_Encerrado agendamentos_encerrados_salvar;
+
+                                    agendamentos_encerrados_salvar = new Agendamento_Encerrado();
+                                    agendamentos_encerrados_salvar.setId_funcionario(agendamento.getId_funcionario());
+                                    agendamentos_encerrados_salvar.setNome_funcionario(agendamento.getFuncionario());
+                                    agendamentos_encerrados_salvar.setGanho_funcionario(String.valueOf(ganho_funcionario));
+                                    agendamentos_encerrados_salvar.setAno_agendamento_encerrado(mes_ganho);
+                                    agendamentos_encerrados_salvar.setMes_agendamento_encerrado(ano_ganho);
+                                    Agendamento_Encerrado.salvaAgendamentoEncerrado(agendamentos_encerrados_salvar);
+
+                                }
+                                }
+
+                            }
+
+                    }else{
+
+                            String mes_ganho = agendamento.getDia_agendamento().substring(6, 10);
+                            String ano_ganho = agendamento.getDia_agendamento().substring(3, 5);
+                            double valor_servico_ganho = Double.parseDouble(agendamento.getValor_servico());
+                            double ganho_funcionario = (valor_servico_ganho / 100.0f) * 50;
+
+
+                            Agendamento_Encerrado agendamentos_encerrados_salvar;
+
+                            agendamentos_encerrados_salvar = new Agendamento_Encerrado();
+                            agendamentos_encerrados_salvar.setId_funcionario(agendamento.getId_funcionario());
+                            agendamentos_encerrados_salvar.setNome_funcionario(agendamento.getFuncionario());
+                            agendamentos_encerrados_salvar.setGanho_funcionario(String.valueOf(ganho_funcionario));
+                            agendamentos_encerrados_salvar.setAno_agendamento_encerrado(mes_ganho);
+                            agendamentos_encerrados_salvar.setMes_agendamento_encerrado(ano_ganho);
+                            Agendamento_Encerrado.salvaAgendamentoEncerrado(agendamentos_encerrados_salvar);
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                DatabaseReference databaseReference_estabelecimento_listagem = FirebaseDatabase.getInstance().getReference("Agendamento_Encerrado_Estabelecimento").child(ano_ganho_listagem).child(mes_ganho_listagem);
+                databaseReference_estabelecimento_listagem.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                         if (snapshot.exists()){
 
                             for (DataSnapshot calculo_mensal : snapshot.getChildren()){
 
                                 Agendamento_Encerrado agendamento_encerrado = snapshot.getValue(Agendamento_Encerrado.class);
-                                double ganho_soma_mensal = Double.parseDouble(calculo_mensal.child("ganho_funcionario").getValue().toString());
+
+
+
+                                double ganho_soma_mensal = Double.parseDouble(calculo_mensal.child("ganho_estabelecimento").getValue().toString());
                                 double valor_servico_ganho = Double.parseDouble(agendamento.getValor_servico());
-                                double ganho_funcionario = (valor_servico_ganho/100.0f) *50;
                                 double ganho_estabelecimento = (valor_servico_ganho/100.0f) *50;
-                                double resultado_ganho = ganho_funcionario + ganho_soma_mensal;
+                                double resultado_ganho = ganho_estabelecimento + ganho_soma_mensal;
 
                                 String ano_ganho =agendamento.getDia_agendamento().substring(6,10);
                                 String mes_ganho = agendamento.getDia_agendamento().substring(3,5);
-                                String mes_ano =agendamento.getDia_agendamento().substring(3,10);
-                                HashMap ganho_funcionario_map = new HashMap();
-                                ganho_funcionario_map.put("nome_funcionario",agendamento.getFuncionario());
-                                ganho_funcionario_map.put("ganho_funcionario",resultado_ganho);
-                                DatabaseReference databaseReference_funcionario = FirebaseDatabase.getInstance().getReference("Agendamento_Encerrado");
-                                databaseReference_funcionario.child(ano_ganho).child(mes_ganho).child(id_funcionario_agendamento_ganho).updateChildren(ganho_funcionario_map).addOnCompleteListener(new OnCompleteListener() {
+                                HashMap ganho_estabelecimento_map = new HashMap();
+                                ganho_estabelecimento_map.put("nome_estabelecimento","Salão");
+                                ganho_estabelecimento_map.put("ganho_estabelecimento",resultado_ganho);
+                                DatabaseReference databaseReference_estabelecimento = FirebaseDatabase.getInstance().getReference("Agendamento_Encerrado_Estabelecimento");
+                                databaseReference_estabelecimento.child(ano_ganho).child(mes_ganho).child("Estabelecimento").updateChildren(ganho_estabelecimento_map).addOnCompleteListener(new OnCompleteListener() {
                                     @Override
                                     public void onComplete(@NonNull Task task) {
 
@@ -119,18 +226,18 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                             String mes_ganho =agendamento.getDia_agendamento().substring(6,10);
                             String ano_ganho = agendamento.getDia_agendamento().substring(3,5);
                             double valor_servico_ganho = Double.parseDouble(agendamento.getValor_servico());
-                            double ganho_funcionario = (valor_servico_ganho/100.0f) *50;
+                            double ganho_estabelecimento = (valor_servico_ganho/100.0f) *50;
+                            String nome_salao = "salão";
 
+                            Agendamento_Encerrado agendamentos_encerrados_salvar_estabelecimento;
 
-                            Agendamento_Encerrado agendamentos_encerrados_salvar;
+                            agendamentos_encerrados_salvar_estabelecimento = new Agendamento_Encerrado();
 
-                            agendamentos_encerrados_salvar = new Agendamento_Encerrado();
-                            agendamentos_encerrados_salvar.setId_funcionario(agendamento.getId_funcionario());
-                            agendamentos_encerrados_salvar.setNome_funcionario(agendamento.getFuncionario());
-                            agendamentos_encerrados_salvar.setGanho_funcionario(String.valueOf(ganho_funcionario));
-                            agendamentos_encerrados_salvar.setAno_agendamento_encerrado(mes_ganho);
-                            agendamentos_encerrados_salvar.setMes_agendamento_encerrado(ano_ganho);
-                            Agendamento_Encerrado.salvaAgendamentoEncerrado(agendamentos_encerrados_salvar);
+                            agendamentos_encerrados_salvar_estabelecimento.setNome_estabelecimento(nome_salao);
+                            agendamentos_encerrados_salvar_estabelecimento.setGanho_estabelecimento(String.valueOf(ganho_estabelecimento));
+                            agendamentos_encerrados_salvar_estabelecimento.setAno_agendamento_encerrado(mes_ganho);
+                            agendamentos_encerrados_salvar_estabelecimento.setMes_agendamento_encerrado(ano_ganho);
+                            Agendamento_Encerrado.salvaAgendamentoEncerradoEstabelecimento(agendamentos_encerrados_salvar_estabelecimento);
                         }
 
                     }
@@ -140,6 +247,24 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
 
                     }
                 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

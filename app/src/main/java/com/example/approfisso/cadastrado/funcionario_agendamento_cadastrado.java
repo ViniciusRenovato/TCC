@@ -33,6 +33,7 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
 
     private Button pontos;
+    private Button ganho;
 
 
 
@@ -44,6 +45,8 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
         setContentView(R.layout.funcionario_cadastrado_agendamento);
 
         pontos = findViewById(R.id.button_pontos_clientes);
+        ganho = findViewById(R.id.btn_ganho);
+
 //        lista= findViewById(R.id.lista_emprego_oferecido);
 
         //recycle view
@@ -63,6 +66,13 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(funcionario_agendamento_cadastrado.this, Pontos_clientes.class));
+            }
+        });
+
+        ganho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(funcionario_agendamento_cadastrado.this, ganho_cadastrado.class));
             }
         });
 
