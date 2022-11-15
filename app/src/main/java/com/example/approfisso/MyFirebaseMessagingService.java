@@ -17,10 +17,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+
+
+
+
+
+
         super.onMessageReceived(remoteMessage);
     }
 
     public static String getToken(Context context) {
+
+
+
+
+
+
+
+
+
         return context.getSharedPreferences("_", MODE_PRIVATE).getString("fb", "empty");
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,11 +19,15 @@ import com.example.approfisso.activity.Principal;
 import com.example.approfisso.adapter.funcaoAdapter;
 import com.example.approfisso.adapter.ganhoAdapter;
 import com.example.approfisso.cadastro.cadastro_funcao;
+import com.example.approfisso.classes.Usuario;
 import com.example.approfisso.entidades.Agendamento_Encerrado;
 import com.example.approfisso.entidades.Funcao;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -43,6 +48,8 @@ public class ganho_cadastrado extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private Funcao Funcoes_delete;
+
+    private TextView ganho_salao;
 
     private String data_listada;
     private String mes;
@@ -70,6 +77,7 @@ public class ganho_cadastrado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resumo_ganho_estabelecimento);
 
+        ganho_salao = findViewById(R.id.ganho_estabelecimento_mensal);
 
 //        lista= findViewById(R.id.lista_emprego_oferecido);
 
@@ -119,6 +127,73 @@ public class ganho_cadastrado extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+
+        DatabaseReference reference_ganho_salao = FirebaseDatabase.getInstance().getReference().child("Agendamento_Encerrado_Estabelecimento").child(ano).child(mes);
+        reference_ganho_salao.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                    Agendamento_Encerrado agendamento_encerrado = snapshot.getValue(Agendamento_Encerrado.class);
+
+                    String ganho_do_salao = usuario_info.child("ganho_estabelecimento").getValue().toString();
+
+
+
+
+
+
+                        ganho_salao.setText(ganho_do_salao);
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        db.collection("usuários")
+//                .whereEqualTo("id",current).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()){
+//                            for(DocumentSnapshot document : task.getResult()){
+//                                mTVEmail.setText((CharSequence) document.get("nome")) ;
+//                                pnt_cliente.setText((CharSequence) document.get("pontos").toString());
+//
+//                            }
+//                        }
+//                    }
+//                });
+    }
+
+
+
+
 
 
 
@@ -196,6 +271,42 @@ public class ganho_cadastrado extends AppCompatActivity {
 
 
         data_selecionada.setText(data_listada);
+
+
+
+        ganho_salao.setText("0");
+
+        DatabaseReference reference_ganho_salao = FirebaseDatabase.getInstance().getReference().child("Agendamento_Encerrado_Estabelecimento").child(ano).child(mes);
+        reference_ganho_salao.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                    Agendamento_Encerrado agendamento_encerrado = snapshot.getValue(Agendamento_Encerrado.class);
+
+                    String ganho_do_salao = usuario_info.child("ganho_estabelecimento").getValue().toString();
+
+
+
+
+
+
+                    ganho_salao.setText(ganho_do_salao);
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
 
 
 

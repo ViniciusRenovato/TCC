@@ -413,6 +413,9 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
         agendamentoViewHolder.agendamentofaltou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String current = agendamento.getLogin_cliente();
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(agendamentoViewHolder.agendamentohora.getContext());
                 builder.setTitle("Você tem certeza?");
                 builder.setMessage("Informação deletada nao pode ser recuperada.");
@@ -420,7 +423,87 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                 builder.setPositiveButton("Deletar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
+
+
+
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                                    Usuario usuario = snapshot.getValue(Usuario.class);
+                                    String UID_usuario = usuario_info.child("id_usuario").getValue().toString();
+
+                                    if (current.equals(UID_usuario)) {
+
+
+                                        String id_usuario_agendamento = usuario_info.child("id_usuario").getValue().toString();
+                                        Integer faltas_usuario = Integer.parseInt(usuario_info.child("faltas_usuario").getValue().toString());
+
+
+
+
+                                        DatabaseReference databaseReference_estabelecimento = FirebaseDatabase.getInstance().getReference("Agendamento_Encerrado");
+
+
+                                        Double ponto = Double.parseDouble(faltas_usuario.toString()) ;
+                                        Double pontuacao = Double.parseDouble(ponto.toString()) ;
+                                        Double resultado = pontuacao + 1;
+
+                                        HashMap ponto_cliente = new HashMap();
+                                        ponto_cliente.put("faltas_usuario",resultado);
+
+                                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("usuários");
+                                        databaseReference.child(id_usuario_agendamento).updateChildren(ponto_cliente).addOnCompleteListener(new OnCompleteListener() {
+                                            @Override
+                                            public void onComplete(@NonNull Task task) {
+                                                if (task.isSuccessful()){
+
+                                                    Toast.makeText(view.getContext(),"Serviço fechado.",Toast.LENGTH_SHORT).show();
+                                                    FirebaseDatabase.getInstance().getReference().child("Agendamento").child(agendamento.getId_agendamento()).removeValue();
+
+                                                }else{
+                                                    Toast.makeText(view.getContext(),"falha na adição de pontos",Toast.LENGTH_SHORT).show();
+
+                                                }
+                                            }
+                                        });
+
+
+
+                                    }
+
+
+
+
+                                }
+
+
+
+
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+
+
+
+
+
+
+
+
                         FirebaseDatabase.getInstance().getReference().child("Agendamento").child(agendamento.getId_agendamento()).removeValue();
+
                     }
                 });
 
