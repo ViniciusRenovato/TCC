@@ -44,6 +44,7 @@ public class ganho_cadastrado extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private Funcao Funcoes_delete;
 
+    private String data_listada;
     private String mes;
     private String ano;
 
@@ -75,6 +76,14 @@ public class ganho_cadastrado extends AppCompatActivity {
 
         data_selecionada = findViewById(R.id.data_mes_resumo_ganho);
         data_selecionada.setText(currentDate);
+
+        mes = data_selecionada.getText().toString().trim().substring(3,5);
+        ano = data_selecionada.getText().toString().trim().substring(6,10);
+        data_listada = mes+"/"+ano;
+
+        data_selecionada.setText(data_listada);
+
+
 
         data_selecionada.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,11 +128,11 @@ public class ganho_cadastrado extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataSnapshot dataSnapshot = snapshot.child("Agendamento_Encerrado");
+                DataSnapshot dataSnapshot = snapshot.child("Agendamento_Encerrado").child(ano).child(mes);
                 Agendamentos_Encerrados.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
 
-{}
+
 
 
                     Agendamento_Encerrado agendamento_encerrado = postSnapshot.getValue(Agendamento_Encerrado.class);
@@ -180,8 +189,13 @@ public class ganho_cadastrado extends AppCompatActivity {
 
         data_selecionada.setText(sdf.format(myCalendar.getTime()));
 
-        mes = data_selecionada.toString().substring(3,5);
-        ano = data_selecionada.toString().substring(6,10);
+        mes = data_selecionada.getText().toString().trim().substring(3,5);
+        ano = data_selecionada.getText().toString().trim().substring(6,10);
+
+        data_listada = mes+"/"+ano;
+
+
+        data_selecionada.setText(data_listada);
 
 
 

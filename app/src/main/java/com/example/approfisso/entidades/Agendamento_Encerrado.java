@@ -14,7 +14,7 @@ public class Agendamento_Encerrado implements Serializable {
     private String nome_funcionario;
     private String nome_estabelecimento;
     private String id_ganho;
-    private String ganho_funcionario;
+    private Long ganho_funcionario;
     private String ganho_estabelecimento;
     private String ano_agendamento_encerrado;
     private String mes_agendamento_encerrado;
@@ -35,16 +35,16 @@ public class Agendamento_Encerrado implements Serializable {
         this.id_funcionario = id_funcionario;
     }
 
-    public String getGanho_funcionario() {
+    public Long getGanho_funcionario() {
         return ganho_funcionario;
     }
 
-    public void setGanho_funcionario(String ganho_funcionario) {
+    public void setGanho_funcionario(Long ganho_funcionario) {
         this.ganho_funcionario = ganho_funcionario;
     }
 
     public String getGanho_estabelecimento() {
-        return ganho_estabelecimento;
+        return ganho_estabelecimento+" "+getId_funcionario();
     }
 
     public void setGanho_estabelecimento(String ganho_estabelecimento) {
@@ -120,7 +120,7 @@ public class Agendamento_Encerrado implements Serializable {
 //            databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("id_ganho").setValue(id);
             databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("id_funcionario").setValue(a.getId_funcionario());
             databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("nome_funcionario").setValue(a.getNome_funcionario());
-            databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("ganho_funcionario"+" "+a.getId_funcionario()).setValue(a.getGanho_funcionario());
+            databaseReference.child("Agendamento_Encerrado").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child(a.getId_funcionario()).child("ganho_funcionario").setValue(a.getGanho_funcionario());
 
 //
 //            databaseReference.child("Agendamento_Encerrado_Estabelecimento").child(a.getAno_agendamento_encerrado()).child(a.getMes_agendamento_encerrado()).child("Estabelecimento").child("ganho_estabelecimento").setValue(a.getGanho_estabelecimento());

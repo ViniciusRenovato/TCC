@@ -1,6 +1,7 @@
 package com.example.approfisso.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.approfisso.R;
@@ -26,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -181,18 +183,31 @@ public class Principal extends AppCompatActivity {
     }
 
     public void logout(View view){
-        SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
-        editor.apply();
 
-        clearToken(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        mFirebaseAuth.signOut();
+        AlertDialog.Builder builder = new AlertDialog.Builder(Principal.this);
+        builder.setMessage("Você quer mesmo sair?");
+        builder.setTitle("Confirmar saída");
+        builder.setCancelable(false);
 
-        Intent it = new Intent(this, LoginActivity.class);
-        startActivity(it);
-        //onBackPressed();
+        builder.setPositiveButton("Sim", (DialogInterface.OnClickListener) (dialog, which) -> {
+
+            SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+
+            clearToken(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            mFirebaseAuth.signOut();
+
+            Intent it = new Intent(this, LoginActivity.class);
+            startActivity(it);
+        });
+        builder.setNegativeButton("Não", (DialogInterface.OnClickListener) (dialog, which) -> {
+            dialog.cancel();
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     public void clearToken(String UserID){

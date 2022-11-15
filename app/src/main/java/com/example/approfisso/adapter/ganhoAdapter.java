@@ -48,7 +48,7 @@ public class ganhoAdapter extends RecyclerView.Adapter<ganhoAdapter.FuncaoHolder
 
 
         funcaoViewHolder.ganhonome.setText(agendamento_encerrado.getNome_funcionario());
-        funcaoViewHolder.ganhovalor.setText(agendamento_encerrado.getGanho_funcionario());
+        funcaoViewHolder.ganhovalor.setText(agendamento_encerrado.getGanho_funcionario().toString());
 
 
     }
