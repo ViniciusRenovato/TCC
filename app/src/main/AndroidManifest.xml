@@ -13,6 +13,9 @@
         <activity
             android:name=".activity.Principal"
             android:exported="true" />
+        <activity
+            android:name=".activity.Principal_Cliente"
+            android:exported="true" />
 
         <activity
             android:name=".activity.CadastroActivity"

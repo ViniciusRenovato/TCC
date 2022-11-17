@@ -23,21 +23,6 @@
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
 
-    <Button
-        android:id="@+id/button_servico"
-        android:layout_width="152dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="monospace"
-        android:onClick="botao_cadastro_servico"
-        android:text="serviço"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/salao" />
-
     <ProgressBar
         android:id="@+id/progressbarPrincipal"
         android:layout_width="wrap_content"
@@ -50,51 +35,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_funcao" />
+        app:layout_constraintTop_toBottomOf="@+id/button_produto" />
 
     <Button
-        android:id="@+id/button_funcionario"
-        android:layout_width="152dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="monospace"
-        android:onClick="botao_cadastro_funcionario"
-        android:text="Funcionario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_servico" />
-
-    <Button
-        android:id="@+id/button_funcao"
-        android:layout_width="152dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="monospace"
-        android:onClick="botao_cadastro_funcao"
-        android:text="Função"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_funcionario" />
-
-    <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/button_produto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:fontFamily="cursive"
-        android:text="Cadastro"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="34sp"
+        android:fontFamily="monospace"
+        android:onClick="botao_cadastro_agendamento"
+        android:text="Agendar Horario"
+        app:layout_constraintBottom_toTopOf="@+id/Button_Deslogar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -117,31 +72,40 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/textView22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="Pontos:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/salao"
-        android:layout_width="152dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/pontos_cliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="Agenda"
-        app:iconGravity="textTop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        android:layout_marginBottom="32dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView22" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="144dp"
         android:layout_height="140dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:src="@mipmap/logo_bithair2_foreground"
         app:layout_constraintEnd_toEndOf="parent"

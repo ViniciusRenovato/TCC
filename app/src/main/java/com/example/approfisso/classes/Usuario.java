@@ -16,6 +16,7 @@ public class Usuario {
     private String telefone_usuario;
     private String aniversario_usuario;
     private String senha_usuario;
+    private String tipo_usuario;
     private Integer pontos_usuario;
     private Integer faltas_usuario;
     private boolean salao;
@@ -90,6 +91,14 @@ public class Usuario {
         this.salao = salao;
     }
 
+    public String getTipo_usuario() {
+        return tipo_usuario;
+    }
+
+    public void setTipo_usuario(String tipo_usuario) {
+        this.tipo_usuario = tipo_usuario;
+    }
+
     public String getTelefone_usuario() {
         return telefone_usuario;
     }
@@ -133,6 +142,7 @@ public class Usuario {
         databaseReference.child("usuários").child(id).child("telefone_usuario").setValue(usuario.getTelefone_usuario());
         databaseReference.child("usuários").child(id).child("aniversario_usuario").setValue(usuario.getAniversario_usuario());
         databaseReference.child("usuários").child(id).child("email_usuario").setValue(usuario.getEmail_usuario());
+        databaseReference.child("usuários").child(id).child("tipo_usuario").setValue(usuario.getTipo_usuario());
 
 
 

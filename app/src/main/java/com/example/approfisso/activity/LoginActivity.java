@@ -26,7 +26,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
@@ -40,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     public static  final String Username = "username";
     public static  final String Password = "password";
 
-
+    private  String tipo_usuario;
     private TextView TextoRecuperar;
     private EditText etEmail;
     private EditText etSenha;
@@ -86,8 +90,52 @@ public class LoginActivity extends AppCompatActivity {
 //          looping sem login
 
         if(sharedPreferences.contains(Username)){
-            Intent i = new Intent(LoginActivity.this, Principal.class);
-            startActivity(i);
+
+
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            final String current = user.getUid();
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                        Usuario usuario = snapshot.getValue(Usuario.class);
+                        String UID_usuario = usuario_info.child("UID_usuario").getValue().toString();
+
+                        if (current.equals(UID_usuario)) {
+
+                            tipo_usuario = usuario_info.child("tipo_usuario").getValue().toString();
+
+                            if (tipo_usuario.equals("cliente")){
+
+                                startActivity(new Intent(LoginActivity.this,Principal_Cliente.class));
+                                return;
+                            }
+
+                            if (tipo_usuario.equals("admin")){
+
+                                startActivity(new Intent(LoginActivity.this,Principal.class));
+                                return;
+                            }
+                            return;
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+
+
+
+
         }
 
 
@@ -227,12 +275,69 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()) {
 
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString(Username,username);
-                            editor.putString(Password,password);
-                            editor.commit();
+
+
                             FirebaseUser user = mAuth.getCurrentUser();
-                            retrieveAndStoreToken();
+
+
+
+                            final String current = user.getUid();
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+                            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                                        Usuario usuario = snapshot.getValue(Usuario.class);
+                                        String UID_usuario = usuario_info.child("UID_usuario").getValue().toString();
+
+                                        if (current.equals(UID_usuario)) {
+
+                                            tipo_usuario = usuario_info.child("tipo_usuario").getValue().toString();
+
+                                            if (tipo_usuario.equals("cliente")){
+
+                                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                editor.putString(Username,username);
+                                                editor.putString(Password,password);
+                                                editor.commit();
+                                                FirebaseUser user = mAuth.getCurrentUser();
+                                                retrieveAndStoreToken();
+
+                                                startActivity(new Intent(LoginActivity.this,Principal_Cliente.class));
+                                                return;
+                                            }
+
+                                            if (tipo_usuario.equals("admin")){
+
+                                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                editor.putString(Username,username);
+                                                editor.putString(Password,password);
+                                                editor.commit();
+                                                FirebaseUser user = mAuth.getCurrentUser();
+                                                retrieveAndStoreToken();
+
+                                                startActivity(new Intent(LoginActivity.this,Principal.class));
+                                                return;
+                                            }
+
+                                                return;
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
+
+
+
+
 
                             startActivity(new Intent(LoginActivity.this,Principal.class));
                             progressBarLogin.setVisibility(View.GONE);
@@ -290,6 +395,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void telaCadastrar_login() {
+
+
+
+
+
+
+
+
         startActivity(new Intent(this, CadastroActivity.class));
     }
 

@@ -31,7 +31,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -46,6 +50,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     private EditText etNome;
     private EditText etAniversario;
+    private String tipo_usuario;
     private Usuario Usuarios;
 
     Calendar myCalendar = Calendar.getInstance();
@@ -174,6 +179,7 @@ public void checkEmail(View view)
 
         Integer pontos = 0;
         Integer faltas = 0;
+        String tipo_do_usuario = "cliente";
 
         String emailPattern = "[a-zA-Z0-9._-]*@[a-zA-Z0-9]*\\.[a-zA-Z0-9]+[a-zA-Z0-9]*[a-zA-Z.]+[a-zA-Z.]*?";
         String namePattern = "[A-Za-z ]+[ ]+[A-Za-z ]*";
@@ -312,6 +318,7 @@ public void checkEmail(View view)
                             usuario_cadastro.put("aniversario",aniversario);
                             usuario_cadastro.put("pontos",pontos);
                             usuario_cadastro.put("faltas",faltas);
+                            usuario_cadastro.put("tipo_usuario",tipo_do_usuario);
 
                             Usuarios = new Usuario();
 
@@ -322,6 +329,7 @@ public void checkEmail(View view)
                             Usuarios.setAniversario_usuario(aniversario);
                             Usuarios.setPontos_usuario(pontos);
                             Usuarios.setFaltas_usuario(faltas);
+                            Usuarios.setTipo_usuario(tipo_do_usuario);
                             Usuario.salvaUsuario(Usuarios);
 
 
@@ -344,7 +352,42 @@ public void checkEmail(View view)
 
                             retrieveAndStoreToken();
 
-                            startActivity(new Intent(CadastroActivity.this,Principal.class));
+                            final String current = user.getUid();
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuários");
+                            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    for (DataSnapshot usuario_info : snapshot.getChildren()){
+
+                                        Usuario usuario = snapshot.getValue(Usuario.class);
+                                        String UID_usuario = usuario_info.child("UID_usuario").getValue().toString();
+
+                                        if (current.equals(UID_usuario)) {
+
+                                            tipo_usuario = usuario_info.child("tipo_usuario").getValue().toString();
+
+                                            if (tipo_usuario.equals("cliente")){
+
+                                                startActivity(new Intent(CadastroActivity.this,Principal_Cliente.class));
+                                                return;
+                                            }
+
+
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
+
+
+
 
 
                         }else{

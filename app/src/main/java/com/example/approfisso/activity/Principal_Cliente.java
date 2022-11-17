@@ -1,5 +1,15 @@
 package com.example.approfisso.activity;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +23,6 @@ import com.example.approfisso.cadastrado.funcionario_cadastrado;
 import com.example.approfisso.cadastrado.servico_cadastrado;
 import com.example.approfisso.classes.Usuario;
 import com.example.approfisso.ediçao.cadastro_cliente_editar;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,24 +30,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import java.text.DecimalFormat;
 
 
-public class Principal extends AppCompatActivity {
+public class Principal_Cliente extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -57,7 +51,7 @@ public class Principal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.principal);
+        setContentView(R.layout.principal_cliente);
         progressBarprincipal = findViewById(R.id.progressbarPrincipal);
         progressBarprincipal.setVisibility(View.INVISIBLE);
 
@@ -70,15 +64,10 @@ public class Principal extends AppCompatActivity {
         mTVEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Principal.this, cadastro_cliente_editar.class));
+                startActivity(new Intent(Principal_Cliente.this, cadastro_cliente_editar.class));
             }
         });
-        estabelecimento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Principal.this, funcionario_agendamento_cadastrado.class));
-            }
-        });
+
     }
     @Override
     protected void onStart(){
@@ -106,7 +95,7 @@ public class Principal extends AppCompatActivity {
 
 
                         mTVEmail.setText(nome_usuario);
-
+                        pnt_cliente.setText(pontos_usuario);
 
                     }
                 }
@@ -185,7 +174,7 @@ public class Principal extends AppCompatActivity {
     public void logout(View view){
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(Principal.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Principal_Cliente.this);
         builder.setMessage("Você quer mesmo sair?");
         builder.setTitle("Confirmar saída");
         builder.setCancelable(false);
