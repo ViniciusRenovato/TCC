@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
+import com.example.approfisso.activity.Lista_Cliente;
 import com.example.approfisso.activity.Pontos_clientes;
 import com.example.approfisso.adapter.funcionarioAdapter;
 import com.example.approfisso.adapter.funcionarioagendamentoAdapter;
@@ -32,7 +33,7 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
 
-    private Button pontos;
+    private Button lista_cliente;
     private Button ganho;
 
 
@@ -44,7 +45,7 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.funcionario_cadastrado_agendamento);
 
-        pontos = findViewById(R.id.button_pontos_clientes);
+        lista_cliente = findViewById(R.id.button_pontos_clientes);
         ganho = findViewById(R.id.btn_ganho);
 
 //        lista= findViewById(R.id.lista_emprego_oferecido);
@@ -62,10 +63,10 @@ public class funcionario_agendamento_cadastrado extends AppCompatActivity {
         //chamada firebase
         listar_funcionario();
 
-        pontos.setOnClickListener(new View.OnClickListener() {
+        lista_cliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(funcionario_agendamento_cadastrado.this, Pontos_clientes.class));
+                startActivity(new Intent(funcionario_agendamento_cadastrado.this, Lista_Cliente.class));
             }
         });
 

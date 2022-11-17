@@ -9,7 +9,7 @@
     tools:context=".emprego_oferecido">
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/button_retornar_de_lista_cliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,7 +28,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="91dp"
         android:fontFamily="cursive"
-        android:text="Funcionários"
+        android:text="Lista dos clientes"
         android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lista_funcionario_cadastrado_agendamento"
+        android:id="@+id/lista_listagem_clientes"
         android:layout_width="347dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -44,31 +44,19 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/lista"
-        app:layout_constraintBottom_toTopOf="@+id/btn_ganho"
+        app:layout_constraintBottom_toTopOf="@+id/button_retornar_de_lista_cliente"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button_pontos_clientes"
+        android:id="@+id/button_resgate_de_pontos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
-        android:text="Clientes"
+        android:text="Resgate de Pontos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/btn_ganho"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="Ganhos Mensais"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

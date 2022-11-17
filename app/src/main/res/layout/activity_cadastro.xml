@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="monospace"
         android:text="Informe o seu nome "
@@ -35,7 +35,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/texttitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/texttitulo" />
 
     <EditText
         android:id="@+id/NomeCadastro"
@@ -68,12 +68,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/NomeCadastro" />
+
     <EditText
         android:id="@+id/EmailCadastro"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
         android:ems="10"
@@ -105,15 +105,14 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
         android:ems="10"
         android:fontFamily="monospace"
         android:gravity="center"
-        android:maxLength="15"
         android:hint="(99) 99999-9999"
         android:inputType="phone"
+        android:maxLength="15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textnumero" />
@@ -138,17 +137,16 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:hint="Data do nascimento"
-        android:fontFamily="monospace"
         android:background="@drawable/rounded"
         android:ems="10"
-        android:gravity="center"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:maxLength="5"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:hint="Data do nascimento"
         android:inputType="date"
+        android:maxLength="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textaniversario" />
@@ -173,12 +171,11 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
         android:ems="10"
-        android:gravity="center"
         android:fontFamily="monospace"
+        android:gravity="center"
         android:hint="Senha"
 
         android:inputType="textPassword"
@@ -207,26 +204,16 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded"
         android:ems="10"
-        android:gravity="center"
         android:fontFamily="monospace"
+        android:gravity="center"
         android:hint="Repita a senha"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textsenha2" />
-    <Switch
-        android:id="@+id/sEstabelecimento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="Salão"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RepetirSenhaCadastro" />
 
     <Button
         android:id="@+id/btCadastrarCadastro"
@@ -235,11 +222,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Cadastrar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sEstabelecimento" />
+        app:layout_constraintTop_toBottomOf="@+id/RepetirSenhaCadastro" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

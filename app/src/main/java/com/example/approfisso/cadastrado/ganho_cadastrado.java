@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -49,6 +50,8 @@ public class ganho_cadastrado extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private Funcao Funcoes_delete;
 
+    private Button retornar_do_ganho;
+
     private TextView ganho_salao;
 
     private String data_listada;
@@ -77,6 +80,9 @@ public class ganho_cadastrado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resumo_ganho_estabelecimento);
 
+
+
+        retornar_do_ganho = findViewById(R.id.retornar_resumo_mensal);
         ganho_salao = findViewById(R.id.ganho_estabelecimento_mensal);
 
 //        lista= findViewById(R.id.lista_emprego_oferecido);
@@ -101,6 +107,12 @@ public class ganho_cadastrado extends AppCompatActivity {
             }
         });
 
+        retornar_do_ganho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
 
 

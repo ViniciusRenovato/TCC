@@ -1,42 +1,31 @@
 package com.example.approfisso.activity;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
-import com.example.approfisso.adapter.agendamentofuncionarioAdapter;
+import com.example.approfisso.adapter.listaclientesAdapter;
 import com.example.approfisso.adapter.pontosclientesAdapter;
 import com.example.approfisso.classes.Usuario;
-import com.example.approfisso.entidades.Agendamento;
-import com.example.approfisso.entidades.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Pontos_clientes extends AppCompatActivity {
+public class Lista_Cliente extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     private RecyclerView recyclerView;
@@ -44,16 +33,18 @@ public class Pontos_clientes extends AppCompatActivity {
 
     private String login_cliente;
     private String ID_funcionario;
-    private Button retornar_de_pontos;
+
+    private Button pts_clientes;
+    private Button retornar_de_lista;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.clientes_pontuados);
+        setContentView(R.layout.clientes_lista);
 
-        retornar_de_pontos = findViewById(R.id.button_retornar_de_pontos_clientes);
-
+    pts_clientes = findViewById(R.id.button_resgate_de_pontos);
+    retornar_de_lista = findViewById(R.id.button_retornar_de_lista_cliente);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String current = user.getUid();
 
@@ -63,7 +54,7 @@ public class Pontos_clientes extends AppCompatActivity {
         //        lista= findViewById(R.id.lista_emprego_oferecido);
 
         //recycle view
-        recyclerView=findViewById(R.id.lista_pontos_clientes);
+        recyclerView=findViewById(R.id.lista_listagem_clientes);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         //fim recycle view
@@ -73,9 +64,16 @@ public class Pontos_clientes extends AppCompatActivity {
 
         Usuario = new LinkedList<>();
         //chamada firebase
-        listar_ponto_usuario();
+        listar_lista_usuario();
 
-        retornar_de_pontos.setOnClickListener(new View.OnClickListener() {
+        pts_clientes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Lista_Cliente.this,Pontos_clientes.class));
+            }
+        });
+
+        retornar_de_lista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -85,7 +83,7 @@ public class Pontos_clientes extends AppCompatActivity {
    }
 
     List<Usuario> Usuario;
-    public void listar_ponto_usuario()
+    public void listar_lista_usuario()
     {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,13 +93,23 @@ public class Pontos_clientes extends AppCompatActivity {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
 
                     Usuario usuario = postSnapshot.getValue(Usuario.class);
-                    Integer pontos_do_cliente = Integer.parseInt(postSnapshot.child("pontos_usuario").getValue().toString());
 
-                    if (pontos_do_cliente >= 50){
+
+
+                    String tipo_do_cliente = postSnapshot.child("tipo_usuario").getValue().toString();
+
+                    if (tipo_do_cliente.equals("cliente")){
 
                         Usuario.add(usuario);
 
                     }
+
+
+
+
+
+
+
 
 
 
@@ -114,10 +122,10 @@ public class Pontos_clientes extends AppCompatActivity {
             }
         });
     }
-    pontosclientesAdapter PontosclienteAdapter;
+    listaclientesAdapter ListaclienteAdapter;
     private void preenche_lista_ponto() {
-        PontosclienteAdapter= new pontosclientesAdapter(Usuario);
-        recyclerView.setAdapter(PontosclienteAdapter);
+        ListaclienteAdapter= new listaclientesAdapter(Usuario);
+        recyclerView.setAdapter(ListaclienteAdapter);
     }
 
 
