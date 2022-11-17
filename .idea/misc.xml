@@ -30,6 +30,7 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastrado.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro.xml" value="0.22" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/cliente_cadastro_editar.xml" value="0.25" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/clientes_lista.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/clientes_pontuados.xml" value="0.19384057971014493" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/content_main.xml" value="0.14583333333333334" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/crud.xml" value="0.1" />
@@ -41,11 +42,12 @@
         <entry key="..\:/Android/TCC/app/src/main/res/layout/funcao_cadastrado.xml" value="0.20416666666666666" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/funcao_cadastro.xml" value="0.25" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/funcionario_cadastrado.xml" value="0.25" />
-        <entry key="..\:/Android/TCC/app/src/main/res/layout/funcionario_cadastrado_agendamento.xml" value="0.18478260869565216" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/funcionario_cadastrado_agendamento.xml" value="0.1" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/funcionario_cadastro.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas.xml" value="0.75" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_agendamento.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_cliente.xml" value="0.5" />
+        <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_cliente_lista.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_estabelecimento_agendamento.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_funcao.xml" value="0.33" />
         <entry key="..\:/Android/TCC/app/src/main/res/layout/linhas_funcionario.xml" value="0.33" />
