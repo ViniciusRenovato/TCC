@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.approfisso.DataFirebase;
 import com.example.approfisso.R;
 import com.example.approfisso.activity.Principal;
+import com.example.approfisso.activity.Principal_Cliente;
 import com.example.approfisso.adapter.agendamentoAdapter;
 import com.example.approfisso.cadastro.cadastro_agendamento;
 import com.example.approfisso.classes.Usuario;
@@ -174,7 +175,7 @@ public class agendamento_cadastrado extends AppCompatActivity {
 
     public void botao_retornar_busca (View view){
         //finish();
-        Intent it = new Intent(this, Principal.class);
+        Intent it = new Intent(this, Principal_Cliente.class);
         startActivity(it);
     }
 

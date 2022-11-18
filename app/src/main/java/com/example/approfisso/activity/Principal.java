@@ -181,10 +181,7 @@ public class Principal extends AppCompatActivity {
         progressBarprincipal.setVisibility(View.VISIBLE);
         startActivity(it);
     }
-
     public void logout(View view){
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(Principal.this);
         builder.setMessage("Você quer mesmo sair?");
         builder.setTitle("Confirmar saída");
