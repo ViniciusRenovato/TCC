@@ -182,7 +182,7 @@ public class cadastro_agendamento extends AppCompatActivity {
                         if (task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult()){
 
-                                nome_cliente = (String) document.get("nome");
+//                                nome_cliente = (String) document.get("nome");
                                 login_cliente = (String) document.get("id");
 
 
@@ -205,6 +205,7 @@ public class cadastro_agendamento extends AppCompatActivity {
                     if (current.equals(UID_usuario)) {
 
                         id_usuario_agendamento = usuario_info.child("id_usuario").getValue().toString();
+                        nome_cliente = usuario_info.child("nome_usuario").getValue().toString();
                     }
                 }
             }
