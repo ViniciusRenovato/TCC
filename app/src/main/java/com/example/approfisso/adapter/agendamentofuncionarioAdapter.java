@@ -120,13 +120,13 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                                                     @Override
                                                     public void onComplete(@NonNull Task task) {
 
-
+                                                        return;
                                                     }
                                                 });
 
 
 //
-                                                return;
+
 
                                             }else {
 
@@ -148,8 +148,8 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                                                     agendamentos_encerrados_salvar.setMes_agendamento_encerrado(ano_ganho);
                                                     Agendamento_Encerrado.salvaAgendamentoEncerrado(agendamentos_encerrados_salvar);
 
-                                                    return;
-                                                
+
+
                                             }
                                         }
                                     }
@@ -189,7 +189,7 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                             agendamentos_encerrados_salvar.setMes_agendamento_encerrado(ano_ganho);
                             Agendamento_Encerrado.salvaAgendamentoEncerrado(agendamentos_encerrados_salvar);
 
-                            return;
+
 
                         }
 
