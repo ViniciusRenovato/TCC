@@ -16,7 +16,7 @@
         android:layout_marginBottom="24dp"
         android:fontFamily="monospace"
         android:onClick="botao_cadastrar_funcionario"
-        android:text="Adicionar Vaga"
+        android:text="Adicionar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

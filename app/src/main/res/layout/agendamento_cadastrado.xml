@@ -43,7 +43,7 @@
         android:layout_marginBottom="24dp"
         android:fontFamily="monospace"
         android:onClick="botao_cadastrar_agendamento"
-        android:text="Adicionar Vaga"
+        android:text="Agendar Horário"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
