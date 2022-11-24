@@ -120,17 +120,17 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                                                     @Override
                                                     public void onComplete(@NonNull Task task) {
 
-                                                        return;
+
                                                     }
                                                 });
 
 
 //
-
+                                                return;
 
                                             }else {
 
-
+                                                if ( calculo_mensal.child("id_funcionario").getValue().toString().equals(agendamento.getId_funcionario())) {
 
                                                     String mes_ganho = agendamento.getDia_agendamento().substring(6, 10);
                                                     String ano_ganho = agendamento.getDia_agendamento().substring(3, 5);
@@ -148,8 +148,8 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                                                     agendamentos_encerrados_salvar.setMes_agendamento_encerrado(ano_ganho);
                                                     Agendamento_Encerrado.salvaAgendamentoEncerrado(agendamentos_encerrados_salvar);
 
-
-
+                                                    return;
+                                                }
                                             }
                                         }
                                     }
@@ -189,7 +189,7 @@ public class agendamentofuncionarioAdapter extends RecyclerView.Adapter<agendame
                             agendamentos_encerrados_salvar.setMes_agendamento_encerrado(ano_ganho);
                             Agendamento_Encerrado.salvaAgendamentoEncerrado(agendamentos_encerrados_salvar);
 
-
+                            return;
 
                         }
 
